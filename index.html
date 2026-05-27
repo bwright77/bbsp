@@ -1030,17 +1030,22 @@
   const focusCity=document.getElementById('focusCity'), focusGrant=document.getElementById('focusGrant'), mapCross=document.getElementById('mapCross');
   const coords={CHI:['41.88','−87.63'],CIN:['39.10','−84.51'],HON:['21.31','−157.86'],ALL:['39.83','−98.58']};
   let active=null;
+  const storiesSection=document.getElementById('stories');
   function setActive(c){
     if(!resolveMarkers()) return;
-    if(active===c) return; active=c;
-    Object.entries(markers).forEach(([k,el])=>{if(!el) return; el.style.transition='opacity .5s ease'; el.style.opacity=(k===c)?'1':'0'});
-    if(c){const cs=cases.find(x=>x.dataset.city===c); focusCity.textContent=cs.dataset.label; focusGrant.textContent=cs.dataset.grant; mapCross.innerHTML=`LAT ${coords[c][0]}<br>LON ${coords[c][1]}<br>SCALE 1:42M`;}
+    Object.entries(markers).forEach(([k,el])=>{if(!el) return; el.setAttribute('opacity',(k===c)?'1':'0')});
+    active=c;
+    if(c){const cs=cases.find(x=>x.dataset.city===c); if(cs){focusCity.textContent=cs.dataset.label; focusGrant.textContent=cs.dataset.grant; mapCross.innerHTML=`LAT ${coords[c][0]}<br>LON ${coords[c][1]}<br>SCALE 1:42M`;}}
     else {focusCity.textContent='All 49 grant cities · 31 states'; focusGrant.textContent='125 deployed'; mapCross.innerHTML=`LAT ${coords.ALL[0]}<br>LON ${coords.ALL[1]}<br>SCALE 1:42M`;}
   }
   function check(){
-    let best=null,d=Infinity;
-    cases.forEach(c=>{const r=c.getBoundingClientRect(); const dist=Math.abs((r.top+r.bottom)/2 - window.innerHeight/2); if(r.bottom>0&&r.top<window.innerHeight&&dist<d){d=dist;best=c}});
-    setActive(best?best.dataset.city:null);
+    if(!cases.length) return;
+    const sr=storiesSection?storiesSection.getBoundingClientRect():null;
+    const inSection=sr && sr.bottom>0 && sr.top<window.innerHeight;
+    if(!inSection){ setActive(null); return; }
+    let best=cases[0], d=Infinity;
+    cases.forEach(c=>{const r=c.getBoundingClientRect(); const dist=Math.abs((r.top+r.bottom)/2 - window.innerHeight/2); if(dist<d){d=dist;best=c}});
+    setActive(best.dataset.city);
   }
   window.__bbspCheck = check;
   window.addEventListener('scroll',check,{passive:true}); window.addEventListener('resize',check,{passive:true}); check();
