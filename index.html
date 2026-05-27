@@ -342,9 +342,9 @@
   .foot-form button{background:var(--signal);color:var(--ink);border:0;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 16px;border-radius:3px;cursor:pointer}
   .foot-meta{margin-top:48px;display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;color:rgba(250,246,236,.5);text-transform:uppercase;flex-wrap:wrap;gap:24px}
   @media (max-width:900px){.foot-closing,.foot-contact{grid-template-columns:1fr;gap:32px}}
-  /* Rider-voice section bicycle badge */
-  .rider-icon{width:72px;height:72px;border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(98,155,163,.12);color:var(--green)}
-  .rider-icon svg{width:38px;height:38px}
+  /* Voice-transition section badges (bicycle for rider voice, cohort for fellowship voice) */
+  .rider-icon,.cohort-icon{width:72px;height:72px;border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(98,155,163,.12);color:var(--green)}
+  .rider-icon svg,.cohort-icon svg{width:38px;height:38px}
   /* Mobile overrides — placed at end so they win over earlier same-specificity desktop rules */
   @media (max-width:800px){
     .hero{padding:120px var(--pad) 40px}
@@ -356,7 +356,7 @@
     .hero-photo{margin-top:48px;height:clamp(260px,58vw,400px)}
     .hero-mission{font-size:16px}
     .hero-meta{font-size:11px}
-    .rider-icon{display:none}
+    .rider-icon,.cohort-icon{display:none}
   }
 </style>
 </head>
@@ -626,8 +626,23 @@
     <div class="pgm">
       <span class="pn">PROGRAM · 04 · LED BY NACTO</span>
       <h3>Transportation Justice Fellowship</h3>
-      <p>43 fellows developed over the life of the program, building a pipeline of diverse leadership in the shared micromobility field. <span class="ph">Fellow stories · Copy needed</span> Request alumni names &amp; outcomes from BBSP.</p>
+      <p>43 fellows developed over the life of the program — a career accelerator for BIPOC leaders in transportation justice, building a pipeline of diverse leadership whose impact will outlast the fellowship itself.</p>
       <div class="metric"><span class="n">43</span><span class="u">fellows · across cohorts</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- Fellowship voice transition: §4 → §5 -->
+<section style="background:var(--green-deep);color:var(--cream);padding:120px var(--pad);position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;right:-2vw;top:-40px;font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(280px,38vw,560px);line-height:.7;color:var(--green);opacity:.18;pointer-events:none;user-select:none">&ldquo;</div>
+  <div style="max-width:1080px;margin:0 auto;position:relative;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center">
+    <div class="cohort-icon" aria-hidden="true">
+      <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="11" r="4"/><path d="M4 26c0-4 3.5-7 8-7s8 3 8 7"/><circle cx="23" cy="13" r="3"/><path d="M20 21c1-1 2.5-2 4-2s4 2 4 5"/></svg>
+    </div>
+    <div>
+      <div class="caps mono" style="color:var(--green);margin-bottom:18px;font-size:11px;letter-spacing:.2em;font-weight:600">Transportation Justice Fellowship · led by NACTO · 43 fellows</div>
+      <blockquote style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(26px,3.4vw,52px);line-height:1.15;letter-spacing:-.02em;color:var(--cream);text-transform:uppercase;margin:0">The Fellowship has been a premier career accelerator for BIPOC leaders in transportation justice — and will continue to create <span style="color:var(--signal)">ripples of impact</span> beyond these individuals, resulting in more just transportation systems across the country.</blockquote>
+      <cite style="display:block;margin-top:24px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,236,.65);font-style:normal">— Fielding Hong · Senior Manager of Field Building · NACTO</cite>
     </div>
   </div>
 </section>
