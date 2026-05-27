@@ -159,15 +159,16 @@
   .pct-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
   .pct .split{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,5vw,72px);align-items:end;margin-top:48px}
   .pct-cell{display:flex;flex-direction:column;gap:10px}
-  .pct-cell.pct-before{opacity:.82}
-  .pct-year{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);font-weight:600}
-  .pct-meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;line-height:1.5;max-width:26ch;margin-bottom:6px}
-  .pct-num{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(72px,14vw,200px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-  .pct-num .lt{font-size:.5em;font-weight:400;display:inline-block;vertical-align:.18em;opacity:.85;margin-right:.02em}
-  .pct-num sup{font-size:.32em;color:var(--signal);vertical-align:.9em;margin-left:-.04em;font-weight:400}
+  .pct-cell.pct-before{opacity:.92}
+  .pct-year{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);font-weight:700}
+  .pct-year::before{content:"";display:inline-block;width:18px;height:2px;background:var(--signal);vertical-align:middle;margin-right:10px;transform:translateY(-2px)}
+  .pct-meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);opacity:.78;line-height:1.5;max-width:26ch;margin-bottom:6px;font-weight:500}
+  .pct-num{font-family:"Montserrat",sans-serif;font-weight:600;font-size:clamp(72px,14vw,200px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--cream)}
+  .pct-num .lt{font-size:.5em;font-weight:500;display:inline-block;vertical-align:.18em;opacity:.9;margin-right:.02em}
+  .pct-num sup{font-size:.32em;color:var(--cream);opacity:.75;vertical-align:.9em;margin-left:-.04em;font-weight:500}
   .pct-arrow{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:clamp(16px,4vw,36px);color:var(--signal)}
-  .pct-arrow svg{width:clamp(60px,9vw,140px);height:auto}
-  .pct-arrow-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.85;text-align:center;line-height:1.4;color:var(--cream)}
+  .pct-arrow svg{width:clamp(72px,10vw,160px);height:auto;filter:drop-shadow(0 1px 0 rgba(0,0,0,.18))}
+  .pct-arrow-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:1.4;color:var(--cream);font-weight:700}
   .pct-lede{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(18px,1.6vw,24px);line-height:1.45;margin-top:48px;max-width:62ch;letter-spacing:-.003em;opacity:.92}
   .pct .src{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;opacity:.7;margin-top:32px;text-transform:uppercase}
   @media (max-width:800px){
@@ -528,7 +529,7 @@
         <div class="pct-num"><span class="lt">&lt;</span><span data-count="5">0</span><sup>%</sup></div>
       </div>
       <div class="pct-arrow" aria-hidden="true">
-        <svg viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h112"/><path d="M104 4l10 8-10 8"/></svg>
+        <svg viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h112"/><path d="M104 4l10 8-10 8"/></svg>
         <div class="pct-arrow-lbl">A decade<br>of work</div>
       </div>
       <div class="pct-cell pct-after">
