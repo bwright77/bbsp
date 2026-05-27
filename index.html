@@ -61,7 +61,7 @@
   }
 
   /* Language picker dropdown */
-  .lang-menu{position:absolute;top:64px;right:16px;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 32px rgba(15,38,32,.12);min-width:220px;padding:8px;display:none;z-index:99}
+  .lang-menu{position:absolute;top:64px;right:16px;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 32px rgba(15,38,32,.12);min-width:240px;padding:8px;display:none;z-index:99;max-height:min(70vh,520px);overflow-y:auto;overscroll-behavior:contain}
   .lang-menu.open{display:block}
   .lang-menu .lang-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);padding:10px 12px 6px}
   .lang-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:transparent;text-align:left;padding:9px 12px;border-radius:4px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
@@ -353,13 +353,40 @@
     <div class="lang-menu notranslate" id="langMenu" role="menu" translate="no">
       <div class="lang-head">Translate this page</div>
       <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
-      <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
-      <button data-lang="zh" role="menuitem"><span>中文</span><span class="iso">ZH</span></button>
-      <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
+      <button data-lang="am" role="menuitem"><span>አማርኛ</span><span class="iso">AM</span></button>
       <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
+      <button data-lang="bn" role="menuitem"><span>বাংলা</span><span class="iso">BN</span></button>
+      <button data-lang="zh-CN" role="menuitem"><span>中文 (简体)</span><span class="iso">ZH-CN</span></button>
+      <button data-lang="zh-TW" role="menuitem"><span>中文 (繁體)</span><span class="iso">ZH-TW</span></button>
+      <button data-lang="nl" role="menuitem"><span>Nederlands</span><span class="iso">NL</span></button>
+      <button data-lang="tl" role="menuitem"><span>Filipino</span><span class="iso">TL</span></button>
+      <button data-lang="fr" role="menuitem"><span>Français</span><span class="iso">FR</span></button>
+      <button data-lang="de" role="menuitem"><span>Deutsch</span><span class="iso">DE</span></button>
+      <button data-lang="el" role="menuitem"><span>Ελληνικά</span><span class="iso">EL</span></button>
+      <button data-lang="ht" role="menuitem"><span>Kreyòl Ayisyen</span><span class="iso">HT</span></button>
       <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
-      <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">Powered by</div>
-      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em">Google Translate</div>
+      <button data-lang="hi" role="menuitem"><span>हिन्दी</span><span class="iso">HI</span></button>
+      <button data-lang="hmn" role="menuitem"><span>Hmoob</span><span class="iso">HMN</span></button>
+      <button data-lang="id" role="menuitem"><span>Bahasa Indonesia</span><span class="iso">ID</span></button>
+      <button data-lang="it" role="menuitem"><span>Italiano</span><span class="iso">IT</span></button>
+      <button data-lang="ja" role="menuitem"><span>日本語</span><span class="iso">JA</span></button>
+      <button data-lang="ko" role="menuitem"><span>한국어</span><span class="iso">KO</span></button>
+      <button data-lang="ms" role="menuitem"><span>Bahasa Melayu</span><span class="iso">MS</span></button>
+      <button data-lang="ne" role="menuitem"><span>नेपाली</span><span class="iso">NE</span></button>
+      <button data-lang="pt" role="menuitem"><span>Português</span><span class="iso">PT</span></button>
+      <button data-lang="ru" role="menuitem"><span>Русский</span><span class="iso">RU</span></button>
+      <button data-lang="so" role="menuitem"><span>Soomaali</span><span class="iso">SO</span></button>
+      <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
+      <button data-lang="sw" role="menuitem"><span>Kiswahili</span><span class="iso">SW</span></button>
+      <button data-lang="sv" role="menuitem"><span>Svenska</span><span class="iso">SV</span></button>
+      <button data-lang="ta" role="menuitem"><span>தமிழ்</span><span class="iso">TA</span></button>
+      <button data-lang="th" role="menuitem"><span>ไทย</span><span class="iso">TH</span></button>
+      <button data-lang="tr" role="menuitem"><span>Türkçe</span><span class="iso">TR</span></button>
+      <button data-lang="uk" role="menuitem"><span>Українська</span><span class="iso">UK</span></button>
+      <button data-lang="ur" role="menuitem"><span>اردو</span><span class="iso">UR</span></button>
+      <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
+      <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px;position:sticky;bottom:0;background:#fff">Powered by</div>
+      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em;background:#fff">Google Translate</div>
     </div>
   </div>
 </nav>
@@ -898,7 +925,7 @@
   function googleTranslateElementInit(){
     new google.translate.TranslateElement({
       pageLanguage:'en',
-      includedLanguages:'es,zh-CN,vi,ar,haw',
+      includedLanguages:'am,ar,bn,zh-CN,zh-TW,nl,en,tl,fr,de,el,ht,haw,hi,hmn,id,it,ja,ko,ms,ne,pt,ru,so,es,sw,sv,ta,th,tr,uk,ur,vi',
       autoDisplay:false,
       layout:google.translate.TranslateElement.InlineLayout.SIMPLE
     },'google_translate_element');
@@ -1126,8 +1153,8 @@
   (function(){
     const btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu');
     if(!btn||!menu) return;
-    // Our picker code → Google Translate target code. '' = restore original (English).
-    const LANG_MAP={en:'', es:'es', zh:'zh-CN', vi:'vi', ar:'ar', haw:'haw'};
+    // data-lang values are Google Translate codes verbatim; 'en' clears the cookie.
+    function toGoogleCode(lang){ return lang==='en' ? '' : lang; }
     function setMark(code){
       menu.querySelectorAll('button[data-lang]').forEach(x=>{
         x.classList.toggle('active', x.dataset.lang===code);
@@ -1139,8 +1166,7 @@
     function getCookieLang(){
       const m=document.cookie.match(/(?:^|; )googtrans=\/[^/]+\/([^;]+)/);
       if(!m) return 'en';
-      const g=decodeURIComponent(m[1]);
-      return Object.keys(LANG_MAP).find(k=>LANG_MAP[k]===g) || 'en';
+      return decodeURIComponent(m[1]);
     }
     function setGoogTransCookie(googleCode){
       const exp='expires=Thu, 01 Jan 1970 00:00:00 UTC;';
@@ -1164,7 +1190,7 @@
         const lang=b.dataset.lang;
         if(lang===getCookieLang()){ close(); return; }
         setMark(lang);
-        setGoogTransCookie(LANG_MAP[lang]);
+        setGoogTransCookie(toGoogleCode(lang));
         try{ sessionStorage.setItem('bbsp:scrollY', String(window.scrollY)); }catch(e){}
         close();
         location.reload();
