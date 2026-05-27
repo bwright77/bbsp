@@ -1,0 +1,1194 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Better Bike Share Partnership — A Legacy, 2014–2026</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f1e8;--bg-2:#e6e2d2;--ink:#16282a;--ink-mute:#6a6f72;--line:rgba(22,40,42,.14);
+    --green:#629BA3;--green-deep:#1f3e44;--moss:#8fb9bf;--signal:#e26a3c;--cream:#faf6ec;--pinblue:#2A6FDB;
+    --pad:clamp(20px, 4vw, 80px);--maxw:1320px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:hidden}
+  .serif{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .caps{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:500}
+  a{color:inherit}
+  .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);width:100%}
+  .chap{display:flex;align-items:center;gap:14px;color:var(--ink-mute);margin-bottom:18px}
+  .chap .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .chap .line{flex:1;max-width:140px;height:1px;background:var(--line)}
+  .lane{background-image:repeating-linear-gradient(90deg,var(--green) 0 28px, transparent 28px 48px);height:5px;border-radius:3px;width:100%}
+  .ph{display:inline-flex;align-items:center;gap:6px;background:var(--signal);color:var(--cream);font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.12em;padding:3px 8px;border-radius:3px;text-transform:uppercase;vertical-align:middle}
+  .nav{position:absolute;top:0;left:0;right:0;z-index:90;background:#fff;border-bottom:1px solid var(--line);padding:14px var(--pad);min-height:74px}
+  .nav-inner{max-width:var(--maxw);margin:0 auto;display:flex;justify-content:space-between;align-items:center;gap:24px;position:relative}
+  .brand{display:block;position:relative}
+  .brand .logo-descend{position:absolute;top:-4px;left:0;width:clamp(150px, 14vw, 220px);max-height:120px;height:auto;display:block;z-index:91}
+  .brand .logo-descend img{width:100%;height:auto;max-height:120px;object-fit:contain;object-position:left top;display:block;filter:drop-shadow(0 6px 24px rgba(15,38,32,.18))}
+  .brand-spacer{width:clamp(150px, 14vw, 220px);height:46px}
+  .nav-links{display:flex;gap:24px;align-items:center;font-size:14px}
+  .nav-links a{text-decoration:none;color:var(--ink);opacity:.7}
+  .nav-links a:hover{opacity:1}
+  .nav-tools{display:flex;gap:8px;align-items:center;margin-left:12px;padding-left:18px;border-left:1px solid var(--line)}
+  .nav-tool{width:36px;height:36px;border:1px solid var(--line);background:transparent;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);opacity:.7;transition:opacity .2s,background .2s,border-color .2s;padding:0;position:relative}
+  .nav-tool:hover{opacity:1;background:var(--bg-2);border-color:var(--green)}
+  .nav-tool[aria-expanded="true"]{opacity:1;background:var(--ink);color:var(--cream);border-color:var(--ink)}
+  .nav-tool svg{width:16px;height:16px}
+  @media (max-width:800px){.nav-tools{display:flex;margin-left:auto;padding-left:0;border-left:0}}
+  @media (max-width:800px){.nav-links{display:none}.brand .logo-descend{width:120px;max-height:90px}.brand .logo-descend img{max-height:90px}.brand-spacer{width:120px;height:38px}.hero{padding-top:200px}}
+
+  /* Language picker dropdown */
+  .lang-menu{position:absolute;top:64px;right:16px;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 32px rgba(15,38,32,.12);min-width:220px;padding:8px;display:none;z-index:99}
+  .lang-menu.open{display:block}
+  .lang-menu .lang-head{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);padding:10px 12px 6px}
+  .lang-menu button{display:flex;align-items:center;justify-content:space-between;width:100%;border:0;background:transparent;text-align:left;padding:9px 12px;border-radius:4px;font:inherit;font-size:14px;color:var(--ink);cursor:pointer}
+  .lang-menu button:hover{background:var(--bg-2)}
+  .lang-menu button.active{background:var(--green);color:var(--cream)}
+  .lang-menu button .iso{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;opacity:.6}
+
+  /* Search overlay */
+  .search-overlay{position:fixed;inset:0;z-index:120;background:rgba(15,38,32,.65);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:14vh 24px 24px}
+  .search-overlay.open{display:flex}
+  .search-panel{background:#fff;border-radius:8px;max-width:680px;width:100%;box-shadow:0 24px 64px rgba(0,0,0,.32);overflow:hidden}
+  .search-panel .field{display:flex;align-items:center;gap:14px;padding:18px 22px;border-bottom:1px solid var(--line)}
+  .search-panel .field svg{width:22px;height:22px;color:var(--green);flex-shrink:0}
+  .search-panel input{flex:1;border:0;outline:0;font:inherit;font-family:"Montserrat",sans-serif;font-size:22px;font-weight:600;color:var(--ink);background:transparent;letter-spacing:-.01em}
+  .search-panel input::placeholder{color:var(--ink-mute);font-weight:500}
+  .search-panel .close{background:transparent;border:0;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);cursor:pointer;padding:6px 10px;border:1px solid var(--line);border-radius:4px}
+  .search-panel .close:hover{color:var(--ink);background:var(--bg-2)}
+  .search-results{max-height:50vh;overflow-y:auto;padding:8px 0}
+  .search-results .group{padding:14px 22px 6px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute)}
+  .search-results .hit{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:11px 22px;text-decoration:none;color:var(--ink);font-family:"Montserrat",sans-serif;font-size:15px;cursor:pointer}
+  .search-results .hit:hover,.search-results .hit:focus{background:var(--bg-2);outline:0}
+  .search-results .hit .kind{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute)}
+  .search-results .hit mark{background:rgba(98,155,163,.28);color:inherit;padding:0 2px;border-radius:2px}
+  .search-results .empty{padding:32px 22px;text-align:center;color:var(--ink-mute);font-family:"Montserrat",sans-serif;font-size:14px}
+  .toTop{position:fixed;right:24px;bottom:24px;z-index:95;width:54px;height:54px;border-radius:50%;background:var(--ink);color:var(--cream);border:none;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 24px rgba(15,38,32,.18);transform:translateY(20px);opacity:0;pointer-events:none;transition:transform .35s cubic-bezier(.2,.7,.1,1), opacity .35s ease, background .2s}
+  .toTop.show{transform:translateY(0);opacity:1;pointer-events:auto}
+  .toTop:hover{background:var(--green)}
+  .toTop svg{width:20px;height:20px}
+  .toTop .lbl{position:absolute;right:64px;top:50%;transform:translateY(-50%);font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink);background:#fff;padding:6px 10px;border-radius:3px;border:1px solid var(--line);white-space:nowrap;opacity:0;transition:opacity .2s}
+  .toTop:hover .lbl{opacity:1}
+  @media (max-width:600px){.toTop{right:16px;bottom:16px;width:48px;height:48px}}
+  .hero{padding:240px var(--pad) 60px;position:relative}
+  .hero-inner{max-width:var(--maxw);margin:0 auto}
+  .hero-eyebrow{display:flex;align-items:center;gap:14px;color:var(--ink-mute);margin-bottom:32px}
+  .hero h1{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:clamp(56px,9.5vw,156px);line-height:.94;letter-spacing:-.02em;max-width:14ch}
+  .hero h1 em{color:var(--green);font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
+  .hero h1 .word{display:inline-block;transform:translateY(48px);opacity:0;transition:transform 1s cubic-bezier(.2,.7,.1,1), opacity .8s ease;will-change:transform,opacity}
+  .hero h1 .word.in{transform:translateY(0);opacity:1}
+  .hero-foot{margin-top:56px;display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:end}
+  .hero-mission{font-size:clamp(18px,1.5vw,22px);line-height:1.5;max-width:60ch}
+  .hero-mission .lead{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:1.15em;line-height:1.3;display:block;margin-bottom:14px;letter-spacing:-.005em;text-transform:uppercase}
+  .hero-meta{justify-self:end;text-align:right;color:var(--ink-mute);font-size:12px;font-family:"JetBrains Mono",monospace;line-height:1.85;letter-spacing:.04em}
+  .hero-meta b{color:var(--green);font-weight:600}
+  @media (max-width:800px){.hero-foot{grid-template-columns:1fr}.hero-meta{justify-self:start;text-align:left}}
+  .hero-photo{margin-top:80px;position:relative;max-width:var(--maxw);margin-left:auto;margin-right:auto;height:clamp(360px,52vh,640px);overflow:hidden;border-radius:6px;background:#1a2a25}
+  .hero-photo img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.95)}
+  .hero-photo .overlay{position:absolute;inset:0;background:linear-gradient(180deg,rgba(15,38,32,0) 30%,rgba(15,38,32,.78) 100%)}
+  .hero-photo .tease{position:absolute;left:32px;bottom:32px;right:32px;color:var(--cream);display:flex;justify-content:space-between;align-items:flex-end;gap:32px;flex-wrap:wrap}
+  .hero-photo .tease .big{font-family:"Montserrat",sans-serif;font-size:clamp(80px,11vw,180px);line-height:.9;letter-spacing:-.03em;font-weight:500}
+  .hero-photo .tease .big sup{font-size:.4em;vertical-align:top}
+  .hero-photo .tease p{max-width:30ch;font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:clamp(13px,1.05vw,16px);line-height:1.35;text-transform:uppercase;letter-spacing:.08em}
+  .hero-photo .caption{position:absolute;top:20px;left:20px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;color:var(--ink);text-transform:uppercase;background:rgba(98,155,163,.92);padding:6px 10px;border-radius:3px;font-weight:600}
+  section.s{padding:140px var(--pad);position:relative}
+  section.s.dark{background:var(--ink);color:var(--cream)}
+  section.s.dark .chap{color:rgba(250,246,236,.55)}
+  section.s.dark .chap .line{background:rgba(250,246,236,.2)}
+  section.s.bg2{background:var(--bg-2)}
+  section.s h2{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:clamp(48px,7vw,108px);line-height:.95;letter-spacing:-.02em}
+  section.s h2 em{color:var(--green);font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
+  h1 em, h2 em{font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
+  section.s.dark h2 em{color:var(--signal)}
+  .deck{font-size:18px;color:var(--ink-mute);max-width:48ch;line-height:1.55}
+  .origin-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:80px;align-items:start}
+  .origin-grid .left{position:sticky;top:120px}
+  .origin-body p{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:clamp(19px,1.45vw,24px);line-height:1.5;color:var(--ink);max-width:34ch;letter-spacing:-.003em}
+  .origin-body p + p{margin-top:28px}
+  .origin-photo{margin-top:48px;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3;background:#1a2a25}
+  .origin-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .origin-photo figcaption{position:absolute;left:14px;bottom:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink);text-transform:uppercase;background:rgba(98,155,163,.92);padding:6px 10px;border-radius:3px;font-weight:600}
+  .timeline{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:24px 0}
+  .tl-step{padding:0 18px;border-left:1px solid var(--line)}
+  .tl-step:first-child{border-left:0;padding-left:0}
+  .tl-year{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;color:var(--green);font-weight:600;margin-bottom:8px}
+  .tl-step.major .tl-year{color:var(--signal)}
+  .tl-cap{font-size:13px;line-height:1.4;color:var(--ink)}
+  @media (max-width:800px){.origin-grid{grid-template-columns:1fr;gap:40px}.origin-grid .left{position:static}.timeline{grid-template-columns:repeat(2,1fr)}}
+  .pct{background:var(--green);color:var(--cream);padding:160px var(--pad);position:relative;overflow:hidden}
+  .pct::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,106,61,.22),transparent 50%);pointer-events:none}
+  .pct-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
+  .pct .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-top:40px}
+  .pct .before{opacity:.55;font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(24px,2.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.06em}
+  .pct .arrow{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.16em;opacity:.7;margin:14px 0}
+  .pct .after{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(140px,22vw,360px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .pct .after sup{font-size:.36em;color:var(--signal);vertical-align:top;margin-left:-.05em}
+  .pct .lede{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2vw,30px);line-height:1.3;margin-top:32px;max-width:36ch;letter-spacing:-.005em}
+  .pct .src{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;opacity:.7;margin-top:48px;text-transform:uppercase}
+  @media (max-width:800px){.pct .split{grid-template-columns:1fr;gap:24px}}
+  .impact-head{max-width:var(--maxw);margin:0 auto 64px;display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:end}
+  @media (max-width:800px){.impact-head{grid-template-columns:1fr;gap:24px}}
+  .impact-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--line);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .stat{background:var(--bg);padding:32px 24px;display:flex;flex-direction:column;justify-content:space-between;gap:18px;min-height:200px;position:relative;overflow:hidden}
+  .stat.s4{grid-column:span 4}.stat.s3{grid-column:span 3}.stat.s6{grid-column:span 6}.stat.s12{grid-column:span 12}
+  .stat .v{font-size:clamp(56px,7vw,110px);line-height:.9;letter-spacing:-.02em;font-weight:500;font-variant-numeric:tabular-nums}
+  .stat .v sup{font-size:.42em;font-weight:400;vertical-align:top;margin-left:2px}
+  .stat .v .pre{font-size:.6em;font-weight:400;color:var(--green);margin-right:2px}
+  .stat .l{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink);max-width:26ch;line-height:1.45}
+  .stat .src-mini{position:absolute;top:14px;right:16px;font-family:"JetBrains Mono",monospace;font-size:9px;letter-spacing:.1em;color:var(--ink-mute);text-transform:uppercase}
+  .stat.dark{background:var(--ink);color:var(--cream)}
+  .stat.dark .l{color:rgba(250,246,236,.85)}
+  .stat.accent{background:var(--signal);color:var(--cream)}
+  .stat.accent .l{color:rgba(250,246,236,.95)}
+  .stat.moss{background:var(--moss);color:var(--cream)}
+  .stat.moss .l{color:rgba(250,246,236,.9)}
+  @media (max-width:900px){.stat.s4,.stat.s3,.stat.s6{grid-column:span 6}}
+  @media (max-width:520px){.stat.s4,.stat.s3,.stat.s6{grid-column:span 12}}
+  .prog-head{max-width:var(--maxw);margin:0 auto 64px;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:end}
+  @media (max-width:800px){.prog-head{grid-template-columns:1fr;gap:24px}}
+  .prog-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--line)}
+  .pgm{background:var(--bg-2);padding:48px 36px;display:flex;flex-direction:column;gap:18px;min-height:340px;position:relative}
+  .pgm .pn{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;color:var(--green);font-weight:600}
+  .pgm h3{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:clamp(36px,3.5vw,54px);line-height:1;letter-spacing:-.015em;font-weight:800}
+  .pgm p{font-size:16px;line-height:1.55;color:var(--ink);max-width:46ch}
+  .pgm .metric{margin-top:auto;display:flex;align-items:baseline;gap:10px;padding-top:18px;border-top:1px solid var(--line)}
+  .pgm .metric .n{font-size:38px;font-weight:500;letter-spacing:-.02em;color:var(--green)}
+  .pgm .metric .u{font-family:"JetBrains Mono",monospace;font-size:11px;text-transform:uppercase;letter-spacing:.1em;color:var(--ink-mute)}
+  .pgm.flag::after{content:"FLAG · confirm w/ BBSP";position:absolute;top:14px;right:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.08em;color:var(--cream);background:var(--signal);padding:4px 8px;border-radius:3px}
+  @media (max-width:800px){.prog-grid{grid-template-columns:1fr}}
+  .cases-head{max-width:var(--maxw);margin:0 auto;padding:0 0 80px}
+  .cases-wrap{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1.05fr;gap:0;align-items:stretch}
+  .map-col{position:relative}
+  .map-sticky{position:sticky;top:60px;height:calc(100vh - 120px);max-height:760px;display:flex;align-items:center;justify-content:center;padding-right:32px}
+  .map-frame{width:100%;height:100%;background:#0a1614;border:1px solid rgba(250,246,236,.12);border-radius:4px;position:relative;overflow:hidden}
+  .map-legend{position:absolute;top:14px;left:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,236,.6);display:flex;flex-direction:column;gap:6px;z-index:2}
+  .map-cross{position:absolute;top:14px;right:14px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:rgba(250,246,236,.5);text-align:right;line-height:1.55}
+  .map-card{position:absolute;bottom:14px;left:14px;right:14px;background:rgba(15,38,32,.94);backdrop-filter:blur(8px);border:1px solid rgba(255,106,61,.4);padding:14px 16px;border-radius:4px;font-family:"JetBrains Mono",monospace;font-size:11px;color:var(--cream);letter-spacing:.04em;display:flex;justify-content:space-between;align-items:center;gap:14px;transition:opacity .4s ease}
+  .map-card .label{color:rgba(250,246,236,.55);font-size:9px;letter-spacing:.14em;text-transform:uppercase;display:block;margin-bottom:4px}
+  .map-card .v{font-size:13px;color:var(--signal);font-weight:600}
+  .map-svg{width:100%;height:100%;display:block}
+  .case-stack{display:flex;flex-direction:column}
+  .case{padding:96px 0;border-top:1px solid rgba(250,246,236,.16);scroll-margin-top:80px}
+  .case:first-child{border-top:0;padding-top:0}
+  .case-tag{display:flex;align-items:center;gap:14px;color:rgba(250,246,236,.55);font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase}
+  .case-tag .marker{width:10px;height:10px;border-radius:50%;background:var(--signal);box-shadow:0 0 0 4px rgba(255,106,61,.18)}
+  .case .grant{display:inline-flex;align-items:center;gap:8px;background:var(--signal);color:var(--ink);padding:6px 12px;border-radius:3px;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;margin:18px 0}
+  .case h3{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:clamp(44px,5.5vw,76px);line-height:.95;letter-spacing:-.025em;margin:6px 0 12px;font-weight:800}
+  .case .sub{color:rgba(250,246,236,.85);margin-bottom:24px;font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:600;font-size:clamp(13px,1vw,15px);line-height:1.3;text-transform:uppercase;letter-spacing:.08em}
+  .case-narr{font-size:17px;line-height:1.6;color:rgba(250,246,236,.86);max-width:54ch;margin-bottom:32px}
+  .case-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:3/2;background:#1a2a25;margin-bottom:32px}
+  .case-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .case-photo figcaption{position:absolute;left:12px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink);background:rgba(98,155,163,.92);padding:5px 8px;border-radius:3px;font-weight:600;text-transform:uppercase}
+  .case-outcomes{display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(250,246,236,.16);padding-top:24px}
+  .outcome{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:14px;border-bottom:1px dashed rgba(250,246,236,.12)}
+  .outcome .num{font-size:34px;font-weight:500;line-height:1;letter-spacing:-.02em;color:var(--signal);min-width:140px;font-variant-numeric:tabular-nums}
+  .outcome .num sup{font-size:.5em;vertical-align:top}
+  .outcome .lbl{font-size:14px;color:rgba(250,246,236,.86);line-height:1.45}
+  .stuck{margin-top:36px;padding:24px 28px;background:rgba(250,246,236,.06);border-left:3px solid var(--moss);border-radius:0 4px 4px 0}
+  .stuck b{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--moss);display:block;margin-bottom:8px}
+  .stuck p{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:19px;line-height:1.45;color:rgba(250,246,236,.92)}
+  .pull{margin-top:40px;padding:24px 28px;background:rgba(250,246,236,.05);border-left:2px solid var(--signal);font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:17px;line-height:1.5;letter-spacing:0;color:rgba(250,246,236,.85)}
+  .pull cite{display:block;margin-top:16px;font-style:normal;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:rgba(250,246,236,.6)}
+  @media (max-width:1000px){.cases-wrap{grid-template-columns:1fr}.map-col{order:-1;margin-bottom:32px}.map-sticky{position:relative;top:auto;height:50vh;min-height:340px;padding-right:0}}
+  .ripple{padding:140px 0;background:var(--bg-2);position:relative}
+  .ripple-head{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 56px}
+  .ripple-head h2 em{color:var(--moss)}
+  .ripple-map{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 48px}
+  .ripple-legend{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;color:rgba(15,38,32,.5);padding:0 4px 36px}
+  .ripple-map svg{margin-bottom:32px}
+  .ripple-map svg{width:100%;height:auto;display:block}
+  .ripple-track{position:relative;padding:0 var(--pad) 48px;overflow-x:auto;scroll-snap-type:x mandatory;-webkit-overflow-scrolling:touch}
+  .ripple-track::-webkit-scrollbar{height:10px}
+  .ripple-track::-webkit-scrollbar-track{background:rgba(15,38,32,.06)}
+  .ripple-track::-webkit-scrollbar-thumb{background:var(--green);border-radius:4px}
+  .ripple-inner{display:flex;gap:20px;width:max-content;padding-bottom:20px}
+  .rcard{flex:0 0 320px;scroll-snap-align:start;background:var(--bg);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease}
+  .rcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(15,38,32,.12)}
+  .rcard .photo{aspect-ratio:4/3;background:#1a2a25;position:relative;overflow:hidden}
+  .rcard .photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .rcard .photo .city-tag{position:absolute;top:10px;left:10px;font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.1em;color:var(--ink);background:rgba(98,155,163,.92);padding:5px 9px;border-radius:3px;font-weight:600;text-transform:uppercase}
+  .rcard .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
+  .rcard h4{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:26px;line-height:1.05;font-weight:700;letter-spacing:-.01em}
+  .rcard p{font-size:14px;line-height:1.55;color:var(--ink-mute);flex:1}
+  .rcard .more{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;text-decoration:none;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+  .rcard .more:hover{color:var(--signal)}
+  .rcard.selected{outline:3px solid var(--pinblue);outline-offset:-1px;box-shadow:0 16px 40px rgba(42,111,219,.22)}
+  .rpin.selected circle:nth-child(1){fill:rgba(42,111,219,.22);r:18}
+  .rpin.selected circle:nth-child(2){fill:var(--pinblue);r:8}
+  .rpin.selected text{fill:var(--pinblue)}
+  @keyframes pinDrop{0%{transform:translateY(-18px);opacity:0}60%{transform:translateY(2px);opacity:1}100%{transform:translateY(0)}}
+  .rpin.selected{transform-box:fill-box;transform-origin:center;animation:pinDrop .42s cubic-bezier(.34,1.56,.64,1)}
+  .legacy-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1fr 1.4fr;gap:64px;align-items:end;margin-bottom:64px}
+  .legacy-body-wrap{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:1.2fr 1fr;gap:64px;align-items:start}
+  @media (max-width:900px){.legacy-body-wrap{grid-template-columns:1fr;gap:40px}}
+  .legacy h2 em{color:var(--green)}
+  .legacy-body{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:clamp(17px,1.35vw,22px);line-height:1.55;max-width:42ch;letter-spacing:-.003em}
+  .legacy-body p + p{margin-top:24px}
+  .legacy-flags{margin-top:48px;display:grid;gap:14px}
+  .flag-card{background:var(--bg-2);border-left:3px solid var(--signal);padding:18px 20px;font-family:"JetBrains Mono",monospace;font-size:12px;line-height:1.55;letter-spacing:.02em}
+  .flag-card b{color:var(--signal);text-transform:uppercase;letter-spacing:.12em;font-size:10px;display:block;margin-bottom:6px}
+  .context-strip{margin-top:80px;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--line);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
+  .ctx{display:flex;flex-direction:column;gap:14px;padding:36px 28px;min-height:240px;justify-content:space-between;position:relative;overflow:hidden}
+  .ctx:nth-child(1){background:var(--green);color:var(--cream)}
+  .ctx:nth-child(2){background:var(--ink);color:var(--cream)}
+  .ctx:nth-child(3){background:var(--signal);color:var(--cream)}
+  .ctx .n{font-family:"Montserrat",sans-serif;font-size:clamp(72px,8vw,128px);font-weight:800;line-height:.9;letter-spacing:-.03em;color:inherit;font-variant-numeric:tabular-nums}
+  .ctx .n sup{font-size:.45em;font-weight:600;vertical-align:top}
+  .ctx .l{font-family:"Montserrat",sans-serif;font-size:15px;line-height:1.4;color:inherit;opacity:.92;max-width:30ch;font-weight:500}
+  .ctx .src{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;color:inherit;text-transform:uppercase;opacity:.65}
+  @media (max-width:800px){.legacy-grid{grid-template-columns:1fr;gap:40px}.context-strip{grid-template-columns:1fr}}
+  .partners{max-width:var(--maxw);margin:80px auto 0;padding-top:32px;border-top:1px solid var(--line);display:flex;align-items:center;gap:32px;flex-wrap:wrap;justify-content:space-between}
+  .partners .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute)}
+  .partners-list{display:flex;flex-wrap:wrap;gap:28px 36px;align-items:center}
+  .partner-logo{display:flex;align-items:center;justify-content:center;height:64px;min-width:140px;padding:10px 22px;background:#fff;border:1px solid var(--line);border-radius:4px;font-family:"Montserrat",sans-serif;font-weight:700;font-size:14px;letter-spacing:.04em;text-transform:uppercase;color:var(--ink);text-align:center;line-height:1.15;position:relative}
+  .partner-logo::before{content:"LOGO";position:absolute;top:-7px;left:10px;font-family:"JetBrains Mono",monospace;font-size:8px;letter-spacing:.14em;color:var(--ink-mute);background:var(--bg);padding:0 6px}
+  .partner-logo.has-img::before{display:none}
+  .partner-logo.has-img{padding:8px 16px}
+  .partner-logo img{max-height:44px;max-width:160px;width:auto;height:auto;object-fit:contain;display:block}
+  .partner-logo.nacto img{max-height:48px;max-width:48px}
+  .team{max-width:var(--maxw);margin:64px auto 0;padding-top:32px;border-top:1px solid var(--line)}
+  .team-grid{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px 28px}
+  .person{display:flex;flex-direction:column;gap:10px}
+  .person .ph{width:100%;aspect-ratio:1/1;background:var(--paper-2);border-radius:2px;overflow:hidden;border:1px solid var(--line)}
+  .person .ph img{width:100%;height:100%;object-fit:cover;display:block;filter:saturate(.92) contrast(1.02)}
+  .person .name{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:23px;line-height:1.1;margin-top:4px}
+  .person .role{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-mute);line-height:1.5}
+  .person .org{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.14em;text-transform:uppercase;color:var(--green,#1f5b4a)}
+  .person .bio{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:15px;line-height:1.45;color:var(--ink);margin-top:2px}
+  .person .role{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-mute);line-height:1.4}
+  @media (max-width:1100px){.team-grid{grid-template-columns:repeat(3,1fr)}}
+  @media (max-width:800px){.team-grid{grid-template-columns:repeat(2,1fr);gap:24px}}
+  .archive{background:var(--ink);color:var(--cream);padding:140px var(--pad)}
+  .archive-inner{max-width:var(--maxw);margin:0 auto}
+  .archive h2{color:var(--cream)}
+  .archive h2 em{color:var(--signal)}
+  .archive .chap{color:rgba(250,246,236,.55)}
+  .archive .chap .line{background:rgba(250,246,236,.2)}
+  .archive .deck{color:rgba(250,246,236,.7);font-size:18px;margin-top:24px;max-width:48ch}
+  .shelf{margin-top:80px;display:grid;grid-template-columns:repeat(5,1fr);gap:0}
+  .shelf-item{padding:32px 24px;border-left:1px solid rgba(250,246,236,.15);display:flex;flex-direction:column;gap:16px;min-height:220px}
+  .shelf-item:first-child{border-left:0;padding-left:0}
+  .shelf-item .icon{width:36px;height:36px;color:var(--signal);font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:32px;line-height:1}
+  .shelf-item .n{font-family:"Montserrat",sans-serif;font-size:46px;font-weight:500;letter-spacing:-.02em;line-height:.95}
+  .shelf-item .desc{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,246,236,.7);line-height:1.5}
+  .shelf-item a{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);text-decoration:none;margin-top:auto}
+  .shelf-item a:hover{color:var(--cream)}
+  @media (max-width:1000px){.shelf{grid-template-columns:repeat(2,1fr)}.shelf-item{border-left:0;border-top:1px solid rgba(250,246,236,.15);padding:24px 0}.shelf-item:first-child{border-top:0}}
+  .foot{background:var(--green-deep);color:var(--cream);padding:120px var(--pad) 48px}
+  .foot-inner{max-width:var(--maxw);margin:0 auto}
+  .foot-closing{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;padding-bottom:64px;border-bottom:1px solid rgba(250,246,236,.18)}
+  .foot h2{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:clamp(40px,5.5vw,80px);line-height:1.02;letter-spacing:-.025em;font-weight:800}
+  .foot h2 em{color:var(--signal)}
+  .foot-closing p{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(18px,1.4vw,23px);line-height:1.5;max-width:44ch;letter-spacing:-.003em}
+  .foot-closing p + p{margin-top:18px}
+  .foot-contact{margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;border-bottom:1px solid rgba(250,246,236,.18);padding-bottom:48px}
+  .foot-contact h4{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,236,.55);margin-bottom:14px}
+  .foot-contact a{display:block;text-decoration:none;color:var(--cream);line-height:1.7;border-bottom:1px solid rgba(250,246,236,.12);padding:6px 0}
+  .foot-contact a:hover{color:var(--signal)}
+  .foot-form{display:flex;gap:8px;margin-top:14px}
+  .foot-form input{flex:1;background:rgba(250,246,236,.06);border:1px solid rgba(250,246,236,.18);color:var(--cream);padding:10px 12px;border-radius:3px;font:inherit;font-size:14px;outline:none}
+  .foot-form input:focus{border-color:var(--signal)}
+  .foot-form button{background:var(--signal);color:var(--ink);border:0;font-family:"JetBrains Mono",monospace;font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 16px;border-radius:3px;cursor:pointer}
+  .foot-meta{margin-top:48px;display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.08em;color:rgba(250,246,236,.5);text-transform:uppercase;flex-wrap:wrap;gap:24px}
+  @media (max-width:900px){.foot-closing,.foot-contact{grid-template-columns:1fr;gap:32px}}
+</style>
+</head>
+<body id="top">
+
+<button class="toTop" id="toTop" aria-label="Back to top — show nav">
+  <span class="lbl">Back to top</span>
+  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 19V5"/><path d="M5 12l7-7 7 7"/></svg>
+</button>
+
+<nav class="nav">
+  <div class="nav-inner">
+    <div class="brand">
+      <a class="logo-descend" href="#top" aria-label="Better Bike Share Partnership">
+        <img src="https://betterbikeshare.org/wp-content/themes/sink_betterbikeshare/images/logo.svg" alt="Better Bike Share Partnership">
+      </a>
+      <div class="brand-spacer" aria-hidden="true"></div>
+    </div>
+    <div class="nav-links">
+      <a href="#origin">Where it started</a>
+      <a href="#impact">By the numbers</a>
+      <a href="#programs">How it worked</a>
+      <a href="#stories">Stories</a>
+      <a href="#legacy">Legacy</a>
+      <a href="#archive">The archive</a>
+      <div class="nav-tools">
+        <button class="nav-tool" id="langBtn" aria-label="Choose language" aria-expanded="false" aria-haspopup="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg>
+        </button>
+        <button class="nav-tool" id="searchBtn" aria-label="Search this page">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+        </button>
+      </div>
+      <div class="lang-menu" id="langMenu" role="menu">
+        <div class="lang-head">Translate this page</div>
+        <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
+        <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
+        <button data-lang="zh" role="menuitem"><span>中文</span><span class="iso">ZH</span></button>
+        <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
+        <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
+        <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
+        <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">Powered by</div>
+        <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em"><span class="ph">Translation service · TBD</span></div>
+      </div>
+    </div>
+  </div>
+</nav>
+
+<!-- Search overlay -->
+<div class="search-overlay" id="searchOverlay" role="dialog" aria-modal="true" aria-label="Search">
+  <div class="search-panel">
+    <div class="field">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      <input id="searchInput" type="search" placeholder="Search stories, cities, programs…" autocomplete="off">
+      <button class="close" id="searchClose" aria-label="Close search">Esc</button>
+    </div>
+    <div class="search-results" id="searchResults"></div>
+  </div>
+</div>
+
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-eyebrow">
+      <span class="caps mono" style="color:var(--green);font-weight:600">2014 — 2026 · A legacy</span>
+      <span style="flex:1;max-width:200px;height:1px;background:var(--line)"></span>
+      <span class="caps mono">Twelve years of work, in one page</span>
+    </div>
+    <h1 id="heroHeadline">
+      <span class="word">Advancing</span>
+      <span class="word"><em>equity</em></span>
+      <span class="word">in shared</span>
+      <span class="word">micromobility.</span>
+    </h1>
+    <div class="lane" style="max-width:520px;margin-top:32px"></div>
+    <div class="hero-foot">
+      <div class="hero-mission">
+        <span class="lead">The Better Bike Share Partnership is a one-of-a-kind collaborative that helped transform the way bike and scooter share programs design and implement their systems.</span>
+        With a focus on grantmaking, peer-to-peer learning opportunities, storytelling, and workforce development, BBSP elevated expectations and outcomes for the shared micromobility industry. From 2014 to 2026, BBSP worked alongside cities, communities, and operators across America to make that transformation real.
+      </div>
+      <div class="hero-meta">
+        EST. 2014 · SUNSET JULY 2026<br>
+        <b>49 CITIES · 31 STATES</b><br>
+        <b>125 GRANTS · $1.5M+ DEPLOYED</b><br>
+        43 TRANSPORTATION JUSTICE FELLOWS<br>
+        500+ STORIES PUBLISHED<br>
+        $36M+ ANNUAL HEALTH SAVINGS
+      </div>
+    </div>
+  </div>
+
+  <figure class="hero-photo">
+    <img src="https://betterbikeshare.org/wp-content/uploads/2026/02/JustRide_JoyRide_2025_BrooklynN-2-scaled.jpg" alt="North Omaha community ride" loading="eager">
+    <div class="overlay"></div>
+    <span class="caption">North Omaha community ride · 2025</span>
+    <div class="tease">
+      <div>
+        <div class="caps mono" style="opacity:.7;margin-bottom:8px">FROM &lt; 5% IN 2016 →</div>
+        <div class="big"><span data-count="92">0</span><sup>%</sup></div>
+      </div>
+      <p>of shared micromobility systems now offer discount programs.</p>
+    </div>
+  </figure>
+</section>
+
+<section class="s" id="origin">
+  <div class="origin-grid">
+    <div class="left">
+      <div class="chap"><span class="line"></span><span class="lbl">Where it started</span></div>
+      <h2>Equity, by <em>design.</em><br>Not afterthought.</h2>
+      <p class="deck" style="margin-top:24px">Bike share took off in U.S. cities around 2008. From the start, BBSP saw who was being left out — and built a partnership to do something about it.</p>
+      <figure class="origin-photo">
+        <img src="https://betterbikeshare.org/wp-content/uploads/2020/03/Zoe-640x480.jpg" alt="Original BBSP team, NABSA 2019" loading="lazy">
+        <figcaption>Original BBSP team · NABSA 2019</figcaption>
+      </figure>
+    </div>
+    <div class="origin-body">
+      <p>BBSP knew there was a gap in who was being served by bike share when the first systems took off around 2008 and 2010.</p>
+      <p>The City of Philadelphia knew they wanted to launch a bike share system planned on a <em>foundation of equity</em> — not equity as an afterthought.</p>
+      <p>The Philadelphia Mayor's Office wanted to make sure their riders looked like the city — a majority-minority city. The partners came together around a common vision: to help bike and scooter share intentionally engage BIPOC and low-income communities in planning and implementation.</p>
+      <p style="color:var(--ink-mute);font-family:'DM Sans',sans-serif;font-size:17px;line-height:1.6">Philadelphia used early funding to install 20 stations in underserved neighborhoods, develop a cash payment option, and create a discounted pass program. That blueprint became the BBSP playbook.</p>
+      <div class="timeline">
+        <div class="tl-step"><div class="tl-year">2008</div><div class="tl-cap">First U.S. bike share systems launch</div></div>
+        <div class="tl-step major"><div class="tl-year">2014</div><div class="tl-cap">BBSP founded · Philadelphia plans Indego on a foundation of equity</div></div>
+        <div class="tl-step major"><div class="tl-year">2016</div><div class="tl-cap">First grants deployed · &lt;5% of SMM systems offer equity programs</div></div>
+        <div class="tl-step major"><div class="tl-year">2024 — 26</div><div class="tl-cap">92% of systems offer discount programs · BBSP sunsets, archive preserved</div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="pct">
+  <div class="pct-inner">
+    <div class="chap" style="color:rgba(250,246,236,.6)"><span class="line" style="background:rgba(250,246,236,.25)"></span><span class="lbl">The number that says it all</span></div>
+    <div class="split">
+      <div>
+        <div class="before">Very few,<br>if any.</div>
+        <div class="arrow">SMM SYSTEMS W/ EQUITY PROGRAMS · 2016 ↓</div>
+        <p class="lede" style="opacity:.75;margin-top:8px">At BBSP's launch, almost no shared micromobility systems offered any equity programming.</p>
+      </div>
+      <div>
+        <div class="caps mono" style="opacity:.7;margin-bottom:14px">SMM SYSTEMS W/ DISCOUNT PROGRAMS · 2024 ↓</div>
+        <div class="after"><span data-count="92">0</span><sup>%</sup></div>
+        <p class="lede">— and many more have equity offerings beyond discounts: smartphone alternatives, cash payments, targeted community outreach, equitable vehicle distribution.</p>
+      </div>
+    </div>
+    <div class="src">SOURCE · NABSA 2024 STATE OF THE INDUSTRY REPORT &nbsp;·&nbsp; VERIFY LINK PRE-PUBLISH</div>
+  </div>
+</section>
+
+<!-- 92% norm caption (after pct section, before impact) -->
+<section style="background:var(--green-deep);color:var(--cream);padding:36px var(--pad);text-align:center">
+  <p class="caps mono" style="font-size:13px;letter-spacing:.18em;color:rgba(250,246,236,.85)">BBSP helped make equity programs &mdash; once an add-on &mdash; the norm.</p>
+</section>
+
+<section class="s" id="impact">
+  <div class="impact-head">
+    <div>
+      <div class="chap"><span class="line"></span><span class="lbl">Impact by the numbers</span></div>
+      <h2>Twelve years.<br>Counted.</h2>
+    </div>
+    <div class="deck">Every number below is what BBSP grants, fellows, stories, and roundtables actually produced. No projections — only deployed work.</div>
+  </div>
+  <div class="impact-grid">
+    <div class="stat s6 dark"><span class="src-mini">G·01 · RETROSPECTIVE</span><span class="v" style="font-size:clamp(72px,9vw,148px)"><span class="pre">$</span><span data-count="2.6" data-decimals="1">0</span><sup>M</sup></span><span class="l">Awarded to projects increasing SMM access in communities of color</span></div>
+    <div class="stat s3"><span class="src-mini">G·02</span><span class="v"><span data-count="125">0</span></span><span class="l">Total grants given since inception</span></div>
+    <div class="stat s3 moss"><span class="src-mini">G·03 · LAST 5.5 YRS</span><span class="v" style="font-size:clamp(40px,4.4vw,68px);line-height:1">79<span style="font-size:.55em;opacity:.7">&nbsp;mini</span><br>+ 7<span style="font-size:.55em;opacity:.7">&nbsp;Living&nbsp;Lab</span></span><span class="l">Grant breakdown · most recent cycle</span></div>
+    <div class="stat s3"><span class="src-mini">G·04</span><span class="v"><span data-count="49">0</span></span><span class="l">Cities reached across the U.S.</span></div>
+    <div class="stat s3"><span class="src-mini">G·05</span><span class="v"><span data-count="31">0</span></span><span class="l">States with active BBSP work</span></div>
+    <div class="stat s3"><span class="src-mini">G·06 · LED BY NACTO</span><span class="v"><span data-count="43">0</span></span><span class="l">Transportation Justice Fellows developed</span></div>
+    <div class="stat s3"><span class="src-mini">G·07</span><span class="v"><span data-count="500">0</span><sup>+</sup></span><span class="l">Stories published over 10 years</span></div>
+    <div class="stat s3"><span class="src-mini">G·08</span><span class="v"><span data-count="16">0</span></span><span class="l">Best-practice guides</span></div>
+    <div class="stat s3"><span class="src-mini">G·09</span><span class="v"><span data-count="14">0</span></span><span class="l">SMM &amp; Cities Roundtable sessions <span class="ph" style="font-size:9px">verify 13 vs 14</span></span></div>
+    <div class="stat s3"><span class="src-mini">G·10</span><span class="v"><span data-count="3">0</span></span><span class="l">National research · Drexel · PSU · CSU</span></div>
+    <div class="stat s6 moss"><span class="src-mini">G·11 · RETROSPECTIVE</span><span class="v"><span class="pre">$</span><span data-count="100">0</span><sup>K+</sup></span><span class="l">Contributed to equity content at NABSA &amp; NACTO Designing Cities · BIPOC speaking funded</span></div>
+    <div class="stat s3"><span class="src-mini">G·12</span><span class="v"><span data-count="5">0</span></span><span class="l">Grantee case studies published</span></div>
+    <div class="stat s3"><span class="src-mini">G·13 · 2025 MINI GRANT</span><span class="v"><span data-count="100">0</span><sup>+</sup></span><span class="l">New riders taught to use SMM in a single 6-month period</span></div>
+    <div class="stat s12 accent">
+      <span class="src-mini" style="color:rgba(250,246,236,.75)">G·14 · SOURCE: COLORADO STATE UNIVERSITY · VERIFY LINK</span>
+      <span class="v" style="font-size:clamp(72px,9vw,148px)"><span class="pre">$</span><span data-count="36">0</span><sup>M+</sup></span>
+      <span class="l">Annual U.S. healthcare savings attributed to bike share systems · the public-health dividend of the work BBSP helped scale.</span>
+    </div>
+  </div>
+</section>
+
+<!-- Rider voice transition: §3 → §4 -->
+<section style="background:var(--green-deep);color:var(--cream);padding:120px var(--pad);position:relative;overflow:hidden">
+  <div aria-hidden="true" style="position:absolute;left:-2vw;top:-40px;font-family:'Montserrat',sans-serif;font-weight:900;font-size:clamp(280px,38vw,560px);line-height:.7;color:var(--green);opacity:.18;pointer-events:none;user-select:none">&ldquo;</div>
+  <div style="max-width:1080px;margin:0 auto;position:relative;display:grid;grid-template-columns:auto 1fr;gap:48px;align-items:center">
+    <div style="width:64px;height:64px;border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(98,155,163,.12)">
+      <svg width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="var(--green)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="17" r="4"/><circle cx="18" cy="17" r="4"/><path d="M6 17l4-10h4l4 10"/><path d="M10 7l-2-3"/></svg>
+    </div>
+    <div>
+      <div class="caps mono" style="color:var(--green);margin-bottom:18px;font-size:11px;letter-spacing:.2em;font-weight:600">Bublr Access Pass user &middot; Milwaukee, WI &middot; 1 of 49 cities</div>
+      <blockquote style="font-family:'Montserrat',sans-serif;font-weight:800;font-size:clamp(28px,3.6vw,56px);line-height:1.15;letter-spacing:-.02em;color:var(--cream);text-transform:uppercase;margin:0">It is a vital means of transportation, physical and mental fitness. If I did not have access to Bublr bikes, I honestly would&rsquo;ve <span style="color:var(--signal)">moved away</span>.</blockquote>
+    </div>
+  </div>
+</section>
+
+<section class="s bg2" id="programs">
+  <div class="prog-head">
+    <div>
+      <div class="chap"><span class="line"></span><span class="lbl">How BBSP worked</span></div>
+      <h2>Four pillars.</h2>
+    </div>
+    <div class="deck">Each program reinforced the others. Grants funded pilots; storytelling spread what worked; the roundtable let cities trade what they were learning; fellows seeded the next decade of leaders.</div>
+  </div>
+  <div class="prog-grid">
+    <div class="pgm">
+      <span class="pn">PROGRAM · 01</span>
+      <h3>Grantmaking</h3>
+      <p>Living Lab grants gave cohort organizations the capacity to implement, deploy, and accelerate programs otherwise impossible. Mini-grants funded smaller, targeted interventions — outreach, education, community rides — often with outsized results.</p>
+      <div class="metric"><span class="n">$1.5M+</span><span class="u">across 125 grants · 49 cities</span></div>
+    </div>
+    <div class="pgm">
+      <span class="pn">PROGRAM · 02</span>
+      <h3>Storytelling</h3>
+      <p>Over 500 stories across ten years documented equity work in SMM from every angle. Written primarily by Odochi Akwani, BBSP's writer for a decade — a public library of what inclusive SMM looks like in practice.</p>
+      <div class="metric"><span class="n">500+</span><span class="u">stories · permanent archive</span></div>
+    </div>
+    <div class="pgm">
+      <span class="pn">PROGRAM · 03</span>
+      <h3>Shared Micromobility Roundtable</h3>
+      <p>Thirteen sessions brought SMM systems and city partners together for peer exchange. The final 2026 Roundtable in Tucson drew practitioners from 20 cities — the first in-person gathering since 2019.</p>
+      <div class="metric"><span class="n">13</span><span class="u">sessions · 20 cities at Tucson 2026</span></div>
+    </div>
+    <div class="pgm">
+      <span class="pn">PROGRAM · 04 · LED BY NACTO</span>
+      <h3>Transportation Justice Fellowship</h3>
+      <p>43 fellows developed over the life of the program, building a pipeline of diverse leadership in the shared micromobility field. <span class="ph">Fellow stories · Copy needed</span> Request alumni names &amp; outcomes from BBSP.</p>
+      <div class="metric"><span class="n">43</span><span class="u">fellows · across cohorts</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="s dark" id="stories">
+  <div class="cases-head">
+    <div class="chap"><span class="line"></span><span class="lbl">Stories from the ground</span></div>
+    <h2 style="max-width:14ch">Three cities.<br><em>Three blueprints.</em></h2>
+    <p class="deck" style="color:rgba(250,246,236,.7);margin-top:18px;max-width:54ch">From a $13,500 mini-grant in Honolulu to multi-year Living Labs in Chicago and Cincinnati — each shows what changes when equity is the brief.</p>
+  </div>
+  <div class="cases-wrap">
+    <div class="map-col">
+      <div class="map-sticky">
+        <div class="map-frame">
+          <div class="map-legend">
+            <div><span style="color:var(--signal)">●</span> &nbsp;Featured city</div>
+            <div><span style="color:rgba(250,246,236,.4)">●</span> &nbsp;Grant city</div>
+          </div>
+          <div class="map-cross" id="mapCross">LAT 39.83<br>LON −98.58<br>SCALE 1:42M</div>
+          <svg class="map-svg" id="stickyMap" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
+            <g id="stickyMap-states" fill="rgba(250,246,236,.05)" stroke="rgba(250,246,236,.18)" stroke-width="0.6" stroke-linejoin="round"></g>
+            <g id="stickyMap-nation" fill="none" stroke="rgba(250,246,236,.55)" stroke-width="1.2" stroke-linejoin="round"></g>
+            <g id="stickyMap-dots" fill="rgba(250,246,236,.32)"></g>
+            <g id="stickyMap-cities"></g>
+            <text id="stickyMap-loading" x="500" y="300" fill="rgba(250,246,236,.4)" font-family="JetBrains Mono" font-size="12" text-anchor="middle" letter-spacing=".12em">LOADING CONTINENTAL US…</text>
+          </svg>
+          <div class="map-card">
+            <div><span class="label">Now showing</span><span id="focusCity">All 49 grant cities · 31 states</span></div>
+            <div><span class="label">Grant</span><span class="v" id="focusGrant">125 deployed</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="case-stack">
+      <article class="case" data-city="CHI" data-label="Chicago, IL · Living Lab · D4E" data-grant="3,000 D4E members">
+        <div class="case-tag"><span class="marker"></span><span>Story 01 / 03 · Chicago, IL</span></div>
+        <span class="grant">Living Lab · 2021–2023</span>
+        <h3>Bikes for Belmont Cragin.</h3>
+        <div class="sub">A neighborhood-led plan that turned bike infrastructure into community infrastructure.</div>
+        <figure class="case-photo">
+          <img src="https://betterbikeshare.org/wp-content/uploads/2026/04/cropped-Group-Pic-scaled-1.jpg" alt="BBSP roundtable group" loading="lazy">
+          <figcaption>BBSP Roundtable · Tucson 2026</figcaption>
+        </figure>
+        <p class="case-narr">The Northwest Center, a nonprofit in Belmont Cragin, used their Living Lab grant to empower youth, build community, and shine a light on transportation needs in their neighborhood. Youth Transit Ambassadors (YTAs) ran workshops, community rides, and state capitol visits — then signed up nearly 3,000 community members for Divvy's income-based D4E membership.</p>
+        <div class="case-outcomes">
+          <div class="outcome"><span class="num">~<span data-count="3000">0</span></span><span class="lbl">community members signed up for the Divvy D4E income-based membership</span></div>
+          <div class="outcome"><span class="num"><span data-count="17.5" data-decimals="1">0</span></span><span class="lbl">miles of bike lanes added — alongside 13 new Divvy stations</span></div>
+          <div class="outcome"><span class="num"><span data-count="16000">0</span><sup>+</sup></span><span class="lbl">trips in 2022; an average of 105 daily trips</span></div>
+          <div class="outcome"><span class="num"><span data-count="50">0</span><sup>%</sup></span><span class="lbl">more trips per capita than other Phase II expansion neighborhoods</span></div>
+        </div>
+        <blockquote class="pull">&ldquo;This was my first time joining the Bikes 4 Belmont Cragin group, and what a nice time I had. I brought my two kids ages 11 and 15 and they could not stop talking about how they loved the bike lanes and the food! We connected with some other youth and started a conversation around what protected bike lanes mean to us, I can&rsquo;t wait to be more involved and to tell others about what is going on in our community.&rdquo;<cite>— Marizol Hernandez · October 2021</cite></blockquote>
+        <div class="stuck">
+          <b>The detail that sticks</b>
+          <p>The Northwest Center staff member who led the Living Lab was so inspired that he went on to found his own youth-based nonprofit dedicated to transportation justice in Chicago. The grant didn't just fund a program — it created a leader.</p>
+        </div>
+      </article>
+      <article class="case" data-city="CIN" data-label="Cincinnati, OH · Living Lab · Red Bike GO" data-grant="149% more trips">
+        <div class="case-tag"><span class="marker"></span><span>Story 02 / 03 · Cincinnati, OH</span></div>
+        <span class="grant">Living Lab · 2021–2024</span>
+        <h3>Red Bike GO.</h3>
+        <div class="sub">A discount program that became a third of the system's ridership.</div>
+        <figure class="case-photo">
+          <img src="https://betterbikeshare.org/wp-content/uploads/2026/03/ebikes_22-640x427.jpg" alt="E-bikes" loading="lazy">
+          <figcaption>Indianapolis e-bikes · IndyRidesFree</figcaption>
+        </figure>
+        <p class="case-narr">Red Bike used their Living Lab grant to expand access into underserved neighborhoods through service expansion, community ambassador programs, youth engagement, and data infrastructure. Their approach — thoughtful, community-led, data-backed — became a model other systems could replicate.</p>
+        <div class="case-outcomes">
+          <div class="outcome"><span class="num"><span data-count="149">0</span><sup>%</sup></span><span class="lbl">increase in Red Bike GO member trips over the grant period</span></div>
+          <div class="outcome"><span class="num"><span data-count="35.5" data-decimals="1">0</span><sup>%</sup></span><span class="lbl">of all Red Bike trips in 2023 taken by Red Bike GO members</span></div>
+          <div class="outcome"><span class="num"><span data-count="4">0</span></span><span class="lbl">underserved neighborhoods added (Walnut Hills, Lower Price Hill, West End, Avondale) + a men's shelter</span></div>
+          <div class="outcome"><span class="num"><span data-count="27">0</span></span><span class="lbl">youth bike rides hosted (ages 14–18)</span></div>
+          <div class="outcome"><span class="num">·</span><span class="lbl">Public Data Dashboard launched · equity staff role made permanent</span></div>
+        </div>
+        <div class="stuck">
+          <b>The detail that sticks</b>
+          <p>At the 2026 Roundtable, Red Bike's Executive Director Doug McClintock said it plainly: <em>"Your system isn't broken because it's not paying for itself. Shared micromobility is a public service — just like trash pick-up or buses and trains. It's not about profit-maxxing."</em> That framing is now influencing how cities across the country think about bike share funding.</p>
+        </div>
+      </article>
+      <article class="case" data-city="HON" data-label="Honolulu, HI · Mini Grant · $13,500" data-grant="$13,500 mini-grant">
+        <div class="case-tag"><span class="marker"></span><span>Story 03 / 03 · Honolulu, HI</span></div>
+        <span class="grant">Mini Grant · $13,500 · 2022</span>
+        <h3>Everybody Rides.</h3>
+        <div class="sub">A small grant, a statewide invitation, and the strongest per-dollar story of all three.</div>
+        <figure class="case-photo">
+          <img src="https://betterbikeshare.org/wp-content/uploads/2026/03/38-Adapative-Biketwon-056-640x427.jpg" alt="Portland Adaptive BIKETOWN" loading="lazy">
+          <figcaption>Portland Adaptive BIKETOWN · accessibility outreach</figcaption>
+        </figure>
+        <p class="case-narr">Bike Share Hawaii received $13,500 — one of BBSP's smallest grants — and used it to completely revamp their low-income access program in four months. The results were disproportionate to the investment in the best possible way.</p>
+        <div class="case-outcomes">
+          <div class="outcome"><span class="num"><span data-count="500">0</span><sup>+</sup></span><span class="lbl">people engaged in 4 months across 7 neighborhoods</span></div>
+          <div class="outcome"><span class="num"><span data-count="48213">0</span></span><span class="lbl">users reached by social media ads · 2,686 visited the webpage</span></div>
+          <div class="outcome"><span class="num"><span data-count="358207">0</span></span><span class="lbl">Google ad impressions during the grant period</span></div>
+          <div class="outcome"><span class="num"><span data-count="8">0</span></span><span class="lbl">outreach events (60–100 attendees each) + 3 educational workshops</span></div>
+          <div class="outcome"><span class="num"><span data-count="7">0</span></span><span class="lbl">month statewide Transportation Equity Learning Series invitation (direct outcome)</span></div>
+        </div>
+        <blockquote class="pull">
+          "The workshop was excellent! I always wanted to try a Biki but was hesitant because I wasn't sure how to use it. In this workshop, I learned everything I needed to know about Biki. The instructor was great. I even got to ride a Biki for the full riding experience. It was awesome!"
+          <cite>— Stacy Honda, age 61 · Salt Lake, Oahu</cite>
+        </blockquote>
+        <div class="stuck">
+          <b>The detail that sticks</b>
+          <p>What typically would have taken the BSH team a year, they accomplished in four months with $13,500. The strongest per-dollar story on the page.</p>
+        </div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="ripple" id="ripple">
+  <div class="ripple-head">
+    <div class="chap"><span class="line"></span><span class="lbl">From the archive · the ripple</span></div>
+    <h2 style="max-width:18ch">The model <em>SPREAD.</em></h2>
+    <p class="deck" style="margin-top:20px">Nine stories from the site that show how BBSP's approach traveled — to direct grantees and far beyond.</p>
+  </div>
+  <div class="ripple-map">
+    <div class="ripple-legend">N ↑ · BBSP RIPPLE · 9 OF 49 CITIES SHOWN · TAP A PIN ↓</div>
+    <svg id="rippleMap" viewBox="0 0 1000 620" aria-hidden="true">
+      <defs>
+        <pattern id="rgrid" width="40" height="40" patternUnits="userSpaceOnUse">
+          <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(15,38,32,.05)"/>
+        </pattern>
+      </defs>
+      <rect width="1000" height="620" fill="url(#rgrid)"/>
+      <g id="rippleMap-states" fill="rgba(31,91,74,.05)" stroke="rgba(15,38,32,.15)" stroke-width="0.5" stroke-linejoin="round"></g>
+      <g id="rippleMap-nation" fill="none" stroke="var(--green, #1f5b4a)" stroke-width="1.4" stroke-linejoin="round"></g>
+      <g id="rippleMap-dots" fill="rgba(15,38,32,.16)"></g>
+      <g id="rippleMap-pins"></g>
+      <text id="rippleMap-loading" x="500" y="310" font-family="JetBrains Mono" font-size="12" fill="rgba(15,38,32,.35)" text-anchor="middle" letter-spacing=".12em">LOADING CONTINENTAL US…</text>
+    </svg>
+  </div>
+  <div class="ripple-track" id="rtrack">
+    <div class="ripple-inner">
+      <article class="rcard" id="r-IND">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/03/ebikes_22-640x427.jpg" alt="Indianapolis IndyRidesFree" loading="lazy"><span class="city-tag">Indianapolis, IN</span></div>
+        <div class="body"><h4>IndyRidesFree</h4><p>Pacers Bikeshare went fully free. In Jan 2026 — cold and snowy — they logged 6,000+ trips in a single month; it had taken five Januaries (2019–23) to reach that total combined. 15,000+ signed up for the free annual pass.</p><a class="more" href="https://betterbikeshare.org/2026/03/19/two-years-of-free-bikeshare-in-indianapolis/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-OMA">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/02/JustRide_JoyRide_2025_BrooklynN-2-scaled.jpg" alt="North Omaha trail" loading="lazy"><span class="city-tag">Omaha, NE</span></div>
+        <div class="body"><h4>The North Omaha Trail</h4><p>Heart of Omaha's Black community — birthplace of Malcolm X, home of Terence Crawford. A collaborative trail project now connects this historically divested neighborhood to multimodal transit, centering culture in the design.</p><a class="more" href="https://betterbikeshare.org/2026/02/12/north-omaha-trail-connects-communities-and-centers-its-culture/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-PIT">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/03/2024.05.04-Community-Ride-65-of-69-640x427.jpg" alt="POGOH community slow roll, Pittsburgh" loading="lazy"><span class="city-tag">Pittsburgh, PA</span></div>
+        <div class="body"><h4>POGOH Mobility Justice Membership</h4><p>POGOH's $10 Mobility Justice Membership grew ridership 130% year-over-year — from 10,026 trips in 2023 to 23,062 in 2024 — by sending community ambassadors to 85 events and 5,847 people. A BBSP Living Lab now scales the outreach model citywide.</p><a class="more" href="https://betterbikeshare.org/2025/03/06/bike-share-discount-programs-see-major-ridership-growth/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-PDX">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/03/38-Adapative-Biketwon-056-640x427.jpg" alt="Portland Adaptive BIKETOWN" loading="lazy"><span class="city-tag">Portland, OR</span></div>
+        <div class="body"><h4>suma × BIKETOWN</h4><p>Mini-grant in 2024; by 2025 expanded to subsidize BIKETOWN rides to 5¢/min for low-income users (vs. 35¢). One full-time bike commuter calls it essential transportation — for work, school, groceries, friends.</p><a class="more" href="https://betterbikeshare.org/2026/03/12/subsidizing-essential-needs-is-essential-to-this-portland-nonprofit/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-TUC">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/04/tour-of-tucson-320x241.jpg" alt="Tucson bike tour" loading="lazy"><span class="city-tag">Tucson, AZ</span></div>
+        <div class="body"><h4>Tugo Living Lab + final Roundtable</h4><p>Tugo is reallocating service to the south and west sides through community-led planning. Tucson also hosted the final 2026 BBSP Roundtable — 20 cities, the first in-person gathering since 2019.</p><a class="more" href="https://betterbikeshare.org/2026/04/14/equity-in-shared-micromobility-is-a-practice-bbsp-smm-roundtable-recap/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-FW">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/11/B1E76A4F-BBE8-478C-BAB5-2843ADFE0E0E_1_105_c-640x427.jpeg" alt="Trinity Metro Bikes, Fort Worth" loading="lazy"><span class="city-tag">Fort Worth, TX</span></div>
+        <div class="body"><h4>Trinity Metro Bikes</h4><p>After a new contract, Trinity Metro Bikes is expanding across Fort Worth in alignment with the city's "Moving a Million Plan" — university and city partnerships connecting underserved residents to daily transportation.</p><a class="more" href="https://betterbikeshare.org/2025/11/17/trinity-metro-bikes-expands-access-with-city-and-university-partnerships/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-GDL">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/05/MiBici-1-640x426.png" alt="MiBici Guadalajara" loading="lazy"><span class="city-tag">Guadalajara, MX</span></div>
+        <div class="body"><h4>MiBici</h4><p>MiBici expanded with 8 new stations informed by a BBSP-developed Guide to Gender-Responsive Planning for Public Bike Share — evidence that the equity-centered model traveled beyond U.S. borders.</p><a class="more" href="https://betterbikeshare.org/2025/05/21/in-guadalajara-womens-safety-informs-bike-share-expansion/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-DET">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2022/12/nali_mogo_divdat-37-640x427.jpg" alt="MoGo rider paying with cash at a DivDat kiosk" loading="lazy"><span class="city-tag">Detroit, MI</span></div>
+        <div class="body"><h4>MoGo × DivDat</h4><p>MoGo partnered with <b>DivDat</b> — Detroit's bill-payment kiosk network in grocery stores, gas stations, and government buildings — to let riders pay for memberships in cash. MoGo now appears on the home screen of every kiosk in metro Detroit. No resident loses access over how they pay.</p><a class="more" href="https://betterbikeshare.org/2022/12/16/mogo-adjusts-to-better-serve-cash-paying-customers/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+      <article class="rcard" id="r-PAS">
+        <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/08/IMG_7994.jpg" alt="EZ Ride Safe Bike Skills class, Passaic NJ" loading="lazy"><span class="city-tag">Passaic, NJ</span></div>
+        <div class="body"><h4>EZ Ride safety education</h4><p>Ten miles from NYC, EZ Ride launched a program teaching residents to safely use a new free bike share — reaching communities who had never had access to this kind of transportation before.</p><a class="more" href="https://betterbikeshare.org/2025/08/28/teaching-safe-cycling-in-passaic-new-jersey/" target="_blank" rel="noopener">Read the story →</a></div>
+      </article>
+    </div>
+  </div>
+  <div class="ripple-head" style="padding-bottom:0;padding-top:32px">
+    <p class="mono" style="font-size:11px;letter-spacing:.06em;color:var(--ink-mute);max-width:60ch;line-height:1.6"><span class="ph">Copy needed</span> &nbsp; Transportation Justice Fellow alumni stories deserve a dedicated set of cards here. Request names &amp; outcomes from BBSP.</p>
+  </div>
+</section>
+
+<section class="s legacy" id="legacy">
+  <div class="legacy-grid">
+    <div>
+      <div class="chap"><span class="line"></span><span class="lbl">National legacy</span></div>
+      <h2 style="margin-top:8px">Beyond local wins, a&nbsp;<em>national playbook.</em></h2>
+    </div>
+    <div class="legacy-body" style="max-width:none">
+      <p>Beyond local wins for individual bike and scooter share systems, BBSP's true legacy lies in its national impact. With partners like NABSA, BBSP created lasting change in how shared micromobility serves those who need a variety of mobility options most — and how systems are designed in the United States.</p>
+      <p>BBSP did more than support systems in their efforts to get more BIPOC and low-income people on shared bikes and scooters. It helped define what equity in shared micromobility can and should look like.</p>
+    </div>
+  </div>
+
+  <div class="legacy-body-wrap">
+    <blockquote class="pull" style="background:rgba(98,155,163,.08);border-left:3px solid var(--green);color:var(--ink);margin:0;padding:32px 36px;font-family:'Montserrat',sans-serif;font-weight:500;font-style:normal;text-transform:none;font-size:clamp(18px,1.5vw,23px);line-height:1.45;letter-spacing:0">
+      &ldquo;BBSP has played a critical role in the fundamental transformation of SMM by helping cities address systemic and institutional barriers to access for low-income and BIPOC communities. Through funding, research, and technical assistance, BBSP has supported cities in testing new ideas, developing strategies, and learning from one another. As a result, the SMM industry has evolved to a place where equity is at the center of system design and operations, not as an afterthought, but as a core principle. That shift is in large part due to BBSP's leadership and sustained investment in this work.&rdquo;
+      <cite style="color:var(--ink-mute);font-family:'JetBrains Mono',monospace;display:block;margin-top:14px;font-size:11px;letter-spacing:.12em;text-transform:uppercase;font-style:normal">— Waffiyyah Murray &nbsp;·&nbsp; <span class="ph">Title / affiliation needed</span></cite>
+    </blockquote>
+
+    <div>
+      <div class="caps mono" style="color:var(--ink-mute);margin-bottom:18px;font-size:11px;letter-spacing:.14em">What we built with partners</div>
+      <ul style="list-style:none;padding:0;margin:0;display:grid;gap:14px;font-family:'Montserrat',sans-serif;font-size:16px;line-height:1.5">
+        <li style="display:grid;grid-template-columns:14px 1fr;gap:14px;align-items:start"><span style="color:var(--green);font-weight:700">—</span><span>Contributor to <b>NABSA's Workforce Diversity Toolkit</b></span></li>
+        <li style="display:grid;grid-template-columns:14px 1fr;gap:14px;align-items:start"><span style="color:var(--green);font-weight:700">—</span><span><b>$100K+</b> contributed to equity content at the NABSA conference and NACTO Designing Cities</span></li>
+        <li style="display:grid;grid-template-columns:14px 1fr;gap:14px;align-items:start"><span style="color:var(--green);font-weight:700">—</span><span>Directly funded <b>BIPOC participation and speaking</b> at NABSA and NACTO</span></li>
+      </ul>
+
+      <div class="legacy-body" style="margin-top:36px">
+        <p>The project's influence on <span class="ph">Copy needed</span> helped redefine the playbook for safer, more vibrant streets in America.</p>
+        <p>BBSP built a nationwide base of stakeholders <span class="ph">Copy needed — sentence incomplete in source</span> laid the groundwork for lasting policy change.</p>
+      </div>
+
+      <div class="legacy-flags">
+        <div class="flag-card"><b>Flag · Copy editor</b>Two source-doc sentences above are incomplete. BBSP to finish before publishing.</div>
+        <div class="flag-card"><b>Flag · Reference clarification</b>Source's closing references "the Green Lane Project" — appears to be a copy-paste error. Confirm w/ BBSP.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="context-strip">
+    <div class="ctx"><div><div class="src" style="margin-bottom:14px">NABSA 2024 Report</div><div class="n"><span data-count="31">0</span>%</div></div><div class="l">Industry-wide ridership increase, 2nd consecutive record year</div></div>
+    <div class="ctx"><div><div class="src" style="margin-bottom:14px">Indego ridership</div><div class="n"><span data-count="20">0</span>%</div></div><div class="l">Indego (Philadelphia) Sept 2025 — highest ridership month ever, +20% YoY</div></div>
+    <div class="ctx"><div><div class="src" style="margin-bottom:14px">Field consensus</div><div class="n" style="font-size:clamp(56px,6.5vw,104px);letter-spacing:-.02em">norm.</div></div><div class="l">Equity programming, once an add-on, is now the baseline expectation</div></div>
+  </div>
+  <div class="partners">
+    <div class="lbl">In partnership with</div>
+    <div class="partners-list">
+      <span class="partner-logo has-img"><img src="https://www.freedomtogether.org/wp-content/themes/landslide/img/logo.png" alt="Freedom Together Foundation"></span>
+      <span class="partner-logo has-img"><img src="assets/logos/peopleforbikes.png" alt="PeopleForBikes"></span>
+      <span class="partner-logo has-img"><img src="assets/logos/philadelphia.png" alt="City of Philadelphia"></span>
+      <span class="partner-logo has-img nacto"><img src="assets/logos/nacto.png" alt="NACTO"></span>
+      <span class="partner-logo has-img"><img src="https://nabsa.net/wp-content/uploads/2021/08/NABSA_Logo_Blue.png" alt="NABSA"></span>
+    </div>
+  </div>
+  <div class="team">
+    <div class="mono" style="color:var(--ink-mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase">Credits · The BBSP team</div>
+    <p style="margin-top:14px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.45;max-width:62ch;color:var(--ink)">Not an org chart — an acknowledgment. The people whose hands shaped BBSP in its closing chapters.</p>
+    <div class="team-grid">
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2021/01/Headshot.jpg" alt="Tangier Barnes Wright" loading="lazy"></div>
+        <div class="name">Tangier Barnes Wright</div>
+        <div class="role">Deputy Director, Shared Micromobility</div>
+        <div class="org">PeopleForBikes</div>
+        <div class="bio">Led PeopleForBikes' shared micromobility portfolio and helped steward BBSP's national strategy through its closing chapter.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2020/03/WM-e1611255173946-640x624.jpg" alt="Waffiyyah Murray" loading="lazy"></div>
+        <div class="name">Waffiyyah Murray</div>
+        <div class="role">Indego Program Manager · former BBSP Program Manager</div>
+        <div class="org">City of Philadelphia</div>
+        <div class="bio">Ran BBSP's grantmaking and storytelling for years before returning to Indego to lead Philadelphia's bike share program.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2022/05/cary-e1652892928361.jpeg" alt="Cary Bearn" loading="lazy"></div>
+        <div class="name">Cary Bearn</div>
+        <div class="role">Senior Manager, Multimodal Design &amp; Programs</div>
+        <div class="org">NACTO</div>
+        <div class="bio">Shaped how cities translate equity intent into street design, station siting, and day-to-day operating practice.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2022/10/FH-Profile-pic-scaled-e1666196918288-320x320.jpeg" alt="Fielding Hong" loading="lazy"></div>
+        <div class="name">Fielding Hong</div>
+        <div class="role">Senior Manager, Field Building</div>
+        <div class="org">NACTO</div>
+        <div class="bio">Built the SMM &amp; Cities Roundtable into a durable peer network across thirteen national sessions.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2024/06/IMG_8701-640x853.png" alt="Camille Boggan" loading="lazy"></div>
+        <div class="name">Camille Boggan</div>
+        <div class="role">Program Manager, Policy &amp; Practice</div>
+        <div class="org">NACTO</div>
+        <div class="bio">Tracked policy across systems and partners so BBSP's lessons could travel between cities, not stay stuck in one.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2022/07/Meghan-Alvarez-320x320.png" alt="Meghan Alvarez" loading="lazy"></div>
+        <div class="name">Meghan Alvarez</div>
+        <div class="role">Transportation Engagement Coordinator</div>
+        <div class="org">City of Philadelphia</div>
+        <div class="bio">Brought community engagement craft — listening first, designing second — into every Living Lab convening she touched.</div>
+      </div>
+      <div class="person">
+        <div class="ph"><img src="https://betterbikeshare.org/wp-content/uploads/2024/04/Odochi-headshot-scaled-e1717444357645-640x640.jpg" alt="Odochi Akwani" loading="lazy"></div>
+        <div class="name">Odochi Akwani</div>
+        <div class="role">Writer &amp; Content Manager · ten years</div>
+        <div class="org">PeopleForBikes</div>
+        <div class="bio">Wrote and edited the 500+ stories that became BBSP's public record — the through-line of a decade of work.</div>
+      </div>
+    </div>
+    <p style="margin-top:28px;font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:.06em;color:var(--ink-mute);line-height:1.6;max-width:72ch"><span class="ph">Placeholder</span> &nbsp; This list reflects current and recent team members. BBSP to confirm whether alumni or earlier staff from the 2014–2019 period should be credited — anyone who contributed to a twelve-year effort deserves to be named if they want to be.</p>
+  </div>
+</section>
+
+<section class="archive" id="archive">
+  <div class="archive-inner">
+    <div class="chap"><span class="line"></span><span class="lbl">The archive</span></div>
+    <h2 style="max-width:18ch">Still here. Still public. <em>STILL FREE.</em></h2>
+    <p class="deck">The full body of knowledge BBSP produced over twelve years remains online — indexed, accessible, permanent. Build on it.</p>
+    <div class="shelf">
+      <div class="shelf-item"><div class="icon">¶</div><div class="n">500+</div><div class="desc">Stories documenting equity work across America</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Browse stories →</a></div>
+      <div class="shelf-item"><div class="icon">⊞</div><div class="n">16</div><div class="desc">Best-practice guides for breaking down barriers</div><a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Browse resources →</a></div>
+      <div class="shelf-item"><div class="icon">§</div><div class="n">5</div><div class="desc">Grantee case studies · Living Lab program</div><a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Read case studies →</a></div>
+      <div class="shelf-item"><div class="icon">◆</div><div class="n">3</div><div class="desc">National research · Drexel · PSU · CSU</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Find research →</a></div>
+      <div class="shelf-item"><div class="icon">⌘</div><div class="n">13</div><div class="desc">Roundtable session recaps · 2016–2026</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Read recaps →</a></div>
+    </div>
+  </div>
+</section>
+
+<section class="foot" id="cta">
+  <div class="foot-inner">
+    <div class="foot-closing">
+      <div>
+        <div class="chap" style="color:rgba(250,246,236,.55);margin-bottom:24px"><span class="line" style="background:rgba(250,246,236,.2)"></span><span class="lbl">What's next</span></div>
+        <h2>The work didn't end<br>when the funding did.</h2>
+      </div>
+      <div>
+        <p>It's in the 92% of systems that now offer discount programs. It's in the fellows who went on to lead equity work in their own cities.</p>
+        <p>It's in the community rides, the youth ambassadors, the riders who got on a bike for the first time because someone made it possible.</p>
+        <p style="margin-top:24px;font-family:'DM Sans',sans-serif;font-size:17px;color:rgba(250,246,236,.7);line-height:1.6">If this work speaks to you — if you're a funder, a city, an operator, or an advocate who believes it should continue — we'd love to hear from you.</p>
+      </div>
+    </div>
+    <div class="foot-contact">
+      <div>
+        <h4>Continue the work</h4>
+        <p style="font-family:'DM Sans',sans-serif;font-size:14px;color:rgba(250,246,236,.7);line-height:1.5">Interested in carrying this forward as a funder, city, operator, or advocate? Get in touch.</p>
+        <form class="foot-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks ✓'">
+          <input type="email" placeholder="your@email.org" aria-label="Email">
+          <button type="submit">Send</button>
+        </form>
+        <p style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(250,246,236,.45);text-transform:uppercase"><span class="ph">Contact · Missing</span> Confirm recipient w/ BBSP</p>
+      </div>
+      <div>
+        <h4>The archive</h4>
+        <a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">500+ stories →</a>
+        <a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Best-practice guides →</a>
+        <a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Living Lab case studies →</a>
+      </div>
+      <div>
+        <h4>Social</h4>
+        <a href="#" target="_blank" rel="noopener">Twitter / X →</a>
+        <a href="#" target="_blank" rel="noopener">LinkedIn →</a>
+        <a href="#" target="_blank" rel="noopener">Instagram →</a>
+        <a href="#" target="_blank" rel="noopener">Facebook →</a>
+        <p style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(250,246,236,.45);text-transform:uppercase"><span class="ph">Social · Decision needed</span> Pin final posts?</p>
+      </div>
+    </div>
+    <div class="foot-meta">
+      <span>© BETTER BIKE SHARE PARTNERSHIP · 2014 — 2026</span>
+      <span>FUNDED BY THE FREEDOM TOGETHER FOUNDATION</span>
+      <span><a href="https://wrightadventures.org" target="_blank" rel="noopener">SITE BY WRIGHT ADVENTURES</a></span>
+      <span>↑ BACK TO TOP</span>
+    </div>
+  </div>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
+<script>
+  // ---- US map renderer via d3-geo + us-atlas ----
+  const CITY_COORDS = {
+    // anchor cities (sticky map)
+    CHI: [-87.6298, 41.8781, 'CHICAGO, IL', 'LIVING LAB · D4E'],
+    CIN: [-84.5120, 39.1031, 'CINCINNATI, OH', 'LIVING LAB · RED BIKE GO'],
+    HON: [-157.8583, 21.3069, 'HONOLULU, HI', 'MINI GRANT · BIKI'],
+    // ripple cities
+    'r-IND': [-86.1581, 39.7684, 'INDIANAPOLIS', null],
+    'r-OMA': [-95.9345, 41.2565, 'OMAHA', null],
+    'r-PIT': [-79.9959, 40.4406, 'PITTSBURGH', null],
+    'r-PDX': [-122.6784, 45.5152, 'PORTLAND', null],
+    'r-TUC': [-110.9265, 32.2226, 'TUCSON', null],
+    'r-FW':  [-97.3308, 32.7555, 'FORT WORTH', null],
+    'r-PAS': [-74.1285, 40.8568, 'PASSAIC, NJ', null],
+    'r-DET': [-83.0458, 42.3314, 'DETROIT', null],
+    'r-GDL': [-103.3496, 20.6597, 'GUADALAJARA', null],
+    // scatter (other grant cities, approximate)
+    s1:[-122.4,47.6],s2:[-122.3,37.8],s3:[-118.24,34.05],s4:[-117.16,32.71],s5:[-112.07,33.45],
+    s6:[-115.14,36.17],s7:[-104.99,39.74],s8:[-106.65,35.08],s9:[-97.74,30.27],s10:[-95.36,29.76],
+    s11:[-94.58,39.10],s12:[-90.20,38.63],s13:[-90.07,29.95],s14:[-86.78,36.16],s15:[-86.16,39.77],
+    s16:[-84.39,33.75],s17:[-82.46,27.95],s18:[-80.19,25.76],s19:[-81.66,30.33],s20:[-78.64,35.78],
+    s21:[-77.04,38.91],s22:[-75.17,39.95],s23:[-73.94,40.67],s24:[-71.06,42.36],s25:[-83.05,42.33],
+    s26:[-87.91,43.04],s27:[-93.27,44.98],s28:[-93.62,41.59],s29:[-104.81,41.14],s30:[-111.89,40.76],
+    s31:[-119.78,36.74],s32:[-121.49,38.58]
+  };
+  const ATLAS_URLS = [
+    'https://unpkg.com/us-atlas@3/states-10m.json',
+    'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json',
+    'https://cdn.jsdelivr.net/npm/us-atlas@3.0.1/states-10m.json',
+    'https://d3js.org/us-10m.v2.json'
+  ];
+  let __atlasPromise = null;
+  function loadAtlas(){
+    if(__atlasPromise) return __atlasPromise;
+    __atlasPromise = (async ()=>{
+      let lastErr;
+      for(const url of ATLAS_URLS){
+        try{ const r = await fetch(url, {mode:'cors'}); if(!r.ok) throw new Error('http '+r.status); return await r.json(); }
+        catch(e){ lastErr = e; console.warn('atlas url failed', url, e && e.message); }
+      }
+      // ESM fallback: esm.sh wraps JSON as a module
+      try{
+        const mod = await import('https://esm.sh/us-atlas@3/states-10m.json');
+        return mod.default || mod;
+      }catch(e){ lastErr = e; }
+      throw lastErr;
+    })();
+    return __atlasPromise;
+  }
+  function drawMap(opts){
+    return loadAtlas().then(us=>{
+        const proj = d3.geoAlbersUsa().scale(1300).translate([487, 305]);
+        // Re-fit to viewBox: states-10m is designed for 975x610. Our viewBox is 1000x600 or 1000x620 (ripple).
+        const states = topojson.feature(us, us.objects.states);
+        const nation = topojson.feature(us, us.objects.nation);
+        const fitTarget = opts.fitHeight || 600;
+        const fitProj = d3.geoAlbersUsa();
+        fitProj.fitExtent([[40, 40],[960, fitTarget-60]], nation);
+        const path = d3.geoPath(fitProj);
+        document.getElementById(opts.prefix+'-states').innerHTML = states.features.map(f=>`<path d="${path(f)||''}"/>`).join('');
+        document.getElementById(opts.prefix+'-nation').innerHTML = `<path d="${path(nation)||''}"/>`;
+        // scatter dots (other grant cities)
+        if(opts.dotsKeys){
+          const dots = opts.dotsKeys.map(k=>{const c=CITY_COORDS[k]; const p=fitProj([c[0],c[1]]); return p?`<circle cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="${opts.dotR||2.2}"/>`:''}).join('');
+          document.getElementById(opts.prefix+'-dots').innerHTML = dots;
+        }
+        // anchor / ripple pins
+        if(opts.cityKeys){
+          const out = opts.cityKeys.map(k=>{
+            const c = CITY_COORDS[k]; const p = fitProj([c[0],c[1]]);
+            if(!p) return '';
+            const [x,y]=p; const label=c[2]||''; const sub=c[3]||'';
+            return opts.pinTemplate(k, x, y, label, sub);
+          }).join('');
+          document.getElementById(opts.prefix+'-pins').innerHTML = out;
+        }
+        const ld = document.getElementById(opts.prefix+'-loading'); if(ld) ld.remove();
+        if(opts.onDone) opts.onDone();
+      }).catch(err=>{ console.warn('map atlas unavailable in sandbox', err && err.message); const ld=document.getElementById(opts.prefix+'-loading'); if(ld) ld.textContent='US MAP UNAVAILABLE OFFLINE'; if(opts.onDone) opts.onDone(); });
+  }
+
+  // sticky map: dim cosmetic dots + 3 anchor markers (opacity controlled by scroll)
+  drawMap({
+    prefix: 'stickyMap',
+    fitHeight: 600,
+    dotsKeys: Object.keys(CITY_COORDS).filter(k=>k.startsWith('s')),
+    dotR: 2.6,
+    cityKeys: ['CHI','CIN','HON'],
+    pinTemplate: (id,x,y,label,sub)=>{
+      const ang = (id==='CHI')?-1:(id==='CIN'?1:-1);
+      const lx = x + 60, ly = y + ang*70;
+      const tx = lx + 4, ty = ly + (ang<0?-4:14);
+      return `<g id="city-${id}" opacity="0" style="transition:opacity .5s">
+        <circle cx="${x}" cy="${y}" r="16" fill="rgba(255,106,61,.16)"/>
+        <circle cx="${x}" cy="${y}" r="9" fill="rgba(255,106,61,.34)"/>
+        <circle cx="${x}" cy="${y}" r="5" fill="#ff6a3d"/>
+        <line x1="${x}" y1="${y}" x2="${lx}" y2="${ly}" stroke="#ff6a3d" stroke-width="1"/>
+        <text x="${tx}" y="${ty}" fill="#ff6a3d" font-family="JetBrains Mono" font-size="12" letter-spacing=".08em" font-weight="600">${label}</text>
+        <text x="${tx}" y="${ty+14}" fill="rgba(255,106,61,.7)" font-family="JetBrains Mono" font-size="10" letter-spacing=".08em">${sub}</text>
+      </g>`;
+    },
+    onDone: ()=>{ if(window.__bbspCheck) window.__bbspCheck(); }
+  });
+
+  // ripple map: 8 tappable pins (Guadalajara falls outside AlbersUsa — fallback to fixed inset)
+  drawMap({
+    prefix: 'rippleMap',
+    fitHeight: 540,
+    dotsKeys: Object.keys(CITY_COORDS).filter(k=>k.startsWith('s')),
+    dotR: 2,
+    cityKeys: ['r-IND','r-OMA','r-PIT','r-PDX','r-TUC','r-FW','r-DET','r-PAS'],
+    pinTemplate: (id,x,y,label)=>{
+      const color = (id==='r-NOM') ? 'var(--moss, #3a7d65)' : 'var(--signal, #ff6a3d)';
+      const bg = (id==='r-NOM') ? 'rgba(58,125,101,.18)' : 'rgba(255,106,61,.15)';
+      // North Omaha overlaps Omaha — anchor its label on the left instead of below
+      const leftSide = (id==='r-NOM');
+      const tx = leftSide ? x-11 : x+11;
+      const anchor = leftSide ? 'end' : 'start';
+      return `<g class="rpin" data-target="${id}" style="cursor:pointer">
+        <circle cx="${x}" cy="${y}" r="14" fill="${bg}"/>
+        <circle cx="${x}" cy="${y}" r="6.5" fill="${color}"/>
+        <text x="${tx}" y="${y+4}" text-anchor="${anchor}" font-family="JetBrains Mono" font-size="12" fill="${color}" font-weight="600" letter-spacing=".06em">${label}</text>
+      </g>`;
+    },
+    onDone: ()=>{
+      // Add Guadalajara as a fixed inset since AlbersUsa won't project Mexico
+      const g = document.getElementById('rippleMap-pins');
+      g.insertAdjacentHTML('beforeend', `
+        <g opacity=".5"><path d="M 360 555 L 400 548 L 450 545 L 500 548 L 540 555 L 560 575 L 530 588 L 480 590 L 430 588 L 390 580 L 365 572 Z" fill="rgba(31,91,74,.05)" stroke="var(--green, #1f5b4a)" stroke-width="0.8" stroke-dasharray="3 3"/><text x="345" y="540" font-family="JetBrains Mono" font-size="9" fill="rgba(15,38,32,.4)" letter-spacing=".12em">MEXICO · INSET</text></g>
+        <g class="rpin" data-target="r-GDL" style="cursor:pointer">
+          <circle cx="460" cy="568" r="14" fill="rgba(255,106,61,.15)"/>
+          <circle cx="460" cy="568" r="6.5" fill="var(--signal, #ff6a3d)"/>
+          <text x="473" y="572" font-family="JetBrains Mono" font-size="12" fill="var(--signal, #ff6a3d)" font-weight="600" letter-spacing=".06em">GUADALAJARA</text>
+        </g>`);
+      // Re-bind click handlers (pins are now in DOM)
+      if(window.__bbspBindPins) window.__bbspBindPins();
+    }
+  });
+
+  document.querySelectorAll('#heroHeadline .word').forEach((w,i)=>setTimeout(()=>w.classList.add('in'), 200+i*180));
+  function fmt(n,d,p,s){return (p||'') + (d?n.toFixed(d):Math.round(n).toLocaleString('en-US')) + (s||'')}
+  function animateCount(el){
+    const target=parseFloat(el.dataset.count), d=parseInt(el.dataset.decimals||'0',10);
+    const p=el.dataset.prefix||'', s=el.dataset.suffix||'', dur=1600, start=performance.now();
+    function tick(now){const t=Math.min(1,(now-start)/dur), e=1-Math.pow(1-t,3); el.textContent=fmt(target*e,d,p,s); if(t<1) requestAnimationFrame(tick); else el.textContent=fmt(target,d,p,s)}
+    requestAnimationFrame(tick);
+  }
+  const countObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){e.target.dataset.counted='1';animateCount(e.target);countObs.unobserve(e.target)}})},{threshold:.4});
+  document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+  const cases=[...document.querySelectorAll('.case')];
+  const markers={CHI:null,CIN:null,HON:null};
+  function resolveMarkers(){markers.CHI=document.getElementById('city-CHI');markers.CIN=document.getElementById('city-CIN');markers.HON=document.getElementById('city-HON');return markers.CHI&&markers.CIN&&markers.HON;}
+  const focusCity=document.getElementById('focusCity'), focusGrant=document.getElementById('focusGrant'), mapCross=document.getElementById('mapCross');
+  const coords={CHI:['41.88','−87.63'],CIN:['39.10','−84.51'],HON:['21.31','−157.86'],ALL:['39.83','−98.58']};
+  let active=null;
+  function setActive(c){
+    if(!resolveMarkers()) return;
+    if(active===c) return; active=c;
+    Object.entries(markers).forEach(([k,el])=>{if(!el) return; el.style.transition='opacity .5s ease'; el.style.opacity=(k===c)?'1':'0'});
+    if(c){const cs=cases.find(x=>x.dataset.city===c); focusCity.textContent=cs.dataset.label; focusGrant.textContent=cs.dataset.grant; mapCross.innerHTML=`LAT ${coords[c][0]}<br>LON ${coords[c][1]}<br>SCALE 1:42M`;}
+    else {focusCity.textContent='All 49 grant cities · 31 states'; focusGrant.textContent='125 deployed'; mapCross.innerHTML=`LAT ${coords.ALL[0]}<br>LON ${coords.ALL[1]}<br>SCALE 1:42M`;}
+  }
+  function check(){
+    let best=null,d=Infinity;
+    cases.forEach(c=>{const r=c.getBoundingClientRect(); const dist=Math.abs((r.top+r.bottom)/2 - window.innerHeight/2); if(r.bottom>0&&r.top<window.innerHeight&&dist<d){d=dist;best=c}});
+    setActive(best?best.dataset.city:null);
+  }
+  window.__bbspCheck = check;
+  window.addEventListener('scroll',check,{passive:true}); window.addEventListener('resize',check,{passive:true}); check();
+  window.__bbspBindPins = function(){
+    function select(id){
+      const card=document.getElementById(id); if(!card) return;
+      const pin=document.querySelector('.rpin[data-target="'+id+'"]');
+      document.querySelectorAll('.rpin.selected').forEach(o=>o.classList.remove('selected'));
+      document.querySelectorAll('.rcard.selected').forEach(o=>o.classList.remove('selected'));
+      if(pin) pin.classList.add('selected');
+      card.classList.add('selected');
+      const track=document.getElementById('rtrack');
+      if(track) track.scrollTo({left:card.offsetLeft-40, behavior:'smooth'});
+    }
+    document.querySelectorAll('.rpin').forEach(p=>{
+      if(p.__bound) return; p.__bound=true;
+      p.addEventListener('click',()=>select(p.dataset.target));
+    });
+    document.querySelectorAll('.rcard').forEach(c=>{
+      if(c.__bound) return; c.__bound=true;
+      c.addEventListener('click',e=>{
+        if(e.target.closest('a')) return;
+        select(c.id);
+      });
+      c.style.cursor='pointer';
+    });
+  };
+  window.__bbspBindPins();
+
+  // ---- Language picker ----
+  (function(){
+    const btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu');
+    if(!btn||!menu) return;
+    function close(){btn.setAttribute('aria-expanded','false'); menu.classList.remove('open')}
+    function open(){btn.setAttribute('aria-expanded','true'); menu.classList.add('open')}
+    btn.addEventListener('click', e=>{e.stopPropagation(); menu.classList.contains('open')?close():open();});
+    document.addEventListener('click', e=>{ if(!menu.contains(e.target)&&e.target!==btn) close(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+    menu.querySelectorAll('button[data-lang]').forEach(b=>{
+      b.addEventListener('click',()=>{
+        menu.querySelectorAll('button[data-lang]').forEach(x=>x.classList.remove('active'));
+        b.classList.add('active');
+        const iso=b.querySelector('.iso');
+        menu.querySelectorAll('.iso').forEach(s=>{if(s.textContent.endsWith(' · current')) s.textContent=s.textContent.replace(' · current','');});
+        iso.textContent = iso.textContent.split(' ·')[0] + ' · current';
+        // hookup point: real translation provider goes here
+        close();
+      });
+    });
+  })();
+
+  // ---- Search overlay ----
+  (function(){
+    const btn=document.getElementById('searchBtn'), overlay=document.getElementById('searchOverlay'),
+          input=document.getElementById('searchInput'), results=document.getElementById('searchResults'),
+          closeBtn=document.getElementById('searchClose');
+    if(!btn||!overlay) return;
+
+    // Build an index from the page once on first open.
+    let index=null;
+    function buildIndex(){
+      const items=[];
+      // Sections / nav anchors
+      document.querySelectorAll('section[id]').forEach(s=>{
+        const h=s.querySelector('h2,h1'); if(!h) return;
+        items.push({kind:'Section', title:h.textContent.replace(/\s+/g,' ').trim(), href:'#'+s.id});
+      });
+      // Ripple cards
+      document.querySelectorAll('.rcard').forEach(c=>{
+        const t=c.querySelector('h4'), city=c.querySelector('.city-tag'), p=c.querySelector('p');
+        if(!t) return;
+        items.push({kind:'Ripple story', title:t.textContent.trim(), sub:(city?city.textContent.trim()+' · ':'')+(p?p.textContent.slice(0,90).trim()+'…':''), href:'#'+c.id, scrollEl:c});
+      });
+      // Anchor case studies
+      document.querySelectorAll('.case').forEach(c=>{
+        const t=c.querySelector('h3'), s=c.querySelector('.sub');
+        if(!t) return;
+        items.push({kind:'Case study', title:t.textContent.trim(), sub:s?s.textContent.trim():'', href:'#stories', scrollEl:c});
+      });
+      // Programs
+      document.querySelectorAll('.pgm').forEach(p=>{
+        const t=p.querySelector('h3'), pn=p.querySelector('.pn'), body=p.querySelector('p');
+        if(!t) return;
+        items.push({kind:pn?pn.textContent.trim():'Program', title:t.textContent.trim(), sub:body?body.textContent.slice(0,90).trim()+'…':'', href:'#programs', scrollEl:p});
+      });
+      // Archive shelf items
+      document.querySelectorAll('.shelf-item').forEach(s=>{
+        const desc=s.querySelector('.desc'), a=s.querySelector('a');
+        if(!desc) return;
+        items.push({kind:'Archive', title:desc.textContent.trim(), href:a?a.href:'#archive', external: !!a});
+      });
+      // Team
+      document.querySelectorAll('.person').forEach(p=>{
+        const n=p.querySelector('.name'), r=p.querySelector('.role');
+        if(!n) return;
+        items.push({kind:'Team', title:n.textContent.trim(), sub:r?r.textContent.trim():'', href:'#legacy', scrollEl:p});
+      });
+      return items;
+    }
+
+    function open(){ overlay.classList.add('open'); if(!index) index=buildIndex(); input.value=''; render(''); setTimeout(()=>input.focus(),50); }
+    function close(){ overlay.classList.remove('open'); }
+    btn.addEventListener('click', open);
+    closeBtn.addEventListener('click', close);
+    overlay.addEventListener('click', e=>{ if(e.target===overlay) close(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); if((e.metaKey||e.ctrlKey)&&e.key==='k'){e.preventDefault(); open();} });
+
+    function esc(s){return s.replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+    function hl(s,q){ if(!q) return esc(s); const i=s.toLowerCase().indexOf(q.toLowerCase()); if(i<0) return esc(s); return esc(s.slice(0,i))+'<mark>'+esc(s.slice(i,i+q.length))+'</mark>'+esc(s.slice(i+q.length)); }
+    function render(q){
+      const list = index||[];
+      const lower=q.toLowerCase().trim();
+      const filtered = lower ? list.filter(it=>(it.title+' '+(it.sub||'')+' '+(it.kind||'')).toLowerCase().includes(lower)) : list;
+      if(!filtered.length){ results.innerHTML='<div class="empty">No matches — try “Chicago”, “fellowship”, or “ripple”.</div>'; return; }
+      // group by kind
+      const groups={};
+      filtered.slice(0,40).forEach(it=>{(groups[it.kind]=groups[it.kind]||[]).push(it)});
+      let html='';
+      Object.entries(groups).forEach(([kind,arr])=>{
+        html+='<div class="group">'+esc(kind)+'</div>';
+        arr.forEach((it,i)=>{
+          html+=`<a class="hit" data-i="${i}" data-kind="${esc(kind)}" href="${esc(it.href)}"${it.external?' target="_blank" rel="noopener"':''}><span><span style="font-weight:600">${hl(it.title,q)}</span>${it.sub?'<span style="display:block;color:var(--ink-mute);font-size:13px;margin-top:2px">'+hl(it.sub,q)+'</span>':''}</span><span class="kind">→</span></a>`;
+        });
+      });
+      results.innerHTML=html;
+      // attach scroll handlers for items that have a scrollEl
+      results.querySelectorAll('.hit').forEach((a,idx)=>{
+        const flatIdx=idx;
+        const matching = filtered[flatIdx];
+        if(matching && matching.scrollEl){
+          a.addEventListener('click', e=>{ e.preventDefault(); close(); setTimeout(()=>{matching.scrollEl.scrollIntoView({behavior:'smooth',block:'start'}); if(matching.scrollEl.classList.contains('rcard')){ const pin=document.querySelector('.rpin[data-target="'+matching.scrollEl.id+'"]'); if(pin) pin.click(); }},100); });
+        } else if(matching && !matching.external){
+          a.addEventListener('click', ()=>close());
+        }
+      });
+    }
+    input.addEventListener('input', e=>render(e.target.value));
+  })();
+  // ---- back-to-top button ----
+  (function(){
+    const btn = document.getElementById('toTop');
+    if(!btn) return;
+    function update(){ if(window.scrollY > 400) btn.classList.add('show'); else btn.classList.remove('show'); }
+    window.addEventListener('scroll', update, {passive:true});
+    update();
+    btn.addEventListener('click', ()=>{ window.scrollTo({top:0, behavior:'smooth'}); });
+  })();
+</script>
+</body>
+</html>
