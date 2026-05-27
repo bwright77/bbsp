@@ -31,3 +31,9 @@ CDN assets and remote images require an internet connection.
 
 Auto-deploys to Vercel from `main`. No build step — Vercel serves the static
 files as-is.
+
+## Credits
+
+- Bicycle icon in the rider-voice section: [Phosphor Icons](https://phosphoricons.com/)
+  (MIT license).
+
