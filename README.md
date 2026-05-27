@@ -34,6 +34,8 @@ files as-is.
 
 ## Credits
 
-- Bicycle icon in the rider-voice section: [Phosphor Icons](https://phosphoricons.com/)
-  (MIT license).
+- Icons: [Phosphor Icons](https://phosphoricons.com/) (MIT license) —
+  `bicycle` (rider-voice badge), `users-three` (fellowship-voice badge),
+  and `article` / `book-open` / `folder-open` / `chart-bar` / `chats-circle`
+  in the archive shelf.
 
