@@ -39,8 +39,20 @@
   .nav-tool:hover{opacity:1;background:var(--bg-2);border-color:var(--green)}
   .nav-tool[aria-expanded="true"]{opacity:1;background:var(--ink);color:var(--cream);border-color:var(--ink)}
   .nav-tool svg{width:16px;height:16px}
-  @media (max-width:800px){.nav-tools{display:flex;margin-left:auto;padding-left:0;border-left:0}}
-  @media (max-width:800px){.nav-links{display:none}.brand .logo-descend{width:120px;max-height:90px}.brand .logo-descend img{max-height:90px}.brand-spacer{width:120px;height:38px}.hero{padding-top:200px}}
+  .nav-menu-btn{display:none}
+  @media (max-width:800px){
+    .nav-tools{margin-left:auto;padding-left:0;border-left:0}
+    .nav-menu-btn{display:flex}
+    .nav-links{position:absolute;top:60px;right:0;left:auto;min-width:240px;max-width:calc(100vw - 32px);background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 32px rgba(15,38,32,.12);padding:8px;flex-direction:column;align-items:stretch;gap:0;z-index:95;display:none}
+    .nav-links.open{display:flex}
+    .nav-links a{padding:12px 14px;border-radius:4px;font-size:15px;opacity:1}
+    .nav-links a:hover,.nav-links a:focus{background:var(--bg-2);outline:0}
+    .brand .logo-descend{width:120px;max-height:90px}
+    .brand .logo-descend img{max-height:90px}
+    .brand-spacer{width:120px;height:38px}
+    .hero{padding-top:200px}
+    .lang-menu{right:0}
+  }
 
   /* Language picker dropdown */
   .lang-menu{position:absolute;top:64px;right:16px;background:#fff;border:1px solid var(--line);border-radius:6px;box-shadow:0 12px 32px rgba(15,38,32,.12);min-width:220px;padding:8px;display:none;z-index:99}
@@ -313,32 +325,35 @@
       </a>
       <div class="brand-spacer" aria-hidden="true"></div>
     </div>
-    <div class="nav-links">
+    <div class="nav-links" id="navLinks">
       <a href="#origin">Where it started</a>
       <a href="#impact">By the numbers</a>
       <a href="#programs">How it worked</a>
       <a href="#stories">Stories</a>
       <a href="#legacy">Legacy</a>
       <a href="#archive">The archive</a>
-      <div class="nav-tools">
-        <button class="nav-tool" id="langBtn" aria-label="Choose language" aria-expanded="false" aria-haspopup="true">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg>
-        </button>
-        <button class="nav-tool" id="searchBtn" aria-label="Search this page">
-          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
-        </button>
-      </div>
-      <div class="lang-menu" id="langMenu" role="menu">
-        <div class="lang-head">Translate this page</div>
-        <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
-        <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
-        <button data-lang="zh" role="menuitem"><span>中文</span><span class="iso">ZH</span></button>
-        <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
-        <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
-        <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
-        <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">Powered by</div>
-        <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em"><span class="ph">Translation service · TBD</span></div>
-      </div>
+    </div>
+    <div class="nav-tools">
+      <button class="nav-tool" id="langBtn" aria-label="Choose language" aria-expanded="false" aria-haspopup="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20"/><path d="M12 2a15 15 0 0 1 0 20"/><path d="M12 2a15 15 0 0 0 0 20"/></svg>
+      </button>
+      <button class="nav-tool" id="searchBtn" aria-label="Search this page">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.3-4.3"/></svg>
+      </button>
+      <button class="nav-tool nav-menu-btn" id="menuBtn" aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
+      </button>
+    </div>
+    <div class="lang-menu" id="langMenu" role="menu">
+      <div class="lang-head">Translate this page</div>
+      <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
+      <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
+      <button data-lang="zh" role="menuitem"><span>中文</span><span class="iso">ZH</span></button>
+      <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
+      <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
+      <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
+      <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">Powered by</div>
+      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em"><span class="ph">Translation service · TBD</span></div>
     </div>
   </div>
 </nav>
@@ -1074,6 +1089,19 @@
     });
   };
   window.__bbspBindPins();
+
+  // ---- Mobile nav menu ----
+  (function(){
+    const btn=document.getElementById('menuBtn'), links=document.getElementById('navLinks');
+    if(!btn||!links) return;
+    function close(){btn.setAttribute('aria-expanded','false'); links.classList.remove('open')}
+    function open(){btn.setAttribute('aria-expanded','true'); links.classList.add('open')}
+    btn.addEventListener('click', e=>{e.stopPropagation(); links.classList.contains('open')?close():open();});
+    links.querySelectorAll('a').forEach(a=>a.addEventListener('click', close));
+    document.addEventListener('click', e=>{ if(!links.contains(e.target)&&!btn.contains(e.target)) close(); });
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
+    window.addEventListener('resize', ()=>{ if(window.innerWidth>800) close(); });
+  })();
 
   // ---- Language picker ----
   (function(){
