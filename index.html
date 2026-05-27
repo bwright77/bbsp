@@ -68,6 +68,12 @@
   .lang-menu button:hover{background:var(--bg-2)}
   .lang-menu button.active{background:var(--green);color:var(--cream)}
   .lang-menu button .iso{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.06em;opacity:.6}
+  .lang-menu-toggle{margin-top:4px;padding-top:10px!important;border-top:1px solid var(--line)!important;color:var(--ink-mute)!important}
+  .lang-menu-toggle .iso{display:inline-flex;align-items:center;gap:6px}
+  .lang-menu-toggle .chev{width:10px;height:10px;transition:transform .2s ease}
+  .lang-menu-toggle[aria-expanded="true"] .chev{transform:rotate(180deg)}
+  .lang-more{display:none}
+  .lang-more.open{display:block}
 
   /* Search overlay */
   .search-overlay{position:fixed;inset:0;z-index:120;background:rgba(15,38,32,.65);backdrop-filter:blur(8px);display:none;align-items:flex-start;justify-content:center;padding:14vh 24px 24px}
@@ -353,40 +359,46 @@
     <div class="lang-menu notranslate" id="langMenu" role="menu" translate="no">
       <div class="lang-head">Translate this page</div>
       <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
-      <button data-lang="am" role="menuitem"><span>አማርኛ</span><span class="iso">AM</span></button>
-      <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
-      <button data-lang="bn" role="menuitem"><span>বাংলা</span><span class="iso">BN</span></button>
-      <button data-lang="zh-CN" role="menuitem"><span>中文 (简体)</span><span class="iso">ZH-CN</span></button>
-      <button data-lang="zh-TW" role="menuitem"><span>中文 (繁體)</span><span class="iso">ZH-TW</span></button>
-      <button data-lang="nl" role="menuitem"><span>Nederlands</span><span class="iso">NL</span></button>
-      <button data-lang="tl" role="menuitem"><span>Filipino</span><span class="iso">TL</span></button>
-      <button data-lang="fr" role="menuitem"><span>Français</span><span class="iso">FR</span></button>
-      <button data-lang="de" role="menuitem"><span>Deutsch</span><span class="iso">DE</span></button>
-      <button data-lang="el" role="menuitem"><span>Ελληνικά</span><span class="iso">EL</span></button>
-      <button data-lang="ht" role="menuitem"><span>Kreyòl Ayisyen</span><span class="iso">HT</span></button>
-      <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
-      <button data-lang="hi" role="menuitem"><span>हिन्दी</span><span class="iso">HI</span></button>
-      <button data-lang="hmn" role="menuitem"><span>Hmoob</span><span class="iso">HMN</span></button>
-      <button data-lang="id" role="menuitem"><span>Bahasa Indonesia</span><span class="iso">ID</span></button>
-      <button data-lang="it" role="menuitem"><span>Italiano</span><span class="iso">IT</span></button>
-      <button data-lang="ja" role="menuitem"><span>日本語</span><span class="iso">JA</span></button>
-      <button data-lang="ko" role="menuitem"><span>한국어</span><span class="iso">KO</span></button>
-      <button data-lang="ms" role="menuitem"><span>Bahasa Melayu</span><span class="iso">MS</span></button>
-      <button data-lang="ne" role="menuitem"><span>नेपाली</span><span class="iso">NE</span></button>
-      <button data-lang="pt" role="menuitem"><span>Português</span><span class="iso">PT</span></button>
-      <button data-lang="ru" role="menuitem"><span>Русский</span><span class="iso">RU</span></button>
-      <button data-lang="so" role="menuitem"><span>Soomaali</span><span class="iso">SO</span></button>
       <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
-      <button data-lang="sw" role="menuitem"><span>Kiswahili</span><span class="iso">SW</span></button>
-      <button data-lang="sv" role="menuitem"><span>Svenska</span><span class="iso">SV</span></button>
-      <button data-lang="ta" role="menuitem"><span>தமிழ்</span><span class="iso">TA</span></button>
-      <button data-lang="th" role="menuitem"><span>ไทย</span><span class="iso">TH</span></button>
-      <button data-lang="tr" role="menuitem"><span>Türkçe</span><span class="iso">TR</span></button>
-      <button data-lang="uk" role="menuitem"><span>Українська</span><span class="iso">UK</span></button>
-      <button data-lang="ur" role="menuitem"><span>اردو</span><span class="iso">UR</span></button>
-      <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
-      <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px;position:sticky;bottom:0;background:#fff">Powered by</div>
-      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em;background:#fff">Google Translate</div>
+      <button data-lang="zh-CN" role="menuitem"><span>中文 (简体)</span><span class="iso">ZH-CN</span></button>
+      <button class="lang-menu-toggle" id="langMoreBtn" aria-expanded="false" aria-controls="langMore" type="button">
+        <span>More languages</span>
+        <span class="iso"><span class="lang-more-count">+30</span><svg class="chev" viewBox="0 0 12 12" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 4.5L6 7.5L9 4.5"/></svg></span>
+      </button>
+      <div class="lang-more" id="langMore" role="group" aria-label="More languages">
+        <button data-lang="am" role="menuitem"><span>አማርኛ</span><span class="iso">AM</span></button>
+        <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
+        <button data-lang="bn" role="menuitem"><span>বাংলা</span><span class="iso">BN</span></button>
+        <button data-lang="zh-TW" role="menuitem"><span>中文 (繁體)</span><span class="iso">ZH-TW</span></button>
+        <button data-lang="nl" role="menuitem"><span>Nederlands</span><span class="iso">NL</span></button>
+        <button data-lang="tl" role="menuitem"><span>Filipino</span><span class="iso">TL</span></button>
+        <button data-lang="fr" role="menuitem"><span>Français</span><span class="iso">FR</span></button>
+        <button data-lang="de" role="menuitem"><span>Deutsch</span><span class="iso">DE</span></button>
+        <button data-lang="el" role="menuitem"><span>Ελληνικά</span><span class="iso">EL</span></button>
+        <button data-lang="ht" role="menuitem"><span>Kreyòl Ayisyen</span><span class="iso">HT</span></button>
+        <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
+        <button data-lang="hi" role="menuitem"><span>हिन्दी</span><span class="iso">HI</span></button>
+        <button data-lang="hmn" role="menuitem"><span>Hmoob</span><span class="iso">HMN</span></button>
+        <button data-lang="id" role="menuitem"><span>Bahasa Indonesia</span><span class="iso">ID</span></button>
+        <button data-lang="it" role="menuitem"><span>Italiano</span><span class="iso">IT</span></button>
+        <button data-lang="ja" role="menuitem"><span>日本語</span><span class="iso">JA</span></button>
+        <button data-lang="ko" role="menuitem"><span>한국어</span><span class="iso">KO</span></button>
+        <button data-lang="ms" role="menuitem"><span>Bahasa Melayu</span><span class="iso">MS</span></button>
+        <button data-lang="ne" role="menuitem"><span>नेपाली</span><span class="iso">NE</span></button>
+        <button data-lang="pt" role="menuitem"><span>Português</span><span class="iso">PT</span></button>
+        <button data-lang="ru" role="menuitem"><span>Русский</span><span class="iso">RU</span></button>
+        <button data-lang="so" role="menuitem"><span>Soomaali</span><span class="iso">SO</span></button>
+        <button data-lang="sw" role="menuitem"><span>Kiswahili</span><span class="iso">SW</span></button>
+        <button data-lang="sv" role="menuitem"><span>Svenska</span><span class="iso">SV</span></button>
+        <button data-lang="ta" role="menuitem"><span>தமிழ்</span><span class="iso">TA</span></button>
+        <button data-lang="th" role="menuitem"><span>ไทย</span><span class="iso">TH</span></button>
+        <button data-lang="tr" role="menuitem"><span>Türkçe</span><span class="iso">TR</span></button>
+        <button data-lang="uk" role="menuitem"><span>Українська</span><span class="iso">UK</span></button>
+        <button data-lang="ur" role="menuitem"><span>اردو</span><span class="iso">UR</span></button>
+        <button data-lang="vi" role="menuitem"><span>Tiếng Việt</span><span class="iso">VI</span></button>
+      </div>
+      <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px;position:sticky;bottom:24px;background:#fff">Powered by</div>
+      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em;background:#fff;position:sticky;bottom:0">Google Translate</div>
     </div>
   </div>
 </nav>
@@ -1180,6 +1192,16 @@
         document.cookie='googtrans=/en/'+googleCode+'; path=/; domain='+host;
       }
     }
+    const PRIMARY=['en','es','zh-CN'];
+    const moreBtn=document.getElementById('langMoreBtn'), moreBox=document.getElementById('langMore');
+    function setMoreOpen(open){
+      if(!moreBtn||!moreBox) return;
+      moreBtn.setAttribute('aria-expanded', open?'true':'false');
+      moreBox.classList.toggle('open', open);
+      const lbl=moreBtn.querySelector('.lang-more-count');
+      if(lbl) lbl.textContent = open ? 'Hide' : '+30';
+    }
+    if(moreBtn) moreBtn.addEventListener('click', e=>{ e.stopPropagation(); setMoreOpen(moreBtn.getAttribute('aria-expanded')!=='true'); });
     function close(){btn.setAttribute('aria-expanded','false'); menu.classList.remove('open')}
     function open(){btn.setAttribute('aria-expanded','true'); menu.classList.add('open')}
     btn.addEventListener('click', e=>{e.stopPropagation(); menu.classList.contains('open')?close():open();});
@@ -1196,8 +1218,10 @@
         location.reload();
       });
     });
-    // Sync menu marker with whatever cookie says on load
-    setMark(getCookieLang());
+    // Sync menu marker with whatever cookie says on load; auto-expand "More" if current is in that group
+    const initial=getCookieLang();
+    setMark(initial);
+    if(!PRIMARY.includes(initial)) setMoreOpen(true);
     // Restore scroll position after a language-change reload
     try{
       const y=sessionStorage.getItem('bbsp:scrollY');
