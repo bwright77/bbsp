@@ -40,6 +40,12 @@
   .nav-tool[aria-expanded="true"]{opacity:1;background:var(--ink);color:var(--cream);border-color:var(--ink)}
   .nav-tool svg{width:16px;height:16px}
   .nav-menu-btn{display:none}
+  /* Google Translate widget — hide the gadget UI, banner, and tooltips; we drive it via cookie */
+  #google_translate_element{position:absolute;left:-9999px;top:-9999px;visibility:hidden}
+  .goog-te-banner-frame.skiptranslate,.goog-te-balloon-frame{display:none!important}
+  .goog-tooltip,.goog-tooltip:hover{display:none!important}
+  .goog-text-highlight{background:transparent!important;box-shadow:none!important;border:none!important}
+  body{top:0!important}
   @media (max-width:800px){
     .nav-tools{margin-left:auto;padding-left:0;border-left:0}
     .nav-menu-btn{display:flex}
@@ -344,7 +350,7 @@
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6h18"/><path d="M3 12h18"/><path d="M3 18h18"/></svg>
       </button>
     </div>
-    <div class="lang-menu" id="langMenu" role="menu">
+    <div class="lang-menu notranslate" id="langMenu" role="menu" translate="no">
       <div class="lang-head">Translate this page</div>
       <button data-lang="en" class="active" role="menuitem"><span>English</span><span class="iso">EN · current</span></button>
       <button data-lang="es" role="menuitem"><span>Español</span><span class="iso">ES</span></button>
@@ -353,7 +359,7 @@
       <button data-lang="ar" role="menuitem"><span>العربية</span><span class="iso">AR</span></button>
       <button data-lang="haw" role="menuitem"><span>ʻŌlelo Hawaiʻi</span><span class="iso">HAW</span></button>
       <div class="lang-head" style="padding-top:10px;border-top:1px solid var(--line);margin-top:6px">Powered by</div>
-      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em"><span class="ph">Translation service · TBD</span></div>
+      <div style="padding:0 12px 10px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--ink-mute);letter-spacing:.04em">Google Translate</div>
     </div>
   </div>
 </nav>
@@ -887,6 +893,20 @@
   </div>
 </section>
 
+<!-- Google Website Translator: hidden mount + init. Driven from the language picker via the googtrans cookie. -->
+<div id="google_translate_element" aria-hidden="true"></div>
+<script>
+  function googleTranslateElementInit(){
+    new google.translate.TranslateElement({
+      pageLanguage:'en',
+      includedLanguages:'es,zh-CN,vi,ar,haw',
+      autoDisplay:false,
+      layout:google.translate.TranslateElement.InlineLayout.SIMPLE
+    },'google_translate_element');
+  }
+</script>
+<script src="https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit" async></script>
+
 <script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/topojson-client@3/dist/topojson-client.min.js"></script>
 <script>
@@ -1103,10 +1123,38 @@
     window.addEventListener('resize', ()=>{ if(window.innerWidth>800) close(); });
   })();
 
-  // ---- Language picker ----
+  // ---- Language picker (drives Google Website Translator via the googtrans cookie) ----
   (function(){
     const btn=document.getElementById('langBtn'), menu=document.getElementById('langMenu');
     if(!btn||!menu) return;
+    // Our picker code → Google Translate target code. '' = restore original (English).
+    const LANG_MAP={en:'', es:'es', zh:'zh-CN', vi:'vi', ar:'ar', haw:'haw'};
+    function setMark(code){
+      menu.querySelectorAll('button[data-lang]').forEach(x=>{
+        x.classList.toggle('active', x.dataset.lang===code);
+        const iso=x.querySelector('.iso'); if(!iso) return;
+        const base=iso.textContent.split(' ·')[0];
+        iso.textContent = x.dataset.lang===code ? base+' · current' : base;
+      });
+    }
+    function getCookieLang(){
+      const m=document.cookie.match(/(?:^|; )googtrans=\/[^/]+\/([^;]+)/);
+      if(!m) return 'en';
+      const g=decodeURIComponent(m[1]);
+      return Object.keys(LANG_MAP).find(k=>LANG_MAP[k]===g) || 'en';
+    }
+    function setGoogTransCookie(googleCode){
+      const exp='expires=Thu, 01 Jan 1970 00:00:00 UTC;';
+      const host=location.hostname;
+      // Clear on all the variants Google's plugin writes to
+      document.cookie='googtrans=; path=/; '+exp;
+      document.cookie='googtrans=; path=/; domain='+host+'; '+exp;
+      document.cookie='googtrans=; path=/; domain=.'+host+'; '+exp;
+      if(googleCode){
+        document.cookie='googtrans=/en/'+googleCode+'; path=/';
+        document.cookie='googtrans=/en/'+googleCode+'; path=/; domain='+host;
+      }
+    }
     function close(){btn.setAttribute('aria-expanded','false'); menu.classList.remove('open')}
     function open(){btn.setAttribute('aria-expanded','true'); menu.classList.add('open')}
     btn.addEventListener('click', e=>{e.stopPropagation(); menu.classList.contains('open')?close():open();});
@@ -1114,15 +1162,27 @@
     document.addEventListener('keydown', e=>{ if(e.key==='Escape') close(); });
     menu.querySelectorAll('button[data-lang]').forEach(b=>{
       b.addEventListener('click',()=>{
-        menu.querySelectorAll('button[data-lang]').forEach(x=>x.classList.remove('active'));
-        b.classList.add('active');
-        const iso=b.querySelector('.iso');
-        menu.querySelectorAll('.iso').forEach(s=>{if(s.textContent.endsWith(' · current')) s.textContent=s.textContent.replace(' · current','');});
-        iso.textContent = iso.textContent.split(' ·')[0] + ' · current';
-        // hookup point: real translation provider goes here
+        const lang=b.dataset.lang;
+        if(lang===getCookieLang()){ close(); return; }
+        setMark(lang);
+        setGoogTransCookie(LANG_MAP[lang]);
+        try{ sessionStorage.setItem('bbsp:scrollY', String(window.scrollY)); }catch(e){}
         close();
+        location.reload();
       });
     });
+    // Sync menu marker with whatever cookie says on load
+    setMark(getCookieLang());
+    // Restore scroll position after a language-change reload
+    try{
+      const y=sessionStorage.getItem('bbsp:scrollY');
+      if(y!==null){
+        sessionStorage.removeItem('bbsp:scrollY');
+        const restore=()=>window.scrollTo(0, parseInt(y,10)||0);
+        if(document.readyState==='complete') setTimeout(restore,60);
+        else window.addEventListener('load',()=>setTimeout(restore,60),{once:true});
+      }
+    }catch(e){}
   })();
 
   // ---- Search overlay ----
