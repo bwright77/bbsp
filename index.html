@@ -157,14 +157,25 @@
   .pct{background:var(--green);color:var(--cream);padding:160px var(--pad);position:relative;overflow:hidden}
   .pct::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,106,61,.22),transparent 50%);pointer-events:none}
   .pct-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
-  .pct .split{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:end;margin-top:40px}
-  .pct .before{opacity:.55;font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(24px,2.4vw,36px);line-height:1.1;text-transform:uppercase;letter-spacing:.06em}
-  .pct .arrow{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.16em;opacity:.7;margin:14px 0}
-  .pct .after{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(140px,22vw,360px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
-  .pct .after sup{font-size:.36em;color:var(--signal);vertical-align:top;margin-left:-.05em}
-  .pct .lede{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(22px,2vw,30px);line-height:1.3;margin-top:32px;max-width:36ch;letter-spacing:-.005em}
-  .pct .src{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;opacity:.7;margin-top:48px;text-transform:uppercase}
-  @media (max-width:800px){.pct .split{grid-template-columns:1fr;gap:24px}}
+  .pct .split{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,5vw,72px);align-items:end;margin-top:48px}
+  .pct-cell{display:flex;flex-direction:column;gap:10px}
+  .pct-cell.pct-before{opacity:.82}
+  .pct-year{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--signal);font-weight:600}
+  .pct-meta{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;opacity:.75;line-height:1.5;max-width:26ch;margin-bottom:6px}
+  .pct-num{font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(72px,14vw,200px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums}
+  .pct-num .lt{font-size:.5em;font-weight:400;display:inline-block;vertical-align:.18em;opacity:.85;margin-right:.02em}
+  .pct-num sup{font-size:.32em;color:var(--signal);vertical-align:.9em;margin-left:-.04em;font-weight:400}
+  .pct-arrow{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:clamp(16px,4vw,36px);color:var(--signal)}
+  .pct-arrow svg{width:clamp(60px,9vw,140px);height:auto}
+  .pct-arrow-lbl{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.16em;text-transform:uppercase;opacity:.85;text-align:center;line-height:1.4;color:var(--cream)}
+  .pct-lede{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(18px,1.6vw,24px);line-height:1.45;margin-top:48px;max-width:62ch;letter-spacing:-.003em;opacity:.92}
+  .pct .src{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;opacity:.7;margin-top:32px;text-transform:uppercase}
+  @media (max-width:800px){
+    .pct .split{grid-template-columns:1fr;gap:24px;align-items:start}
+    .pct-arrow{flex-direction:row;justify-content:flex-start;gap:14px;padding:0}
+    .pct-arrow svg{width:44px;transform:rotate(90deg)}
+    .pct-num{font-size:clamp(72px,22vw,140px)}
+  }
   .impact-head{max-width:var(--maxw);margin:0 auto 64px;display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:end}
   @media (max-width:800px){.impact-head{grid-template-columns:1fr;gap:24px}}
   .impact-grid{max-width:var(--maxw);margin:0 auto;display:grid;grid-template-columns:repeat(12,1fr);gap:1px;background:var(--line);border-top:1px solid var(--ink);border-bottom:1px solid var(--ink)}
@@ -511,18 +522,23 @@
   <div class="pct-inner">
     <div class="chap" style="color:rgba(250,246,236,.6)"><span class="line" style="background:rgba(250,246,236,.25)"></span><span class="lbl">The number that says it all</span></div>
     <div class="split">
-      <div>
-        <div class="before">Very few,<br>if any.</div>
-        <div class="arrow">SMM SYSTEMS W/ EQUITY PROGRAMS · 2016 ↓</div>
-        <p class="lede" style="opacity:.75;margin-top:8px">At BBSP's launch, almost no shared micromobility systems offered any equity programming.</p>
+      <div class="pct-cell pct-before">
+        <div class="pct-year">2016 · BBSP's launch</div>
+        <div class="pct-meta">Share of SMM systems<br>w/ equity programs</div>
+        <div class="pct-num"><span class="lt">&lt;</span><span data-count="5">0</span><sup>%</sup></div>
       </div>
-      <div>
-        <div class="caps mono" style="opacity:.7;margin-bottom:14px">SMM SYSTEMS W/ DISCOUNT PROGRAMS · 2024 ↓</div>
-        <div class="after"><span data-count="92">0</span><sup>%</sup></div>
-        <p class="lede">— and many more have equity offerings beyond discounts: smartphone alternatives, cash payments, targeted community outreach, equitable vehicle distribution.</p>
+      <div class="pct-arrow" aria-hidden="true">
+        <svg viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h112"/><path d="M104 4l10 8-10 8"/></svg>
+        <div class="pct-arrow-lbl">A decade<br>of work</div>
+      </div>
+      <div class="pct-cell pct-after">
+        <div class="pct-year">2024 · today</div>
+        <div class="pct-meta">Share of SMM systems<br>w/ discount programs</div>
+        <div class="pct-num"><span data-count="92">0</span><sup>%</sup></div>
       </div>
     </div>
-    <div class="src">SOURCE · NABSA 2024 STATE OF THE INDUSTRY REPORT &nbsp;·&nbsp; VERIFY LINK PRE-PUBLISH</div>
+    <p class="pct-lede">At BBSP's launch, almost no shared micromobility systems offered any equity programming. Today, 92% offer discount programs — and many more have equity offerings beyond discounts: smartphone alternatives, cash payments, targeted community outreach, equitable vehicle distribution.</p>
+    <div class="src">SOURCE · NABSA 2024 STATE OF THE INDUSTRY REPORT</div>
   </div>
 </section>
 
