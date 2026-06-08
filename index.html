@@ -11,7 +11,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg:#f4f1e8;--bg-2:#e6e2d2;--ink:#16282a;--ink-mute:#6a6f72;--line:rgba(22,40,42,.14);
+    --bg:#f4f1e8;--bg-2:#e6e2d2;--ink:#000;--ink-mute:#6a6f72;--line:rgba(0,0,0,.14);
     --green:#629BA3;--green-deep:#1f3e44;--moss:#8fb9bf;--signal:#e26a3c;--cream:#faf6ec;--pinblue:#2A6FDB;
     --pad:clamp(20px, 4vw, 80px);--maxw:1320px;
   }
@@ -19,11 +19,11 @@
   html,body{background:var(--bg);color:var(--ink);font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility;overflow-x:clip}
   .serif{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:700;text-transform:uppercase;letter-spacing:.04em}
   .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
-  .caps{text-transform:uppercase;letter-spacing:.14em;font-size:11px;font-weight:500}
+  .caps{text-transform:uppercase;letter-spacing:.14em;font-size:13px;font-weight:500}
   a{color:inherit}
   .wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--pad);padding-right:var(--pad);width:100%}
   .chap{display:flex;align-items:center;gap:14px;color:var(--ink-mute);margin-bottom:18px}
-  .chap .lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.16em;text-transform:uppercase}
+  .chap .lbl{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase}
   .chap .line{flex:1;max-width:140px;height:1px;background:var(--line)}
   .lane{background-image:repeating-linear-gradient(90deg,var(--green) 0 28px, transparent 28px 48px);height:5px;border-radius:3px;width:100%}
   .ph{display:inline-flex;align-items:center;gap:6px;background:var(--signal);color:var(--cream);font-family:"JetBrains Mono",monospace;font-size:10px;font-weight:600;letter-spacing:.12em;padding:3px 8px;border-radius:3px;text-transform:uppercase;vertical-align:middle}
