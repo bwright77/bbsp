@@ -36,6 +36,6 @@ files as-is.
 
 - Icons: [Phosphor Icons](https://phosphoricons.com/) (MIT license) —
   `bicycle` (rider-voice badge), `users-three` (fellowship-voice badge),
-  and `article` / `book-open` / `folder-open` / `chart-bar` / `chats-circle`
-  in the archive shelf.
+  `arrow-right` (inline CTA arrows), and `article` / `book-open` /
+  `folder-open` / `chart-bar` / `chats-circle` in the archive shelf.
 

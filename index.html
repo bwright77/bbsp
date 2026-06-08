@@ -157,25 +157,30 @@
   .pct{background:var(--green);color:var(--cream);padding:160px var(--pad);position:relative;overflow:hidden}
   .pct::before{content:"";position:absolute;inset:0;background:radial-gradient(circle at 85% 20%,rgba(255,106,61,.22),transparent 50%);pointer-events:none}
   .pct-inner{max-width:var(--maxw);margin:0 auto;position:relative;z-index:1}
-  .pct .split{display:grid;grid-template-columns:1fr auto 1fr;gap:clamp(24px,5vw,72px);align-items:end;margin-top:48px}
-  .pct-cell{display:flex;flex-direction:column;gap:10px}
-  .pct-cell.pct-before{opacity:.92}
-  .pct-year{font-family:"JetBrains Mono",monospace;font-size:14px;letter-spacing:.18em;text-transform:uppercase;color:var(--cream);font-weight:700}
-  .pct-year::before{content:"";display:inline-block;width:18px;height:2px;background:var(--signal);vertical-align:middle;margin-right:10px;transform:translateY(-2px)}
-  .pct-meta{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:var(--cream);opacity:.78;line-height:1.5;max-width:26ch;margin-bottom:6px;font-weight:500}
-  .pct-num{font-family:"Montserrat",sans-serif;font-weight:600;font-size:clamp(72px,14vw,200px);line-height:.85;letter-spacing:-.04em;font-variant-numeric:tabular-nums;color:var(--cream)}
-  .pct-num .lt{font-size:.5em;font-weight:500;display:inline-block;vertical-align:.18em;opacity:.9;margin-right:.02em}
-  .pct-num sup{font-size:.32em;color:var(--cream);opacity:.75;vertical-align:.9em;margin-left:-.04em;font-weight:500}
-  .pct-arrow{display:flex;flex-direction:column;align-items:center;gap:10px;padding-bottom:clamp(16px,4vw,36px);color:var(--signal)}
-  .pct-arrow svg{width:clamp(72px,10vw,160px);height:auto;filter:drop-shadow(0 1px 0 rgba(0,0,0,.18))}
-  .pct-arrow-lbl{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.18em;text-transform:uppercase;text-align:center;line-height:1.4;color:var(--cream);font-weight:700}
+  .pct-card{margin-top:48px;background:var(--green-deep);border-radius:28px;padding:clamp(36px,4vw,72px);display:grid;grid-template-columns:1fr 1.4fr;gap:clamp(40px,5vw,72px);align-items:center;box-shadow:0 20px 60px rgba(0,0,0,.16)}
+  .pct-left h2{font-family:"Montserrat",sans-serif;font-weight:800;font-size:clamp(36px,4.4vw,64px);line-height:.95;letter-spacing:-.02em;color:var(--cream);max-width:14ch}
+  .pct-left h2 em{color:var(--signal);font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
+  .pct-left p{margin-top:24px;font-family:"Montserrat",sans-serif;font-weight:500;font-size:clamp(15px,1.2vw,18px);line-height:1.55;color:rgba(250,246,236,.78);max-width:38ch}
+  .pct-panel{background:rgba(250,246,236,.03);border:1px solid rgba(250,246,236,.18);border-radius:22px;padding:clamp(24px,2.6vw,36px);display:flex;flex-direction:column;gap:22px}
+  .pct-panel-title{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:var(--cream);font-weight:700;opacity:.92;display:flex;align-items:center;gap:12px}
+  .pct-panel-title::before{content:"";display:inline-block;width:20px;height:2px;background:var(--signal)}
+  .pct-bars{display:flex;flex-direction:column;gap:18px}
+  .pct-bar{display:grid;grid-template-columns:1fr auto;gap:6px 24px;align-items:center}
+  .pct-bar-meta{grid-column:1;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.1em;text-transform:uppercase;color:rgba(250,246,236,.74);font-weight:600}
+  .pct-bar-track{grid-column:1;height:16px;background:rgba(250,246,236,.08);border-radius:8px;overflow:hidden;position:relative}
+  .pct-bar-fill{height:100%;width:0;border-radius:8px;background:linear-gradient(90deg,var(--moss),#a8d3d9);transition:width 1.4s cubic-bezier(.2,.7,.1,1)}
+  .pct-bar.is-after .pct-bar-fill{background:linear-gradient(90deg,var(--signal),#ffb088)}
+  .pct-bar-value{grid-column:2;grid-row:1/3;align-self:center;font-family:"Montserrat",sans-serif;font-weight:700;font-size:clamp(28px,2.6vw,40px);color:var(--cream);letter-spacing:-.01em;font-variant-numeric:tabular-nums;min-width:5ch;text-align:right}
+  .pct-bar-value .lt{font-weight:500;opacity:.85;margin-right:.04em}
+  .pct-delta{margin-top:8px;padding-top:22px;border-top:1px solid rgba(250,246,236,.18);display:flex;align-items:baseline;gap:18px}
+  .pct-delta-n{font-family:"Montserrat",sans-serif;font-weight:800;font-size:clamp(48px,4.6vw,72px);line-height:.95;letter-spacing:-.02em;color:var(--signal);font-variant-numeric:tabular-nums}
+  .pct-delta-l{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.16em;text-transform:uppercase;color:rgba(250,246,236,.78);font-weight:700;max-width:22ch;line-height:1.4}
   .pct-lede{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(18px,1.6vw,24px);line-height:1.45;margin-top:48px;max-width:62ch;letter-spacing:-.003em;opacity:.92}
   .pct .src{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.1em;opacity:.7;margin-top:32px;text-transform:uppercase}
-  @media (max-width:800px){
-    .pct .split{grid-template-columns:1fr;gap:24px;align-items:start}
-    .pct-arrow{flex-direction:row;justify-content:flex-start;gap:14px;padding:0}
-    .pct-arrow svg{width:44px;transform:rotate(90deg)}
-    .pct-num{font-size:clamp(72px,22vw,140px)}
+  @media (max-width:900px){
+    .pct-card{grid-template-columns:1fr;gap:32px;padding:32px}
+    .pct-panel{padding:24px}
+    .pct-bar-value{font-size:clamp(26px,7vw,36px);min-width:4ch}
   }
   .impact-head{max-width:var(--maxw);margin:0 auto 64px;display:grid;grid-template-columns:1fr 1.3fr;gap:64px;align-items:end}
   @media (max-width:800px){.impact-head{grid-template-columns:1fr;gap:24px}}
@@ -343,6 +348,8 @@
   .foot-form button{background:var(--signal);color:var(--ink);border:0;font-family:"JetBrains Mono",monospace;font-size:13px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;padding:0 16px;border-radius:3px;cursor:pointer}
   .foot-meta{margin-top:48px;display:flex;justify-content:space-between;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.08em;color:rgba(250,246,236,.5);text-transform:uppercase;flex-wrap:wrap;gap:24px}
   @media (max-width:900px){.foot-closing,.foot-contact{grid-template-columns:1fr;gap:32px}}
+  /* Inline arrow used after CTA links — Phosphor "arrow-right" sized to text */
+  .arr{display:inline-block;width:1.05em;height:1.05em;margin-left:.45em;vertical-align:-.2em;flex-shrink:0}
   /* Voice-transition section badges (bicycle for rider voice, cohort for fellowship voice) */
   .rider-icon,.cohort-icon{width:72px;height:72px;border:2px solid var(--green);border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;background:rgba(98,155,163,.12);color:var(--green)}
   .rider-icon svg,.cohort-icon svg{width:38px;height:38px}
@@ -527,20 +534,29 @@
 <section class="pct">
   <div class="pct-inner">
     <div class="chap" style="color:rgba(250,246,236,.6)"><span class="line" style="background:rgba(250,246,236,.25)"></span><span class="lbl">The number that says it all</span></div>
-    <div class="split">
-      <div class="pct-cell pct-before">
-        <div class="pct-year">2016 · BBSP's launch</div>
-        <div class="pct-meta">Share of SMM systems<br>w/ equity programs</div>
-        <div class="pct-num"><span class="lt">&lt;</span><span data-count="5">0</span><sup>%</sup></div>
+    <div class="pct-card">
+      <div class="pct-left">
+        <h2>From a footnote to the <em>norm</em>.</h2>
+        <p>Share of shared micromobility systems offering equity programs — measured at BBSP's launch and a decade later.</p>
       </div>
-      <div class="pct-arrow" aria-hidden="true">
-        <svg viewBox="0 0 120 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M2 12h112"/><path d="M104 4l10 8-10 8"/></svg>
-        <div class="pct-arrow-lbl">A decade<br>of work</div>
-      </div>
-      <div class="pct-cell pct-after">
-        <div class="pct-year">2024 · today</div>
-        <div class="pct-meta">Share of SMM systems<br>w/ discount programs</div>
-        <div class="pct-num"><span data-count="92">0</span><sup>%</sup></div>
+      <div class="pct-panel">
+        <div class="pct-panel-title">SMM systems · equity programs</div>
+        <div class="pct-bars">
+          <div class="pct-bar is-before">
+            <div class="pct-bar-meta">2016 · BBSP's launch</div>
+            <div class="pct-bar-track"><div class="pct-bar-fill" data-w="5"></div></div>
+            <div class="pct-bar-value"><span class="lt">&lt;</span>5%</div>
+          </div>
+          <div class="pct-bar is-after">
+            <div class="pct-bar-meta">2024 · today</div>
+            <div class="pct-bar-track"><div class="pct-bar-fill" data-w="92"></div></div>
+            <div class="pct-bar-value">92%</div>
+          </div>
+        </div>
+        <div class="pct-delta">
+          <div class="pct-delta-n">+87</div>
+          <div class="pct-delta-l">Percentage-point increase</div>
+        </div>
       </div>
     </div>
     <p class="pct-lede">At BBSP's launch, almost no shared micromobility systems offered any equity programming. Today, 92% offer discount programs — and many more have equity offerings beyond discounts: smartphone alternatives, cash payments, targeted community outreach, equitable vehicle distribution.</p>
@@ -763,39 +779,39 @@
     <div class="ripple-inner">
       <article class="rcard" id="r-IND">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/03/ebikes_22-640x427.jpg" alt="Indianapolis IndyRidesFree" loading="lazy"><span class="city-tag">Indianapolis, IN</span></div>
-        <div class="body"><h4>IndyRidesFree</h4><p>Pacers Bikeshare went fully free. In Jan 2026 — cold and snowy — they logged 6,000+ trips in a single month; it had taken five Januaries (2019–23) to reach that total combined. 15,000+ signed up for the free annual pass.</p><a class="more" href="https://betterbikeshare.org/2026/03/19/two-years-of-free-bikeshare-in-indianapolis/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>IndyRidesFree</h4><p>Pacers Bikeshare went fully free. In Jan 2026 — cold and snowy — they logged 6,000+ trips in a single month; it had taken five Januaries (2019–23) to reach that total combined. 15,000+ signed up for the free annual pass.</p><a class="more" href="https://betterbikeshare.org/2026/03/19/two-years-of-free-bikeshare-in-indianapolis/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-OMA">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/02/JustRide_JoyRide_2025_BrooklynN-2-scaled.jpg" alt="North Omaha trail" loading="lazy"><span class="city-tag">Omaha, NE</span></div>
-        <div class="body"><h4>The North Omaha Trail</h4><p>Heart of Omaha's Black community — birthplace of Malcolm X, home of Terence Crawford. A collaborative trail project now connects this historically divested neighborhood to multimodal transit, centering culture in the design.</p><a class="more" href="https://betterbikeshare.org/2026/02/12/north-omaha-trail-connects-communities-and-centers-its-culture/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>The North Omaha Trail</h4><p>Heart of Omaha's Black community — birthplace of Malcolm X, home of Terence Crawford. A collaborative trail project now connects this historically divested neighborhood to multimodal transit, centering culture in the design.</p><a class="more" href="https://betterbikeshare.org/2026/02/12/north-omaha-trail-connects-communities-and-centers-its-culture/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-PIT">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/03/2024.05.04-Community-Ride-65-of-69-640x427.jpg" alt="POGOH community slow roll, Pittsburgh" loading="lazy"><span class="city-tag">Pittsburgh, PA</span></div>
-        <div class="body"><h4>POGOH Mobility Justice Membership</h4><p>POGOH's $10 Mobility Justice Membership grew ridership 130% year-over-year — from 10,026 trips in 2023 to 23,062 in 2024 — by sending community ambassadors to 85 events and 5,847 people. A BBSP Living Lab now scales the outreach model citywide.</p><a class="more" href="https://betterbikeshare.org/2025/03/06/bike-share-discount-programs-see-major-ridership-growth/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>POGOH Mobility Justice Membership</h4><p>POGOH's $10 Mobility Justice Membership grew ridership 130% year-over-year — from 10,026 trips in 2023 to 23,062 in 2024 — by sending community ambassadors to 85 events and 5,847 people. A BBSP Living Lab now scales the outreach model citywide.</p><a class="more" href="https://betterbikeshare.org/2025/03/06/bike-share-discount-programs-see-major-ridership-growth/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-PDX">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/03/38-Adapative-Biketwon-056-640x427.jpg" alt="Portland Adaptive BIKETOWN" loading="lazy"><span class="city-tag">Portland, OR</span></div>
-        <div class="body"><h4>suma × BIKETOWN</h4><p>Mini-grant in 2024; by 2025 expanded to subsidize BIKETOWN rides to 5¢/min for low-income users (vs. 35¢). One full-time bike commuter calls it essential transportation — for work, school, groceries, friends.</p><a class="more" href="https://betterbikeshare.org/2026/03/12/subsidizing-essential-needs-is-essential-to-this-portland-nonprofit/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>suma × BIKETOWN</h4><p>Mini-grant in 2024; by 2025 expanded to subsidize BIKETOWN rides to 5¢/min for low-income users (vs. 35¢). One full-time bike commuter calls it essential transportation — for work, school, groceries, friends.</p><a class="more" href="https://betterbikeshare.org/2026/03/12/subsidizing-essential-needs-is-essential-to-this-portland-nonprofit/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-TUC">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2026/04/tour-of-tucson-320x241.jpg" alt="Tucson bike tour" loading="lazy"><span class="city-tag">Tucson, AZ</span></div>
-        <div class="body"><h4>Tugo Living Lab + final Roundtable</h4><p>Tugo is reallocating service to the south and west sides through community-led planning. Tucson also hosted the final 2026 BBSP Roundtable — 20 cities, the first in-person gathering since 2019.</p><a class="more" href="https://betterbikeshare.org/2026/04/14/equity-in-shared-micromobility-is-a-practice-bbsp-smm-roundtable-recap/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>Tugo Living Lab + final Roundtable</h4><p>Tugo is reallocating service to the south and west sides through community-led planning. Tucson also hosted the final 2026 BBSP Roundtable — 20 cities, the first in-person gathering since 2019.</p><a class="more" href="https://betterbikeshare.org/2026/04/14/equity-in-shared-micromobility-is-a-practice-bbsp-smm-roundtable-recap/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-FW">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/11/B1E76A4F-BBE8-478C-BAB5-2843ADFE0E0E_1_105_c-640x427.jpeg" alt="Trinity Metro Bikes, Fort Worth" loading="lazy"><span class="city-tag">Fort Worth, TX</span></div>
-        <div class="body"><h4>Trinity Metro Bikes</h4><p>After a new contract, Trinity Metro Bikes is expanding across Fort Worth in alignment with the city's "Moving a Million Plan" — university and city partnerships connecting underserved residents to daily transportation.</p><a class="more" href="https://betterbikeshare.org/2025/11/17/trinity-metro-bikes-expands-access-with-city-and-university-partnerships/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>Trinity Metro Bikes</h4><p>After a new contract, Trinity Metro Bikes is expanding across Fort Worth in alignment with the city's "Moving a Million Plan" — university and city partnerships connecting underserved residents to daily transportation.</p><a class="more" href="https://betterbikeshare.org/2025/11/17/trinity-metro-bikes-expands-access-with-city-and-university-partnerships/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-GDL">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/05/MiBici-1-640x426.png" alt="MiBici Guadalajara" loading="lazy"><span class="city-tag">Guadalajara, MX</span></div>
-        <div class="body"><h4>MiBici</h4><p>MiBici expanded with 8 new stations informed by a BBSP-developed Guide to Gender-Responsive Planning for Public Bike Share — evidence that the equity-centered model traveled beyond U.S. borders.</p><a class="more" href="https://betterbikeshare.org/2025/05/21/in-guadalajara-womens-safety-informs-bike-share-expansion/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>MiBici</h4><p>MiBici expanded with 8 new stations informed by a BBSP-developed Guide to Gender-Responsive Planning for Public Bike Share — evidence that the equity-centered model traveled beyond U.S. borders.</p><a class="more" href="https://betterbikeshare.org/2025/05/21/in-guadalajara-womens-safety-informs-bike-share-expansion/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-DET">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2022/12/nali_mogo_divdat-37-640x427.jpg" alt="MoGo rider paying with cash at a DivDat kiosk" loading="lazy"><span class="city-tag">Detroit, MI</span></div>
-        <div class="body"><h4>MoGo × DivDat</h4><p>MoGo partnered with <b>DivDat</b> — Detroit's bill-payment kiosk network in grocery stores, gas stations, and government buildings — to let riders pay for memberships in cash. MoGo now appears on the home screen of every kiosk in metro Detroit. No resident loses access over how they pay.</p><a class="more" href="https://betterbikeshare.org/2022/12/16/mogo-adjusts-to-better-serve-cash-paying-customers/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>MoGo × DivDat</h4><p>MoGo partnered with <b>DivDat</b> — Detroit's bill-payment kiosk network in grocery stores, gas stations, and government buildings — to let riders pay for memberships in cash. MoGo now appears on the home screen of every kiosk in metro Detroit. No resident loses access over how they pay.</p><a class="more" href="https://betterbikeshare.org/2022/12/16/mogo-adjusts-to-better-serve-cash-paying-customers/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
       <article class="rcard" id="r-PAS">
         <div class="photo"><img src="https://betterbikeshare.org/wp-content/uploads/2025/08/IMG_7994.jpg" alt="EZ Ride Safe Bike Skills class, Passaic NJ" loading="lazy"><span class="city-tag">Passaic, NJ</span></div>
-        <div class="body"><h4>EZ Ride safety education</h4><p>Ten miles from NYC, EZ Ride launched a program teaching residents to safely use a new free bike share — reaching communities who had never had access to this kind of transportation before.</p><a class="more" href="https://betterbikeshare.org/2025/08/28/teaching-safe-cycling-in-passaic-new-jersey/" target="_blank" rel="noopener">Read the story →</a></div>
+        <div class="body"><h4>EZ Ride safety education</h4><p>Ten miles from NYC, EZ Ride launched a program teaching residents to safely use a new free bike share — reaching communities who had never had access to this kind of transportation before.</p><a class="more" href="https://betterbikeshare.org/2025/08/28/teaching-safe-cycling-in-passaic-new-jersey/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
       </article>
     </div>
   </div>
@@ -933,11 +949,11 @@
     <h2 style="max-width:18ch">Still here. Still public. <em>STILL FREE.</em></h2>
     <p class="deck">The full body of knowledge BBSP produced over twelve years remains online — indexed, accessible, permanent. Build on it.</p>
     <div class="shelf">
-      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "article" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="48" width="192" height="160" rx="8"/><line x1="80" y1="96" x2="176" y2="96"/><line x1="80" y1="128" x2="176" y2="128"/><line x1="80" y1="160" x2="176" y2="160"/></svg></div><div class="n">500+</div><div class="desc">Stories documenting equity work across America</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Browse stories →</a></div>
-      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "book-open" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128,88a32,32,0,0,1,32-32h72V200H160a32,32,0,0,0-32,32"/><path d="M24,200H96a32,32,0,0,1,32,32V88A32,32,0,0,0,96,56H24Z"/></svg></div><div class="n">16</div><div class="desc">Best-practice guides for breaking down barriers</div><a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Browse resources →</a></div>
-      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "folder-open" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32,208V64a8,8,0,0,1,8-8H93.33a8,8,0,0,1,4.8,1.6L128,80h72a8,8,0,0,1,8,8v24"/><path d="M32,208l30.18-90.53A8,8,0,0,1,69.77,112H232a8,8,0,0,1,7.59,10.53L211.09,208Z"/></svg></div><div class="n">5</div><div class="desc">Grantee case studies · Living Lab program</div><a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Read case studies →</a></div>
-      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "chart-bar" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 208 48 136 96 136"/><line x1="224" y1="208" x2="32" y2="208"/><polyline points="96 208 96 88 152 88"/><polyline points="152 208 152 40 208 40 208 208"/></svg></div><div class="n">3</div><div class="desc">National research · Drexel · PSU · CSU</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Find research →</a></div>
-      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "chats-circle" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32.5,138A72,72,0,1,1,62,167.5l-27.76,8.16a8,8,0,0,1-9.93-9.93Z"/><path d="M163.94,80.11A72,72,0,0,1,223.5,186l8.16,27.76a8,8,0,0,1-9.93,9.93L194,215.5A72.05,72.05,0,0,1,92.06,175.89"/></svg></div><div class="n">13</div><div class="desc">Roundtable session recaps · 2016–2026</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Read recaps →</a></div>
+      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "article" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><rect x="32" y="48" width="192" height="160" rx="8"/><line x1="80" y1="96" x2="176" y2="96"/><line x1="80" y1="128" x2="176" y2="128"/><line x1="80" y1="160" x2="176" y2="160"/></svg></div><div class="n">500+</div><div class="desc">Stories documenting equity work across America</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Browse stories <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
+      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "book-open" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M128,88a32,32,0,0,1,32-32h72V200H160a32,32,0,0,0-32,32"/><path d="M24,200H96a32,32,0,0,1,32,32V88A32,32,0,0,0,96,56H24Z"/></svg></div><div class="n">16</div><div class="desc">Best-practice guides for breaking down barriers</div><a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Browse resources <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
+      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "folder-open" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32,208V64a8,8,0,0,1,8-8H93.33a8,8,0,0,1,4.8,1.6L128,80h72a8,8,0,0,1,8,8v24"/><path d="M32,208l30.18-90.53A8,8,0,0,1,69.77,112H232a8,8,0,0,1,7.59,10.53L211.09,208Z"/></svg></div><div class="n">5</div><div class="desc">Grantee case studies · Living Lab program</div><a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Read case studies <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
+      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "chart-bar" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><polyline points="48 208 48 136 96 136"/><line x1="224" y1="208" x2="32" y2="208"/><polyline points="96 208 96 88 152 88"/><polyline points="152 208 152 40 208 40 208 208"/></svg></div><div class="n">3</div><div class="desc">National research · Drexel · PSU · CSU</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Find research <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
+      <div class="shelf-item"><div class="icon" aria-hidden="true"><!-- Phosphor "chats-circle" (MIT) --><svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"><path d="M32.5,138A72,72,0,1,1,62,167.5l-27.76,8.16a8,8,0,0,1-9.93-9.93Z"/><path d="M163.94,80.11A72,72,0,0,1,223.5,186l8.16,27.76a8,8,0,0,1-9.93,9.93L194,215.5A72.05,72.05,0,0,1,92.06,175.89"/></svg></div><div class="n">13</div><div class="desc">Roundtable session recaps · 2016–2026</div><a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">Read recaps <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
     </div>
   </div>
 </section>
@@ -967,16 +983,16 @@
       </div>
       <div>
         <h4>The archive</h4>
-        <a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">500+ stories →</a>
-        <a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Best-practice guides →</a>
-        <a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Living Lab case studies →</a>
+        <a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">500+ stories <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
+        <a href="https://betterbikeshare.org/resources/" target="_blank" rel="noopener">Best-practice guides <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
+        <a href="https://betterbikeshare.org/resource/better-bike-share-partnership-living-lab-program-grantee-case-studies/" target="_blank" rel="noopener">Living Lab case studies <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
       </div>
       <div>
         <h4>Social</h4>
-        <a href="https://twitter.com/betterbikeshare" target="_blank" rel="noopener">Twitter / X →</a>
-        <a href="https://www.linkedin.com/company/better-bike-share-partnership" target="_blank" rel="noopener">LinkedIn →</a>
-        <a href="https://instagram.com/betterbikeshare" target="_blank" rel="noopener">Instagram →</a>
-        <a href="https://www.facebook.com/betterbikeshare" target="_blank" rel="noopener">Facebook →</a>
+        <a href="https://twitter.com/betterbikeshare" target="_blank" rel="noopener">Twitter / X <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
+        <a href="https://www.linkedin.com/company/better-bike-share-partnership" target="_blank" rel="noopener">LinkedIn <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
+        <a href="https://instagram.com/betterbikeshare" target="_blank" rel="noopener">Instagram <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
+        <a href="https://www.facebook.com/betterbikeshare" target="_blank" rel="noopener">Facebook <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
       </div>
     </div>
     <div class="foot-meta">
@@ -1154,6 +1170,8 @@
   }
   const countObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.counted){e.target.dataset.counted='1';animateCount(e.target);countObs.unobserve(e.target)}})},{threshold:.4});
   document.querySelectorAll('[data-count]').forEach(el=>countObs.observe(el));
+  const barObs=new IntersectionObserver(es=>{es.forEach(e=>{if(e.isIntersecting&&!e.target.dataset.filled){e.target.dataset.filled='1';requestAnimationFrame(()=>{e.target.style.width=e.target.dataset.w+'%'});barObs.unobserve(e.target)}})},{threshold:.4});
+  document.querySelectorAll('.pct-bar-fill[data-w]').forEach(el=>barObs.observe(el));
   const cases=[...document.querySelectorAll('.case')];
   const markers={CHI:null,CIN:null,HON:null};
   function resolveMarkers(){markers.CHI=document.getElementById('city-CHI');markers.CIN=document.getElementById('city-CIN');markers.HON=document.getElementById('city-HON');return markers.CHI&&markers.CIN&&markers.HON;}
@@ -1361,7 +1379,7 @@
       Object.entries(groups).forEach(([kind,arr])=>{
         html+='<div class="group">'+esc(kind)+'</div>';
         arr.forEach((it,i)=>{
-          html+=`<a class="hit" data-i="${i}" data-kind="${esc(kind)}" href="${esc(it.href)}"${it.external?' target="_blank" rel="noopener"':''}><span><span style="font-weight:600">${hl(it.title,q)}</span>${it.sub?'<span style="display:block;color:var(--ink-mute);font-size:13px;margin-top:2px">'+hl(it.sub,q)+'</span>':''}</span><span class="kind">→</span></a>`;
+          html+=`<a class="hit" data-i="${i}" data-kind="${esc(kind)}" href="${esc(it.href)}"${it.external?' target="_blank" rel="noopener"':''}><span><span style="font-weight:600">${hl(it.title,q)}</span>${it.sub?'<span style="display:block;color:var(--ink-mute);font-size:13px;margin-top:2px">'+hl(it.sub,q)+'</span>':''}</span><span class="kind"><svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></span></a>`;
         });
       });
       results.innerHTML=html;
