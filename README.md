@@ -17,6 +17,11 @@ micromobility equity. Built from a Claude Design handoff bundle.
 - `assets/logos/` — partner logos (PeopleForBikes, City of Philadelphia,
   NACTO). Other partner logos and editorial photos load from remote URLs
   (`betterbikeshare.org`, `freedomtogether.org`, `nabsa.net`).
+- `robots.txt` + `sitemap.xml` — explicit allows for major search-engine
+  and AI crawlers (Googlebot, Bingbot, GPTBot, ClaudeBot, PerplexityBot,
+  Applebot-Extended, CCBot, Google-Extended, etc.) and a single-URL
+  sitemap. Update the `loc` and `Sitemap:` lines if the site moves off
+  `bbsp.vercel.app`.
 
 ## Local preview
 
