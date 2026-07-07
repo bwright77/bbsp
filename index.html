@@ -772,7 +772,7 @@
           <svg class="map-svg" id="stickyMap" viewBox="0 0 1000 600" preserveAspectRatio="xMidYMid meet" aria-hidden="true">
             <g id="stickyMap-states" fill="rgba(250,246,236,.05)" stroke="rgba(250,246,236,.18)" stroke-width="0.6" stroke-linejoin="round"></g>
             <g id="stickyMap-nation" fill="none" stroke="rgba(250,246,236,.55)" stroke-width="1.2" stroke-linejoin="round"></g>
-            <g id="stickyMap-dots" fill="rgba(250,246,236,.32)"></g>
+            <g id="stickyMap-dots" fill="rgba(250,246,236,.65)"></g>
             <g id="stickyMap-pins"></g>
             <text id="stickyMap-loading" x="500" y="300" fill="rgba(250,246,236,.4)" font-family="JetBrains Mono" font-size="12" text-anchor="middle" letter-spacing=".12em">LOADING CONTINENTAL US…</text>
           </svg>
@@ -893,7 +893,7 @@
       <rect width="1000" height="545" fill="url(#rgrid)"/>
       <g id="rippleMap-states" fill="rgba(31,91,74,.05)" stroke="rgba(15,38,32,.15)" stroke-width="0.5" stroke-linejoin="round"></g>
       <g id="rippleMap-nation" fill="none" stroke="var(--green, #1f5b4a)" stroke-width="1.4" stroke-linejoin="round"></g>
-      <g id="rippleMap-dots" fill="rgba(15,38,32,.16)"></g>
+      <g id="rippleMap-dots" fill="rgba(15,38,32,.42)"></g>
       <g id="rippleMap-pins"></g>
       <text id="rippleMap-loading" x="500" y="310" font-family="JetBrains Mono" font-size="12" fill="rgba(15,38,32,.35)" text-anchor="middle" letter-spacing=".12em">LOADING CONTINENTAL US…</text>
     </svg>
@@ -1279,7 +1279,7 @@
     prefix: 'rippleMap',
     fitHeight: 540,
     dotsKeys: MINI_DOT_KEYS,
-    dotR: 2,
+    dotR: 2.6,
     cityKeys: ['r-HON','r-IND','r-OMA','r-TUL','r-PDX','r-LA','r-FW','r-DET','r-PAS'],
     pinTemplate: (id,x,y,label)=>{
       const color = (id==='r-NOM') ? 'var(--moss, #3a7d65)' : 'var(--signal, #ff6a3d)';
