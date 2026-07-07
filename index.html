@@ -387,7 +387,7 @@
   .partner-logo img{max-height:44px;max-width:160px;width:auto;height:auto;object-fit:contain;display:block}
   .partner-logo.nacto img{max-height:48px;max-width:48px}
   @media (max-width:640px){.partners{padding:30px 20px;gap:24px}.partners-list{gap:18px 20px;justify-content:flex-start}.partner-logo{min-width:0}}
-  .team{max-width:var(--maxw);margin:64px auto 0;padding-top:32px;border-top:1px solid var(--line)}
+  .team{max-width:var(--maxw);margin:0 auto}
   .team-grid{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px 28px}
   .person{display:flex;flex-direction:column;gap:10px}
   .person .ph{width:100%;aspect-ratio:1/1;background:var(--paper-2);border-radius:2px;overflow:hidden;border:1px solid var(--line)}
@@ -1004,15 +1004,13 @@
       </blockquote>
     </div>
   </div>
+</section>
 
-  <div class="context-strip">
-    <div class="ctx"><div><div class="src" style="margin-bottom:14px">NABSA 2024 Report</div><div class="n"><span data-count="31">0</span>%</div></div><div class="l">Industry-wide ridership increase, 2nd consecutive record year</div></div>
-    <div class="ctx"><div><div class="src" style="margin-bottom:14px">Indego ridership</div><div class="n"><span data-count="20">0</span>%</div></div><div class="l">Indego (Philadelphia) Sept 2025 — highest ridership month ever, +20% YoY</div></div>
-    <div class="ctx"><div><div class="src" style="margin-bottom:14px">Field consensus</div><div class="n" style="font-size:clamp(56px,6.5vw,104px);letter-spacing:-.02em">norm.</div></div><div class="l">Equity programming, once an add-on, is now the baseline expectation</div></div>
-  </div>
+<section class="s bg2" id="credits">
   <div class="team">
-    <div class="mono" style="color:var(--ink-mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase">Credits · The BBSP team</div>
-    <p style="margin-top:14px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.45;max-width:62ch;color:var(--ink)">Not an org chart — an acknowledgment. The people whose hands shaped BBSP.</p>
+    <div class="chap"><span class="line"></span><span class="lbl">Credits · The BBSP team</span></div>
+    <h2 style="margin-top:8px">With <em>gratitude.</em></h2>
+    <p style="margin-top:18px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.45;max-width:62ch;color:var(--ink)">Not an org chart — an acknowledgment. The people whose hands shaped BBSP.</p>
     <div class="team-grid">
       <div class="person">
         <div class="ph"><img src="assets/images/team-tangier-wright.jpg" alt="Tangier Barnes Wright" loading="lazy"></div>
@@ -1071,15 +1069,11 @@
         <div class="bio">Core organizer and manager of community outreach, educational programming, and equity-focused initiatives. Bike ride leader extraordinaire who demonstrated how to lead through inclusivity.</div>
       </div>
     </div>
-    <div style="margin-top:40px">
-      <div class="mono" style="color:var(--ink-mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase">With gratitude</div>
-      <p style="margin-top:12px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.5;max-width:70ch;color:var(--ink)">BBSP would also like to thank Aaron Ritz, Aminah Ricks, Carniesha Kwashie, Farrah Daniel, Kate Fillin-Yeh, Kiran Herbert, Nicole Payne, Rani Narula-Woods, Stefani Cox, Yadira Cabrera, Zoe Kircos — and everyone who helped bring the vision of BBSP to life.</p>
-    </div>
+    <blockquote class="pull" style="background:rgba(98,155,163,.08);border-left:3px solid var(--green);color:var(--ink);margin:64px 0 0;padding:44px 48px;font-family:'Instrument Serif',serif;font-style:normal;text-transform:none;font-size:clamp(22px,2.1vw,30px);line-height:1.5;letter-spacing:0;max-width:none">BBSP would also like to thank <b style="font-weight:600">Aaron Ritz, Aminah Ricks, Carniesha Kwashie, Farrah Daniel, Kate Fillin-Yeh, Kiran Herbert, Nicole Payne, Rani Narula-Woods, Stefani Cox, Yadira Cabrera, Zoe Kircos</b> — and everyone who helped bring the vision of BBSP to life.</blockquote>
   </div>
   <div class="partners">
-    <div class="lbl">In partnership with</div>
+    <div class="lbl">A partnership of</div>
     <div class="partners-list">
-      <span class="partner-logo has-img"><img src="assets/logos/freedomtogether.png" alt="Freedom Together Foundation"></span>
       <span class="partner-logo has-img"><img src="assets/logos/peopleforbikes-transparent-lightbg.png" alt="PeopleForBikes"></span>
       <span class="partner-logo has-img"><img src="assets/logos/philadelphia.png" alt="City of Philadelphia"></span>
       <span class="partner-logo has-img nacto"><img src="assets/logos/nacto.png" alt="NACTO"></span>
@@ -1513,7 +1507,7 @@
       document.querySelectorAll('.person').forEach(p=>{
         const n=p.querySelector('.name'), r=p.querySelector('.role');
         if(!n) return;
-        items.push({kind:'Team', title:n.textContent.trim(), sub:r?r.textContent.trim():'', href:'#legacy', scrollEl:p});
+        items.push({kind:'Team', title:n.textContent.trim(), sub:r?r.textContent.trim():'', href:'#credits', scrollEl:p});
       });
       return items;
     }
