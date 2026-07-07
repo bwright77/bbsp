@@ -423,7 +423,7 @@
   .foot h2 em{color:var(--signal)}
   .foot-closing p{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:500;font-size:clamp(18px,1.4vw,23px);line-height:1.5;max-width:44ch;letter-spacing:-.003em}
   .foot-closing p + p{margin-top:18px}
-  .foot-contact{margin-top:64px;display:grid;grid-template-columns:1fr 1fr 1fr;gap:48px;border-bottom:1px solid rgba(250,246,236,.18);padding-bottom:48px}
+  .foot-contact{margin-top:64px;display:grid;grid-template-columns:1fr 1fr;gap:48px;border-bottom:1px solid rgba(250,246,236,.18);padding-bottom:48px}
   .foot-contact h4{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,236,.55);margin-bottom:14px}
   .foot-contact a{display:block;text-decoration:none;color:var(--cream);line-height:1.7;border-bottom:1px solid rgba(250,246,236,.12);padding:6px 0}
   .foot-contact a:hover{color:var(--signal)}
@@ -1010,16 +1010,6 @@
     <div class="ctx"><div><div class="src" style="margin-bottom:14px">Indego ridership</div><div class="n"><span data-count="20">0</span>%</div></div><div class="l">Indego (Philadelphia) Sept 2025 — highest ridership month ever, +20% YoY</div></div>
     <div class="ctx"><div><div class="src" style="margin-bottom:14px">Field consensus</div><div class="n" style="font-size:clamp(56px,6.5vw,104px);letter-spacing:-.02em">norm.</div></div><div class="l">Equity programming, once an add-on, is now the baseline expectation</div></div>
   </div>
-  <div class="partners">
-    <div class="lbl">In partnership with</div>
-    <div class="partners-list">
-      <span class="partner-logo has-img"><img src="assets/logos/freedomtogether.png" alt="Freedom Together Foundation"></span>
-      <span class="partner-logo has-img"><img src="assets/logos/peopleforbikes-transparent-lightbg.png" alt="PeopleForBikes"></span>
-      <span class="partner-logo has-img"><img src="assets/logos/philadelphia.png" alt="City of Philadelphia"></span>
-      <span class="partner-logo has-img nacto"><img src="assets/logos/nacto.png" alt="NACTO"></span>
-      <span class="partner-logo has-img"><img src="assets/logos/nabsa.png" alt="NABSA"></span>
-    </div>
-  </div>
   <div class="team">
     <div class="mono" style="color:var(--ink-mute);font-size:11px;letter-spacing:.14em;text-transform:uppercase">Credits · The BBSP team</div>
     <p style="margin-top:14px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.45;max-width:62ch;color:var(--ink)">Not an org chart — an acknowledgment. The people whose hands shaped BBSP.</p>
@@ -1085,6 +1075,16 @@
       <p style="margin-top:12px;font-family:'Instrument Serif',serif;font-size:21px;line-height:1.5;max-width:70ch;color:var(--ink)">BBSP would also like to thank Aaron Ritz, Aminah Ricks, Carniesha Kwashie, Farrah Daniel, Kate Fillin-Yeh, Kiran Herbert, Nicole Payne, Rani Narula-Woods, Stefani Cox, Yadira Cabrera, Zoe Kircos — and everyone who helped bring the vision of BBSP to life.</p>
     </div>
   </div>
+  <div class="partners">
+    <div class="lbl">In partnership with</div>
+    <div class="partners-list">
+      <span class="partner-logo has-img"><img src="assets/logos/freedomtogether.png" alt="Freedom Together Foundation"></span>
+      <span class="partner-logo has-img"><img src="assets/logos/peopleforbikes-transparent-lightbg.png" alt="PeopleForBikes"></span>
+      <span class="partner-logo has-img"><img src="assets/logos/philadelphia.png" alt="City of Philadelphia"></span>
+      <span class="partner-logo has-img nacto"><img src="assets/logos/nacto.png" alt="NACTO"></span>
+      <span class="partner-logo has-img"><img src="assets/logos/nabsa.png" alt="NABSA"></span>
+    </div>
+  </div>
 </section>
 
 <section class="archive" id="archive">
@@ -1115,16 +1115,28 @@
         <p style="margin-top:24px;font-weight:600;color:var(--cream)">If this work speaks to you — if you're a funder, a city, an operator, or an advocate who believes it should continue — <em style="font-style:normal;color:var(--signal)">we'd love to hear from you.</em></p>
       </div>
     </div>
-    <div class="foot-contact">
-      <div>
-        <h4>Continue the work</h4>
-        <p style="font-size:14px;color:rgba(250,246,236,.7);line-height:1.5">Interested in carrying this forward as a funder, city, operator, or advocate? Get in touch.</p>
-        <form class="foot-form" onsubmit="event.preventDefault(); this.querySelector('button').textContent='Thanks ✓'">
-          <input type="email" placeholder="your@email.org" aria-label="Email">
-          <button type="submit">Send</button>
-        </form>
-        <p style="margin-top:12px;font-family:'JetBrains Mono',monospace;font-size:10px;letter-spacing:.1em;color:rgba(250,246,236,.45);text-transform:uppercase"><span class="ph">Contact · Missing</span> Confirm recipient w/ BBSP</p>
+    <div style="margin-top:64px">
+      <h4 style="font-family:'JetBrains Mono',monospace;font-size:13px;letter-spacing:.14em;text-transform:uppercase;color:rgba(250,246,236,.55);margin-bottom:24px">Continue the work</h4>
+      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:32px 28px">
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <span class="partner-logo has-img"><img src="assets/logos/peopleforbikes-transparent-lightbg.png" alt="PeopleForBikes"></span>
+          <p style="font-size:14px;line-height:1.6;color:rgba(250,246,236,.75);margin:0">For information on how to make biking better for everyone through advocacy, policy, infrastructure, and participation, contact <a href="mailto:info@peopleforbikes.org" style="color:var(--cream);text-decoration:underline">PeopleForBikes</a>.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <span class="partner-logo has-img nacto"><img src="assets/logos/nacto.png" alt="NACTO"></span>
+          <p style="font-size:14px;line-height:1.6;color:rgba(250,246,236,.75);margin:0">For information about how cities are leading the way on equitable infrastructure design and implementation, contact <a href="https://nacto.org" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline">NACTO</a>.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <span class="partner-logo has-img"><img src="assets/logos/indego.png" alt="Indego"></span>
+          <p style="font-size:14px;line-height:1.6;color:rgba(250,246,236,.75);margin:0">For information on community engagement best practices and equitable bike share expansion, contact <a href="https://www.rideindego.com/about/contact/" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline">Indego</a>.</p>
+        </div>
+        <div style="display:flex;flex-direction:column;gap:14px;align-items:flex-start">
+          <span class="partner-logo has-img"><img src="assets/logos/nabsa.png" alt="NABSA"></span>
+          <p style="font-size:14px;line-height:1.6;color:rgba(250,246,236,.75);margin:0">For information on growing bike share in North America and to learn about the industry's membership organization, contact <a href="https://nabsa.net/contact/" target="_blank" rel="noopener" style="color:var(--cream);text-decoration:underline">NABSA</a>.</p>
+        </div>
       </div>
+    </div>
+    <div class="foot-contact">
       <div>
         <h4>The archive</h4>
         <a href="https://betterbikeshare.org/category/stories/" target="_blank" rel="noopener">500+ stories <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a>
