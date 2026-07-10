@@ -334,24 +334,32 @@
   .ripple-head h2 em{color:var(--moss)}
   .ripple-map{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 48px}
   .ripple-legend{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.14em;color:rgba(15,38,32,.5);padding:0 4px 36px}
-  .ripple-map svg{margin-bottom:32px}
-  .ripple-map svg{width:100%;height:auto;display:block}
-  .ripple-track{position:relative;padding:0 var(--pad) 48px;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding:0 var(--pad);-webkit-overflow-scrolling:touch}
-  .ripple-track::-webkit-scrollbar{height:10px}
-  .ripple-track::-webkit-scrollbar-track{background:rgba(15,38,32,.06)}
-  .ripple-track::-webkit-scrollbar-thumb{background:var(--green);border-radius:4px}
-  .ripple-inner{display:flex;gap:20px;width:max-content;padding-bottom:20px}
-  .rcard{flex:0 0 320px;scroll-snap-align:start;background:var(--bg);border:1px solid var(--line);border-radius:6px;display:flex;flex-direction:column;overflow:hidden;transition:transform .3s ease, box-shadow .3s ease}
-  .rcard:hover{transform:translateY(-4px);box-shadow:0 12px 32px rgba(15,38,32,.12)}
-  .rcard .photo{aspect-ratio:4/3;background:#1a2a25;position:relative;overflow:hidden}
-  .rcard .photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .rcard .photo .city-tag{position:absolute;top:10px;left:10px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;color:var(--ink);background:rgba(98,155,163,.92);padding:5px 9px;border-radius:3px;font-weight:600;text-transform:uppercase}
-  .rcard .body{padding:20px 22px 24px;display:flex;flex-direction:column;gap:10px;flex:1}
-  .rcard h4{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:26px;line-height:1.05;font-weight:700;letter-spacing:-.01em}
-  .rcard p{font-size:14px;line-height:1.55;color:var(--ink-mute);flex:1}
-  .rcard .more{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--green);font-weight:600;text-decoration:none;margin-top:8px;display:inline-flex;align-items:center;gap:6px}
+  .mg-stage{position:relative}
+  .mg-stage svg{width:100%;height:auto;display:block}
+  .cpin{cursor:pointer}
+  .cpin .cpin-dot{transition:r .15s ease}
+  .cpin:hover .cpin-dot,.cpin:focus-visible .cpin-dot{r:7}
+  .cpin.selected .cpin-dot{r:7.5}
+  .cpin.selected .cpin-halo{fill:rgba(226,106,60,.28)}
+  .mg-panel{position:absolute;top:0;right:0;bottom:0;width:340px;background:#fffdf7;border-left:2px solid var(--signal);box-shadow:-12px 0 34px rgba(20,33,29,.14);transform:translateX(106%);transition:transform .34s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:22px 24px 26px;z-index:5;visibility:hidden}
+  .mg-panel.open{transform:none;visibility:visible}
+  .mg-close{position:absolute;top:14px;right:14px;width:30px;height:30px;border:none;background:rgba(15,38,32,.06);border-radius:50%;cursor:pointer;font-size:18px;line-height:1;color:var(--ink);display:flex;align-items:center;justify-content:center}
+  .mg-close:hover{background:rgba(15,38,32,.12)}
+  .mg-photo{margin:-22px -24px 16px;height:150px;overflow:hidden;background:var(--green-deep)}
+  .mg-photo img{width:100%;height:100%;object-fit:cover;display:block}
+  .mg-name{font-family:"Montserrat",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em;line-height:1.05;padding-right:28px}
+  .mg-sub{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;color:var(--signal);margin:5px 0 16px}
+  .mg-grant{display:flex;justify-content:space-between;gap:12px;font-family:"JetBrains Mono",monospace;font-size:11.5px;line-height:1.35;color:#4a5450;padding:9px 0;border-top:1px solid #eadfc9}
+  .mg-grant:last-of-type{border-bottom:1px solid #eadfc9}
+  .mg-grant .mg-amt{color:var(--ink);white-space:nowrap}
+  .mg-stories{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+  .mg-story{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);text-decoration:none;font-weight:600}
+  .mg-story:hover{color:var(--signal)}
+  @media(max-width:800px){
+    .mg-panel{position:fixed;top:auto;left:0;right:0;bottom:0;width:auto;max-height:78vh;border-left:none;border-top:2px solid var(--signal);border-radius:16px 16px 0 0;transform:translateY(106%);box-shadow:0 -12px 34px rgba(20,33,29,.18)}
+    .mg-panel.open{transform:none}
+  }
   .case .more{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);font-weight:600;text-decoration:none;margin-top:28px;display:inline-flex;align-items:center;gap:6px}
-  .rcard .more:hover{color:var(--signal)}
   .rcard.selected{outline:3px solid var(--pinblue);outline-offset:-1px;box-shadow:0 16px 40px rgba(42,111,219,.22)}
   .rpin.selected circle:nth-child(1){fill:rgba(42,111,219,.22);r:18}
   .rpin.selected circle:nth-child(2){fill:var(--pinblue);r:8}
@@ -882,8 +890,9 @@
     <p class="deck" style="margin-top:20px">Mini grants put anywhere from $5,000 to $21,500 of hands-on, in-person community engagement exactly where it was needed — and grew ridership in bike and scooter share everywhere they landed. Eight annual rounds. Nearly $800,000. Thirty-one states.</p>
   </div>
   <div class="ripple-map">
-    <div class="ripple-legend">BBSP MINI GRANTS · 9 OF 58 COMMUNITIES HIGHLIGHTED · TAP A PIN ↓</div>
-    <svg id="rippleMap" viewBox="0 0 1000 545" aria-hidden="true">
+    <div class="ripple-legend">BBSP MINI GRANTS · 58 COMMUNITIES · TAP A PIN</div>
+    <div class="mg-stage">
+    <svg id="rippleMap" viewBox="0 0 1000 545" role="group" aria-label="Map of BBSP mini-grant communities">
       <defs>
         <pattern id="rgrid" width="40" height="40" patternUnits="userSpaceOnUse">
           <path d="M 40 0 L 0 0 0 40" fill="none" stroke="rgba(15,38,32,.05)"/>
@@ -896,45 +905,7 @@
       <g id="rippleMap-pins"></g>
       <text id="rippleMap-loading" x="500" y="310" font-family="JetBrains Mono" font-size="12" fill="rgba(15,38,32,.35)" text-anchor="middle" letter-spacing=".12em">LOADING CONTINENTAL US…</text>
     </svg>
-  </div>
-  <div class="ripple-track" id="rtrack">
-    <div class="ripple-inner">
-      <article class="rcard selected" id="r-HON">
-        <div class="photo"><img src="assets/images/case-honolulu-bsh.jpg" alt="Biki riders gathered at a workshop near the Honolulu waterfront" loading="lazy"><span class="city-tag">Honolulu, HI</span></div>
-        <div class="body"><h4>Everybody Rides</h4><p>A $13,500 mini grant let Bike Share Hawaii completely revamp their low-income access program in four months — 500+ people engaged across 7 neighborhoods, with a statewide Transportation Equity Learning Series invitation as a direct outcome. A year of work, done in a season.</p><a class="more" href="https://betterbikeshare.org/2023/09/08/increasing-access-to-bike-share-in-honolulu/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-IND">
-        <div class="photo"><img src="assets/images/ripple-indianapolis-ebikes.jpg" alt="Indianapolis IndyRidesFree" loading="lazy"><span class="city-tag">Indianapolis, IN</span></div>
-        <div class="body"><h4>IndyRidesFree</h4><p>Mini grants in 2019 and 2020 funded Pacers Bikeshare youth programs through the Indianapolis Cultural Trail. Today Pacers Bikeshare is fully free: in Jan 2026 — cold and snowy — it logged 6,000+ trips in a single month; it had taken five Januaries (2019–23) to reach that total combined.</p><a class="more" href="https://betterbikeshare.org/2026/03/19/two-years-of-free-bikeshare-in-indianapolis/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-OMA">
-        <div class="photo"><img src="assets/images/hero-justride.jpg" alt="North Omaha trail" loading="lazy"><span class="city-tag">Omaha, NE</span></div>
-        <div class="body"><h4>The North Omaha Trail</h4><p>Two mini grants (2019–20) backed Heartland Bike Share's outreach and community art bikes in the heart of Omaha's Black community — birthplace of Malcolm X. A collaborative trail now connects this historically divested neighborhood to multimodal transit, centering culture in the design.</p><a class="more" href="https://betterbikeshare.org/2026/02/12/north-omaha-trail-connects-communities-and-centers-its-culture/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-TUL">
-        <div class="photo"><img src="assets/images/ripple-tulsa-thismachine.jpg" alt="Travel with Care community mural in Tulsa" loading="lazy"><span class="city-tag">Tulsa, OK</span></div>
-        <div class="body"><h4>This Machine, North Tulsa</h4><p>Three straight mini grants (2020–22) backed This Machine's outreach: bilingual engagement in Kendall-Whittier, five new stations in historically Black North Tulsa — built on trust with churches and community groups in the centennial year of the Tulsa Race Massacre — and equity memberships.</p><a class="more" href="https://betterbikeshare.org/2021/08/18/community-ambassadors-make-a-difference/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-PDX">
-        <div class="photo"><img src="assets/images/ripple-portland-biketown.jpg" alt="Portland Adaptive BIKETOWN" loading="lazy"><span class="city-tag">Portland, OR</span></div>
-        <div class="body"><h4>suma × BIKETOWN</h4><p>Mini-grant in 2024; by 2025 expanded to subsidize BIKETOWN rides to 5¢/min for low-income users (vs. 35¢). One full-time bike commuter calls it essential transportation — for work, school, groceries, friends.</p><a class="more" href="https://betterbikeshare.org/2026/03/12/subsidizing-essential-needs-is-essential-to-this-portland-nonprofit/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-LA">
-        <div class="photo"><img src="assets/images/ripple-la-bikela.jpg" alt="BikeLA street skills class on Metro Bike Share bikes in Los Angeles" loading="lazy"><span class="city-tag">Pacoima · Los Angeles, CA</span></div>
-        <div class="body"><h4>Electro Bici e-bike library</h4><p>A 2021 mini grant helped People for Mobility Justice and Pacoima Beautiful pilot a free e-bike lending library for low-income San Fernando Valley residents — 100 pedal-assist e-bikes plus safety classes, maintenance training, and Know Your Rights workshops. A 2023 mini grant later backed <a href="https://betterbikeshare.org/2023/10/06/increasing-bike-share-for-underrepresented-los-angelenos/" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">BikeLA's community bike-access classes</a>.</p><a class="more" href="https://betterbikeshare.org/2021/06/22/electric-bikes-for-mobility-justice/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-FW">
-        <div class="photo"><img src="assets/images/ripple-fortworth-trinity.jpeg" alt="Trinity Metro Bikes, Fort Worth" loading="lazy"><span class="city-tag">Fort Worth, TX</span></div>
-        <div class="body"><h4>Trinity Metro Bikes</h4><p>A 2019 mini grant backed Fort Worth B-Cycle's equity access work. After a new contract, Trinity Metro Bikes is now expanding across Fort Worth with the city's "Moving a Million Plan" — connecting underserved residents to daily transportation.</p><a class="more" href="https://betterbikeshare.org/2025/11/17/trinity-metro-bikes-expands-access-with-city-and-university-partnerships/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-DET">
-        <div class="photo"><img src="assets/images/ripple-detroit-mogo.jpg" alt="MoGo rider paying with cash at a DivDat kiosk" loading="lazy"><span class="city-tag">Detroit, MI</span></div>
-        <div class="body"><h4>MoGo × DivDat</h4><p>Three mini grants (2019, 2020, 2024) kept MoGo's community outreach constant. Along the way, MoGo partnered with <b>DivDat</b> — Detroit's bill-payment kiosk network — to let riders pay for memberships in cash. No resident loses access over how they pay.</p><a class="more" href="https://betterbikeshare.org/2022/12/16/mogo-adjusts-to-better-serve-cash-paying-customers/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
-      <article class="rcard" id="r-PAS">
-        <div class="photo"><img src="assets/images/ripple-passaic-ezride.jpg" alt="EZ Ride Safe Bike Skills class, Passaic NJ" loading="lazy"><span class="city-tag">Passaic, NJ</span></div>
-        <div class="body"><h4>EZ Ride safety education</h4><p>Backed by a 2025 mini grant, ten miles from NYC, EZ Ride launched a program teaching residents to safely use a new free bike share — reaching communities who had never had access to this kind of transportation before.</p><a class="more" href="https://betterbikeshare.org/2025/08/28/teaching-safe-cycling-in-passaic-new-jersey/" target="_blank" rel="noopener">Read the story <svg class="arr" viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="20" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="40" y1="128" x2="216" y2="128"/><polyline points="144 56 216 128 144 200"/></svg></a></div>
-      </article>
+    <aside class="mg-panel" id="mgPanel" aria-hidden="true"><button class="mg-close" id="mgClose" type="button" aria-label="Close">&times;</button><div id="mgPanelBody"></div></aside>
     </div>
   </div>
 </section>
@@ -1197,9 +1168,54 @@
     s43:[-96.57,39.18],s44:[-95.40,37.92],s45:[-72.93,41.31],s46:[-76.50,42.44],s47:[-155.99,19.64],
     s48:[-81.69,41.50],s49:[-80.65,41.10]
   };
-  // mini-grant metros (2019–2026 grant log) that aren't already ripple pins — dots on the mini grants map
-  // 2026 cohort adds Cleveland (s48), Youngstown (s49), Salt Lake City (s30), San Diego (s4); San Rafael folds into the Bay dot (s2)
-  const MINI_DOT_KEYS = ['s23','s10','CIN','s41','s42','s21','s34','s40','PIT','s44','s36','CHI','s35','s39','s18','s43','s26','TUC','s20','s14','s13','s38','s28','s24','s37','s2','s6','s47','s46','s45','s11','s48','s49','s30','s4'];
+  // mini-grant communities (45 folded metros, 80 grants)
+  const COMMUNITIES = [
+{key:'allen-county-ks',name:'Allen County, KS',lat:37.87,lon:-95.30,photo:null,grants:[{year:2021,amount:5000,grantee:'Thrive Allen County'}],stories:[{label:'2021 grant announcement',url:'https://betterbikeshare.org/2021/06/16/better-bike-share-partnership-awards-89970-in-grants/'}]},
+{key:'baltimore-md',name:'Baltimore, MD',lat:39.29,lon:-76.61,photo:null,grants:[{year:2023,amount:21500,grantee:'Baltimore City DOT'}],stories:[{label:"Baltimore's equity push",url:'https://betterbikeshare.org/2023/09/05/baltimores-push-to-make-shared-micromobility-more-equitable/'}]},
+{key:'basalt-co',name:'Basalt, CO',lat:39.37,lon:-107.03,photo:null,grants:[{year:2019,amount:6480,grantee:'WE-cycle'}],stories:[{label:'2019 grant announcement',url:'https://betterbikeshare.org/2019/03/26/better-bike-share-partnership-awards-83500-in-mini-grants/'}]},
+{key:'boston-ma',name:'Boston, MA',lat:42.36,lon:-71.06,photo:null,grants:[{year:2023,amount:20000,grantee:'A Better City'}],stories:[{label:'2023 grant announcement',url:'https://betterbikeshare.org/2023/05/23/better-bike-share-partnership-awards-100k-in-grants/'}]},
+{key:'buffalo-ny',name:'Buffalo, NY',lat:42.89,lon:-78.88,photo:null,grants:[{year:2025,amount:7000,grantee:'Shared Mobility Inc. (Reddy)'},{year:2021,amount:10000,grantee:'Shared Mobility Inc. (Reddy)'}],stories:[{label:'Project Pollination',url:'https://betterbikeshare.org/2025/09/04/project-pollination-brings-public-art-to-bike-share/'}]},
+{key:'chicago-il',name:'Chicago, IL',lat:41.88,lon:-87.63,photo:null,grants:[{year:2026,amount:15500,grantee:'Equiticity'},{year:2022,amount:9000,grantee:'Equiticity'},{year:2021,amount:8600,grantee:'Family Matters'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]},
+{key:'cincinnati-oh',name:'Cincinnati, OH',lat:39.10,lon:-84.51,photo:null,grants:[{year:2020,amount:10000,grantee:'Cincy Bike Share (Red Bike)'},{year:2019,amount:6500,grantee:'Cincy Bike Share (Red Bike)'}],stories:[{label:'2020 grant announcement',url:'https://betterbikeshare.org/2020/02/27/bbsp-awards-9-bike-share-projects-79600-in-mini-grant-funding/'}]},
+{key:'cleveland-oh',name:'Cleveland, OH',lat:41.50,lon:-81.69,photo:null,grants:[{year:2026,amount:16000,grantee:'Bike Cleveland'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]},
+{key:'colorado-springs-co',name:'Colorado Springs, CO',lat:38.83,lon:-104.82,photo:null,grants:[{year:2026,amount:15000,grantee:'Pike Ride Inc.'},{year:2020,amount:10000,grantee:'PikeRide'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]},
+{key:'columbus-oh',name:'Columbus, OH',lat:39.96,lon:-83.00,photo:null,grants:[{year:2020,amount:8550,grantee:'Columbus Public Health (CoGo)'}],stories:[{label:'2020 grant announcement',url:'https://betterbikeshare.org/2020/02/27/bbsp-awards-9-bike-share-projects-79600-in-mini-grant-funding/'}]},
+{key:'dayton-oh',name:'Dayton, OH',lat:39.76,lon:-84.19,photo:null,grants:[{year:2022,amount:6000,grantee:'Bike Miami Valley'},{year:2021,amount:6000,grantee:'OneFifteen Recovery'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'des-moines-ia',name:'Des Moines, IA',lat:41.59,lon:-93.62,photo:null,grants:[{year:2022,amount:5000,grantee:'Street Collective'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'detroit-mi',name:'Detroit, MI',lat:42.33,lon:-83.05,photo:'ripple-detroit-mogo.jpg',grants:[{year:2024,amount:8900,grantee:'MoGo'},{year:2020,amount:7200,grantee:'MoGo'},{year:2019,amount:6400,grantee:'MoGo'}],stories:[{label:'MoGo ambassadors scale up',url:'https://betterbikeshare.org/2024/08/13/mogos-ambassador-program-scales-up/'}]},
+{key:'el-paso-tx',name:'El Paso, TX',lat:31.76,lon:-106.49,photo:null,grants:[{year:2021,amount:4300,grantee:'Camino Real RMA'}],stories:[{label:'2021 grant announcement',url:'https://betterbikeshare.org/2021/06/16/better-bike-share-partnership-awards-89970-in-grants/'}]},
+{key:'fort-lauderdale-fl',name:'Fort Lauderdale, FL',lat:26.12,lon:-80.14,photo:null,grants:[{year:2021,amount:10000,grantee:'City of Fort Lauderdale'}],stories:[{label:'2021 grant announcement',url:'https://betterbikeshare.org/2021/06/16/better-bike-share-partnership-awards-89970-in-grants/'}]},
+{key:'fort-worth-tx',name:'Fort Worth, TX',lat:32.76,lon:-97.33,photo:'ripple-fortworth-trinity.jpeg',grants:[{year:2019,amount:7500,grantee:'Fort Worth Bike Sharing'}],stories:[{label:'2019 grant announcement',url:'https://betterbikeshare.org/2019/03/26/better-bike-share-partnership-awards-83500-in-mini-grants/'}]},
+{key:'hawaii-island-hi',name:'Hawaii Island, HI',lat:19.70,lon:-155.50,photo:null,grants:[{year:2026,amount:5000,grantee:'PATH (Kona Bike Day)'},{year:2025,amount:6100,grantee:'PATH (Learn to Ride)'},{year:2024,amount:6500,grantee:'PATH (HIBIKE Bike RX)'}],stories:[{label:'HIBIKE Bike RX',url:'https://betterbikeshare.org/2024/10/31/bringing-new-riders-to-bike-share-in-hawaii/'},{label:'Access on Hawaii Island',url:'https://betterbikeshare.org/2025/10/09/increasing-access-to-bike-share-on-hawaii-island/'}]},
+{key:'honolulu-hi',name:'Honolulu, HI',lat:21.31,lon:-157.86,photo:'case-honolulu-bsh.jpg',grants:[{year:2023,amount:13500,grantee:'Bikeshare Hawaii (Everybody Rides)'},{year:2021,amount:7770,grantee:'Bikeshare Hawaii'},{year:2019,amount:7000,grantee:'Bikeshare Hawaii'}],stories:[{label:'Everybody Rides',url:'https://betterbikeshare.org/2023/09/08/increasing-access-to-bike-share-in-honolulu/'}]},
+{key:'houston-tx',name:'Houston, TX',lat:29.76,lon:-95.36,photo:null,grants:[{year:2022,amount:7000,grantee:'Houston Bike Share'},{year:2020,amount:10000,grantee:'Houston Bike Share'},{year:2019,amount:7500,grantee:'Houston Bike Share'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'indianapolis-in',name:'Indianapolis, IN',lat:39.77,lon:-86.16,photo:'ripple-indianapolis-ebikes.jpg',grants:[{year:2020,amount:6250,grantee:'Indianapolis Cultural Trail'},{year:2019,amount:5100,grantee:'Indianapolis Cultural Trail'}],stories:[{label:'2020 grant announcement',url:'https://betterbikeshare.org/2020/02/27/bbsp-awards-9-bike-share-projects-79600-in-mini-grant-funding/'}]},
+{key:'ithaca-ny',name:'Ithaca, NY',lat:42.44,lon:-76.50,photo:null,grants:[{year:2025,amount:10000,grantee:'Bike Walk Tompkins'}],stories:[{label:'Open streets, new riders',url:'https://betterbikeshare.org/2025/08/21/ithacas-open-streets-get-new-riders-on-bikes/'}]},
+{key:'kansas-city-mo',name:'Kansas City, MO',lat:39.10,lon:-94.58,photo:null,grants:[{year:2025,amount:10000,grantee:'Bike Walk KC'}],stories:[{label:'Reaching Spanish speakers',url:'https://betterbikeshare.org/2025/11/20/expanding-bike-share-access-to-spanish-speaking-communities-in-kansas-city/'}]},
+{key:'las-vegas-nv',name:'Las Vegas, NV',lat:36.17,lon:-115.14,photo:null,grants:[{year:2024,amount:8900,grantee:'RTC of Southern Nevada'}],stories:[{label:'Bike clinics in East LV',url:'https://betterbikeshare.org/2025/02/20/bike-clinics-expand-access-to-bike-share-in-east-las-vegas/'}]},
+{key:'lincoln-ne',name:'Lincoln, NE',lat:40.81,lon:-96.70,photo:null,grants:[{year:2019,amount:3500,grantee:'Lincoln/Lancaster County'}],stories:[{label:'2019 grant announcement',url:'https://betterbikeshare.org/2019/03/26/better-bike-share-partnership-awards-83500-in-mini-grants/'}]},
+{key:'los-angeles-ca',name:'Los Angeles, CA',lat:34.05,lon:-118.24,photo:'ripple-la-bikela.jpg',grants:[{year:2026,amount:15500,grantee:'BikeLA (Metro Ambassador Pilot)'},{year:2026,amount:15500,grantee:'T.R.U.S.T. South LA'},{year:2023,amount:13350,grantee:'BikeLA'},{year:2021,amount:10000,grantee:'People for Mobility Justice (Pacoima)'}],stories:[{label:'Bike share for Angelenos',url:'https://betterbikeshare.org/2023/10/06/increasing-bike-share-for-underrepresented-los-angelenos/'}]},
+{key:'manhattan-ks',name:'Manhattan, KS',lat:39.18,lon:-96.57,photo:null,grants:[{year:2021,amount:1800,grantee:'Green Apple Bikes'}],stories:[{label:'2021 grant announcement',url:'https://betterbikeshare.org/2021/06/16/better-bike-share-partnership-awards-89970-in-grants/'}]},
+{key:'milwaukee-wi',name:'Milwaukee, WI',lat:43.04,lon:-87.91,photo:null,grants:[{year:2024,amount:9000,grantee:'Midwest Bike Share (Bublr)'},{year:2021,amount:10000,grantee:'Midwest Bikeshare (Bublr)'}],stories:[{label:"Bublr's Savvy Cycling",url:'https://betterbikeshare.org/2024/07/25/bublrs-mission-to-promote-bike-share-through-education/'}]},
+{key:'nashville-tn',name:'Nashville, TN',lat:36.16,lon:-86.78,photo:null,grants:[{year:2022,amount:9500,grantee:'Arts & Business Council'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'new-haven-ct',name:'New Haven, CT',lat:41.31,lon:-72.93,photo:null,grants:[{year:2025,amount:10000,grantee:'New Haven Coalition (Ride New Haven)'}],stories:[{label:"New Haven's revival",url:'https://betterbikeshare.org/2025/08/14/free-classes-are-fueling-new-havens-bike-share-revival/'}]},
+{key:'new-orleans-la',name:'New Orleans, LA',lat:29.95,lon:-90.07,photo:null,grants:[{year:2022,amount:6000,grantee:'Blue Krewe'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'new-york-ny',name:'New York, NY',lat:40.71,lon:-74.01,photo:null,grants:[{year:2024,amount:10000,grantee:'Transportation Alternatives'},{year:2019,amount:21000,grantee:'Bedford Stuyvesant Restoration Corp. (Brooklyn)'}],stories:[{label:'2024 grant announcement',url:'https://betterbikeshare.org/2024/06/13/better-bike-share-partnership-awards-more-than-81000-to-nine-bike-share-projects/'}]},
+{key:'newark-nj',name:'Newark, NJ',lat:40.74,lon:-74.17,photo:null,grants:[{year:2024,amount:8500,grantee:'EZ Ride'}],stories:[{label:'Free safety classes',url:'https://betterbikeshare.org/2024/09/19/newark-residents-enroll-in-free-shared-micromobility-safety-classes/'}]},
+{key:'oakland-bay-ca',name:'Oakland / Bay Area, CA',lat:37.80,lon:-122.27,photo:null,grants:[{year:2026,amount:20000,grantee:'Canal Alliance (San Rafael)'},{year:2024,amount:9500,grantee:'Bike East Bay'}],stories:[{label:'Access in the East Bay',url:'https://betterbikeshare.org/2024/09/30/increasing-access-to-bike-share-in-the-east-bay/'}]},
+{key:'omaha-ne',name:'Omaha, NE',lat:41.26,lon:-95.93,photo:'hero-justride.jpg',grants:[{year:2026,amount:20000,grantee:'Heartland Bike Share (Free Rides)'},{year:2020,amount:10000,grantee:'Heartland Bike Share'},{year:2019,amount:2500,grantee:'Heartland Bike Share'}],stories:[{label:'Omaha has free bike share',url:'https://betterbikeshare.org/2026/04/21/omaha-nebraska-has-free-bike-share/'}]},
+{key:'passaic-nj',name:'Passaic, NJ',lat:40.86,lon:-74.13,photo:'ripple-passaic-ezride.jpg',grants:[{year:2025,amount:9000,grantee:'EZ Ride'}],stories:[{label:'Safe cycling in Passaic',url:'https://betterbikeshare.org/2025/08/28/teaching-safe-cycling-in-passaic-new-jersey/'}]},
+{key:'pittsburgh-pa',name:'Pittsburgh, PA',lat:40.44,lon:-80.00,photo:'case-pittsburgh-pogoh-ride.jpg',grants:[{year:2026,amount:15500,grantee:'POGOH (Community Ride Rituals)'},{year:2022,amount:9000,grantee:'POGOH'},{year:2020,amount:10000,grantee:'Bike Share Pittsburgh'},{year:2019,amount:6000,grantee:'Bike Share Pittsburgh'}],stories:[{label:'POGOH ridership growth',url:'https://betterbikeshare.org/2025/03/06/bike-share-discount-programs-see-major-ridership-growth/'}]},
+{key:'portland-or',name:'Portland, OR',lat:45.52,lon:-122.68,photo:'ripple-portland-biketown.jpg',grants:[{year:2024,amount:10000,grantee:'Suma Platform'},{year:2023,amount:18500,grantee:'The Street Trust'},{year:2022,amount:9400,grantee:'Community Cycling Center'}],stories:[{label:'Street Trust ambassadors',url:'https://betterbikeshare.org/2023/10/13/the-street-trust-expands-its-biketown-ambassador-program/'},{label:'Tech and food access',url:'https://betterbikeshare.org/2024/09/11/how-technology-is-connecting-shared-micromobility-and-food-access/'}]},
+{key:'raleigh-nc',name:'Raleigh, NC',lat:35.78,lon:-78.64,photo:null,grants:[{year:2021,amount:6500,grantee:'Oaks and Spokes'}],stories:[{label:'2021 grant announcement',url:'https://betterbikeshare.org/2021/06/16/better-bike-share-partnership-awards-89970-in-grants/'}]},
+{key:'salt-lake-city-ut',name:'Salt Lake City, UT',lat:40.76,lon:-111.89,photo:null,grants:[{year:2026,amount:20000,grantee:'GREENbike Utah'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]},
+{key:'san-antonio-tx',name:'San Antonio, TX',lat:29.42,lon:-98.49,photo:null,grants:[{year:2025,amount:10000,grantee:'Bat Conservation Intl'},{year:2024,amount:10000,grantee:'San Antonio River Foundation'},{year:2023,amount:13029,grantee:'Ghisallo Cycling (Golden Rollers)'},{year:2022,amount:5640,grantee:'Ghisallo Cycling'}],stories:[{label:'Golden Rollers',url:'https://betterbikeshare.org/2023/08/11/an-e-bike-training-program-for-older-adults/'},{label:'Bugs, Bikes and Botany',url:'https://betterbikeshare.org/2024/12/05/bugs-bikes-and-botany-program-encourages-outdoor-exploration-through-bike-share/'},{label:'Bats bring new riders',url:'https://betterbikeshare.org/2025/09/18/bats-bring-new-bike-share-riders-in-san-antonio/'}]},
+{key:'san-diego-ca',name:'San Diego, CA',lat:32.72,lon:-117.16,photo:null,grants:[{year:2026,amount:14000,grantee:'Inspire SD'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]},
+{key:'tucson-az',name:'Tucson, AZ',lat:32.22,lon:-110.93,photo:'case-tucson-tugo-ride.jpg',grants:[{year:2026,amount:15500,grantee:'Sunnyside USD (FUGA)'},{year:2025,amount:10000,grantee:'City of Tucson DOT (TUGO Wraps)'}],stories:[{label:'TUGO Wraps',url:'https://betterbikeshare.org/2025/11/06/friends-of-the-desert-bring-friends-to-bike-share-in-tucson/'}]},
+{key:'tulsa-ok',name:'Tulsa, OK',lat:36.15,lon:-95.99,photo:'ripple-tulsa-thismachine.jpg',grants:[{year:2022,amount:8500,grantee:'This Machine'},{year:2021,amount:10000,grantee:'This Machine'},{year:2020,amount:7600,grantee:'This Machine'}],stories:[{label:'2022 grant announcement',url:'https://betterbikeshare.org/2022/06/07/better-bike-share-partnership-awards-75000-in-grants/'}]},
+{key:'washington-dc',name:'Washington, DC',lat:38.90,lon:-77.04,photo:null,grants:[{year:2019,amount:2520,grantee:'Four Mile Run Conservatory (Alexandria)'},{year:2019,amount:1500,grantee:'Empowerment Enterprise II'}],stories:[{label:'2019 grant announcement',url:'https://betterbikeshare.org/2019/03/26/better-bike-share-partnership-awards-83500-in-mini-grants/'}]},
+{key:'youngstown-oh',name:'Youngstown, OH',lat:41.10,lon:-80.65,photo:null,grants:[{year:2026,amount:15000,grantee:'Bike Share Youngstown (YoGo)'}],stories:[{label:'2026 grant announcement',url:'https://betterbikeshare.org/2026/04/30/better-bike-share-partnership-awards-200000-in-grants/'}]}
+];
   const ATLAS_URLS = [
     'https://unpkg.com/us-atlas@3/states-10m.json',
     'https://cdn.jsdelivr.net/npm/us-atlas@3/states-10m.json',
@@ -1251,6 +1267,14 @@
           }).join('');
           document.getElementById(opts.prefix+'-pins').innerHTML = out;
         }
+        if(opts.communities){
+          const cpins = opts.communities.map(c=>{
+            const cp = fitProj([c.lon, c.lat]); if(!cp) return '';
+            const cx=cp[0].toFixed(1), cy=cp[1].toFixed(1); const n=c.grants.length;
+            return `<g class="cpin" data-key="${c.key}" tabindex="0" role="button" aria-label="${c.name}, ${n} mini grant${n>1?'s':''}"><circle class="cpin-halo" cx="${cx}" cy="${cy}" r="12" fill="rgba(226,106,60,.14)"/><circle class="cpin-dot" cx="${cx}" cy="${cy}" r="5" fill="#e26a3c"/></g>`;
+          }).join('');
+          document.getElementById(opts.prefix+'-pins').innerHTML = cpins;
+        }
         const ld = document.getElementById(opts.prefix+'-loading'); if(ld) ld.remove();
         if(opts.onDone) opts.onDone();
       }).catch(err=>{ console.warn('map atlas unavailable in sandbox', err && err.message); const ld=document.getElementById(opts.prefix+'-loading'); if(ld) ld.textContent='US MAP UNAVAILABLE OFFLINE'; if(opts.onDone) opts.onDone(); });
@@ -1279,33 +1303,42 @@
     onDone: ()=>{ if(window.__bbspCheck) window.__bbspCheck(); }
   });
 
-  // mini grants map: 8 tappable pins over all mini-grant metros
-  drawMap({
-    prefix: 'rippleMap',
-    fitHeight: 540,
-    dotsKeys: MINI_DOT_KEYS,
-    dotR: 2.6,
-    cityKeys: ['r-HON','r-IND','r-OMA','r-TUL','r-PDX','r-LA','r-FW','r-DET','r-PAS'],
-    pinTemplate: (id,x,y,label)=>{
-      const color = (id==='r-NOM') ? 'var(--moss, #3a7d65)' : 'var(--signal, #ff6a3d)';
-      const bg = (id==='r-NOM') ? 'rgba(58,125,101,.18)' : 'rgba(255,106,61,.15)';
-      // North Omaha overlaps Omaha — anchor its label on the left instead of below
-      const leftSide = (id==='r-NOM');
-      const tx = leftSide ? x-11 : x+11;
-      const anchor = leftSide ? 'end' : 'start';
-      return `<g class="rpin" data-target="${id}" style="cursor:pointer">
-        <circle cx="${x}" cy="${y}" r="14" fill="${bg}"/>
-        <circle cx="${x}" cy="${y}" r="6.5" fill="${color}"/>
-        <text x="${tx}" y="${y+4}" text-anchor="${anchor}" font-family="JetBrains Mono" font-size="12" fill="${color}" font-weight="600" letter-spacing=".06em">${label}</text>
-      </g>`;
-    },
-    onDone: ()=>{
-      // Re-bind click handlers (pins are now in DOM), then pre-select Honolulu to match its card
-      if(window.__bbspBindPins) window.__bbspBindPins();
-      const hp = document.querySelector('.rpin[data-target="r-HON"]');
-      if(hp && !document.querySelector('.rpin.selected')) hp.classList.add('selected');
+  // mini grants map: every community is a tappable pin -> docked panel
+  (function(){
+    const fmtUSD = n => '$'+n.toLocaleString('en-US');
+    const panel = document.getElementById('mgPanel');
+    const body = document.getElementById('mgPanelBody');
+    const closeBtn = document.getElementById('mgClose');
+    function closePanel(){ if(!panel) return; panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.querySelectorAll('#rippleMap-pins .cpin.selected').forEach(p=>p.classList.remove('selected')); }
+    function openCommunity(key, pinEl){
+      const c = COMMUNITIES.find(x=>x.key===key); if(!c||!panel) return;
+      const total = c.grants.reduce((a,g)=>a+g.amount,0);
+      const photo = c.photo ? `<div class="mg-photo"><img src="assets/images/${c.photo}" alt="${c.name}"></div>` : '';
+      const rows = c.grants.map(g=>`<div class="mg-grant"><span>${g.year} &middot; ${g.grantee}</span><span class="mg-amt">${fmtUSD(g.amount)}</span></div>`).join('');
+      const stories = c.stories.map(st=>`<a class="mg-story" href="${st.url}" target="_blank" rel="noopener">${st.label} &rarr;</a>`).join('');
+      const n = c.grants.length;
+      body.innerHTML = `${photo}<div class="mg-name">${c.name}</div><div class="mg-sub">${n} MINI GRANT${n>1?'S':''} &middot; ${fmtUSD(total)}</div><div class="mg-grants">${rows}</div><div class="mg-stories">${stories}</div>`;
+      panel.scrollTop = 0;
+      panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
+      document.querySelectorAll('#rippleMap-pins .cpin.selected').forEach(p=>p.classList.remove('selected'));
+      if(pinEl) pinEl.classList.add('selected');
     }
-  });
+    if(closeBtn) closeBtn.addEventListener('click', closePanel);
+    document.addEventListener('keydown', e=>{ if(e.key==='Escape') closePanel(); });
+    drawMap({
+      prefix: 'rippleMap',
+      fitHeight: 540,
+      communities: COMMUNITIES,
+      onDone: ()=>{
+        document.querySelectorAll('#rippleMap-pins .cpin').forEach(p=>{
+          const key = p.getAttribute('data-key');
+          const act = ()=>openCommunity(key, p);
+          p.addEventListener('click', act);
+          p.addEventListener('keydown', e=>{ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); act(); } });
+        });
+      }
+    });
+  })();
 
   document.querySelectorAll('#heroHeadline .word').forEach((w,i)=>setTimeout(()=>w.classList.add('in'), 200+i*180));
   function fmt(n,d,p,s){return (p||'') + (d?n.toFixed(d):Math.round(n).toLocaleString('en-US')) + (s||'')}
@@ -1344,31 +1377,6 @@
   }
   window.__bbspCheck = check;
   window.addEventListener('scroll',check,{passive:true}); window.addEventListener('resize',check,{passive:true}); check();
-  window.__bbspBindPins = function(){
-    function select(id){
-      const card=document.getElementById(id); if(!card) return;
-      const pin=document.querySelector('.rpin[data-target="'+id+'"]');
-      document.querySelectorAll('.rpin.selected').forEach(o=>o.classList.remove('selected'));
-      document.querySelectorAll('.rcard.selected').forEach(o=>o.classList.remove('selected'));
-      if(pin) pin.classList.add('selected');
-      card.classList.add('selected');
-      const track=document.getElementById('rtrack');
-      if(track) track.scrollTo({left:card.offsetLeft-40, behavior:'smooth'});
-    }
-    document.querySelectorAll('.rpin').forEach(p=>{
-      if(p.__bound) return; p.__bound=true;
-      p.addEventListener('click',()=>select(p.dataset.target));
-    });
-    document.querySelectorAll('.rcard').forEach(c=>{
-      if(c.__bound) return; c.__bound=true;
-      c.addEventListener('click',e=>{
-        if(e.target.closest('a')) return;
-        select(c.id);
-      });
-      c.style.cursor='pointer';
-    });
-  };
-  window.__bbspBindPins();
 
   // ---- Mobile nav menu ----
   (function(){
