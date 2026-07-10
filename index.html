@@ -360,7 +360,6 @@
     .mg-panel.open{transform:none}
   }
   .case .more{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--signal);font-weight:600;text-decoration:none;margin-top:28px;display:inline-flex;align-items:center;gap:6px}
-  .rcard.selected{outline:3px solid var(--pinblue);outline-offset:-1px;box-shadow:0 16px 40px rgba(42,111,219,.22)}
   .rpin.selected circle:nth-child(1){fill:rgba(42,111,219,.22);r:18}
   .rpin.selected circle:nth-child(2){fill:var(--pinblue);r:8}
   .rpin.selected text{fill:var(--pinblue)}
@@ -1480,11 +1479,10 @@
         const h=s.querySelector('h2,h1'); if(!h) return;
         items.push({kind:'Section', title:h.textContent.replace(/\s+/g,' ').trim(), href:'#'+s.id});
       });
-      // Ripple cards
-      document.querySelectorAll('.rcard').forEach(c=>{
-        const t=c.querySelector('h4'), city=c.querySelector('.city-tag'), p=c.querySelector('p');
-        if(!t) return;
-        items.push({kind:'Mini grant story', title:t.textContent.trim(), sub:(city?city.textContent.trim()+' · ':'')+(p?p.textContent.slice(0,90).trim()+'…':''), href:'#'+c.id, scrollEl:c});
+      // Mini grant communities
+      (typeof COMMUNITIES!=='undefined'?COMMUNITIES:[]).forEach(c=>{
+        const n=c.grants.length, tot=c.grants.reduce((a,g)=>a+g.amount,0);
+        items.push({kind:'Mini grant community', title:c.name, sub:n+' mini grant'+(n>1?'s':'')+' · $'+tot.toLocaleString('en-US'), href:'#ripple'});
       });
       // Anchor case studies
       document.querySelectorAll('.case').forEach(c=>{
