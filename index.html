@@ -352,7 +352,8 @@
   .mg-grant{display:flex;justify-content:space-between;gap:12px;font-family:"JetBrains Mono",monospace;font-size:11.5px;line-height:1.35;color:#4a5450;padding:9px 0;border-top:1px solid #eadfc9}
   .mg-grant:last-of-type{border-bottom:1px solid #eadfc9}
   .mg-grant .mg-amt{color:var(--ink);white-space:nowrap}
-  .mg-stories{margin-top:16px;display:flex;flex-direction:column;gap:9px}
+  .mg-stories-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:20px 0 10px}
+  .mg-stories{display:flex;flex-direction:column;gap:9px}
   .mg-story{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);text-decoration:none;font-weight:600}
   .mg-story:hover{color:var(--signal)}
   @media(max-width:800px){
@@ -1314,9 +1315,11 @@
       const total = c.grants.reduce((a,g)=>a+g.amount,0);
       const photo = c.photo ? `<div class="mg-photo"><img src="assets/images/${c.photo}" alt="${c.name}"></div>` : '';
       const rows = c.grants.map(g=>`<div class="mg-grant"><span>${g.year} &middot; ${g.grantee}</span><span class="mg-amt">${fmtUSD(g.amount)}</span></div>`).join('');
-      const stories = c.stories.map(st=>`<a class="mg-story" href="${st.url}" target="_blank" rel="noopener">${st.label} &rarr;</a>`).join('');
+      const stories = c.stories.map(st=>`<a class="mg-story" href="${st.url}" target="_blank" rel="noopener">${st.label}</a>`).join('');
+      const featCount = c.stories.filter(st=>!/awards|mini-grant-funding|meet-better|awards-200000/.test(st.url)).length;
+      const storyLbl = featCount>0 ? (c.stories.length>1?'Stories':'Story') : 'Learn more';
       const n = c.grants.length;
-      body.innerHTML = `${photo}<div class="mg-name">${c.name}</div><div class="mg-sub">${n} MINI GRANT${n>1?'S':''} &middot; ${fmtUSD(total)}</div><div class="mg-grants">${rows}</div><div class="mg-stories">${stories}</div>`;
+      body.innerHTML = `${photo}<div class="mg-name">${c.name}</div><div class="mg-sub">${n} MINI GRANT${n>1?'S':''} &middot; ${fmtUSD(total)}</div><div class="mg-grants">${rows}</div><div class="mg-stories-lbl">${storyLbl}</div><div class="mg-stories">${stories}</div>`;
       panel.scrollTop = 0;
       panel.classList.add('open'); panel.setAttribute('aria-hidden','false');
       document.querySelectorAll('#rippleMap-pins .cpin.selected').forEach(p=>p.classList.remove('selected'));
