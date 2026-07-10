@@ -337,9 +337,9 @@
   .mg-stage{position:relative}
   .mg-stage svg{width:100%;height:auto;display:block}
   .cpin{cursor:pointer}
-  .cpin .cpin-dot{transition:r .15s ease}
-  .cpin:hover .cpin-dot,.cpin:focus-visible .cpin-dot{r:7}
-  .cpin.selected .cpin-dot{r:7.5}
+  .cpin .cpin-dot{fill:rgba(15,38,32,.5);transition:r .15s ease, fill .15s ease}
+  .cpin:hover .cpin-dot,.cpin:focus-visible .cpin-dot{r:7;fill:rgba(15,38,32,.78)}
+  .cpin.selected .cpin-dot{r:7.5;fill:#e26a3c}
   .cpin.selected .cpin-halo{fill:rgba(226,106,60,.28)}
   .mg-panel{position:absolute;top:0;right:0;bottom:0;width:340px;background:#fffdf7;border-left:2px solid var(--signal);box-shadow:-12px 0 34px rgba(20,33,29,.14);transform:translateX(106%);transition:transform .34s cubic-bezier(.4,0,.2,1);overflow-y:auto;padding:22px 24px 26px;z-index:5;visibility:hidden}
   .mg-panel.open{transform:none;visibility:visible}
@@ -1270,7 +1270,7 @@
           const cpins = opts.communities.map(c=>{
             const cp = fitProj([c.lon, c.lat]); if(!cp) return '';
             const cx=cp[0].toFixed(1), cy=cp[1].toFixed(1); const n=c.grants.length;
-            return `<g class="cpin" data-key="${c.key}" tabindex="0" role="button" aria-label="${c.name}, ${n} mini grant${n>1?'s':''}"><circle class="cpin-halo" cx="${cx}" cy="${cy}" r="12" fill="rgba(226,106,60,.14)"/><circle class="cpin-dot" cx="${cx}" cy="${cy}" r="5" fill="#e26a3c"/></g>`;
+            return `<g class="cpin" data-key="${c.key}" tabindex="0" role="button" aria-label="${c.name}, ${n} mini grant${n>1?'s':''}"><circle class="cpin-halo" cx="${cx}" cy="${cy}" r="12" fill="transparent"/><circle class="cpin-dot" cx="${cx}" cy="${cy}" r="5"/></g>`;
           }).join('');
           document.getElementById(opts.prefix+'-pins').innerHTML = cpins;
         }
