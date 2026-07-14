@@ -212,6 +212,7 @@
   section.s h2{font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-weight:800;font-size:clamp(40px,5.5vw,84px);line-height:.95;letter-spacing:-.02em}
   /* headline hierarchy: hero + featured Living Labs section stay paramount */
   #stories .cases-head h2{font-size:clamp(52px,7.5vw,112px)}
+  @media (max-width:520px){#stories .cases-head h2{font-size:clamp(34px,9.2vw,52px)}}
   section.s h2 em{color:var(--green);font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
   h1 em, h2 em{font-style:normal;font-weight:inherit;text-transform:uppercase;letter-spacing:0}
   section.s.dark h2 em{color:var(--signal)}
@@ -403,7 +404,7 @@
   .partner-logo.has-img{padding:8px 14px;background:transparent;border-color:transparent}
   .partner-logo img{max-height:48px;max-width:180px;width:auto;height:auto;object-fit:contain;display:block}
   .partner-logo.nacto img{max-height:52px;max-width:52px}
-  @media (max-width:640px){.partners{padding:30px 20px;gap:24px}.partners-list{gap:18px 20px;justify-content:flex-start}.partner-logo{min-width:0}}
+  @media (max-width:640px){.partners{padding:30px 20px;gap:24px}.partners-list{flex-direction:column;flex-wrap:nowrap;align-items:center;gap:22px;width:100%}.partner-logo{min-width:0;width:100%;height:auto;justify-content:center}.partner-logo img{max-height:44px}}
   .team{max-width:var(--maxw);margin:0 auto}
   .team-grid{margin-top:28px;display:grid;grid-template-columns:repeat(4,1fr);gap:36px 28px}
   .person{display:flex;flex-direction:column;gap:10px}
