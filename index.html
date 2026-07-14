@@ -117,7 +117,7 @@
   .brand .logo-descend img{width:100%;height:auto;max-height:120px;object-fit:contain;object-position:left top;display:block;filter:drop-shadow(0 6px 24px rgba(15,38,32,.18))}
   .brand-spacer{width:clamp(150px, 14vw, 220px);height:46px}
   .nav-links{display:flex;gap:24px;align-items:center;font-size:14px}
-  .nav-links a{text-decoration:none;color:var(--ink);opacity:.7}
+  .nav-links a{text-decoration:none;color:var(--ink);opacity:.7;text-transform:uppercase;letter-spacing:.06em}
   .nav-links a:hover{opacity:1}
   .nav-tools{display:flex;gap:8px;align-items:center;margin-left:12px;padding-left:18px;border-left:1px solid var(--line)}
   .nav-tool{width:36px;height:36px;border:1px solid var(--line);background:transparent;border-radius:50%;display:flex;align-items:center;justify-content:center;cursor:pointer;color:var(--ink);opacity:.7;transition:opacity .2s,background .2s,border-color .2s;padding:0;position:relative}
@@ -334,6 +334,11 @@
   .ripple-head h2 em{color:var(--moss)}
   .ripple-map{max-width:var(--maxw);margin:0 auto;padding:0 var(--pad) 48px}
   .ripple-legend{font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.14em;color:rgba(15,38,32,.5);padding:0 4px 36px}
+  .tap-hint{display:inline-block;font-weight:700;color:var(--signal);animation:tapBounce 1.3s ease-in-out infinite;will-change:transform}
+  .tap-hint .tap-arrow{display:inline-block;margin-left:.12em}
+  .tap-hint.tapped{animation:none;color:rgba(15,38,32,.5)}
+  @keyframes tapBounce{0%,20%,100%{transform:translateY(0)}45%{transform:translateY(5px)}70%{transform:translateY(1px)}}
+  @media(prefers-reduced-motion:reduce){.tap-hint{animation:none}}
   .mg-stage{position:relative}
   .mg-stage svg{width:100%;height:auto;display:block}
   .cpin{cursor:pointer;outline:none;-webkit-tap-highlight-color:transparent}
@@ -622,7 +627,7 @@
       <div class="timeline">
         <div class="tl-step"><div class="tl-year">2008</div><div class="tl-cap">First U.S. bike share systems launch</div></div>
         <div class="tl-step major"><div class="tl-year">2014</div><div class="tl-cap">BBSP founded · Philadelphia plans Indego on a foundation of equity</div></div>
-        <div class="tl-step major"><div class="tl-year">2016</div><div class="tl-cap">First grants deployed · &lt;5% of SMM systems offer equity programs</div></div>
+        <div class="tl-step major"><div class="tl-year">2016</div><div class="tl-cap">First grants deployed · &lt;5% of systems offer equity programs</div></div>
         <div class="tl-step major"><div class="tl-year">2024</div><div class="tl-cap">92% of systems offer discount programs</div></div>
       </div>
     </div>
@@ -638,7 +643,7 @@
         <p>Share of shared micromobility systems offering equity programs — measured at BBSP's launch and a decade later.</p>
       </div>
       <div class="pct-panel">
-        <div class="pct-panel-title">SMM systems · equity programs</div>
+        <div class="pct-panel-title">Shared micromobility systems · equity programs</div>
         <div class="pct-bars">
           <div class="pct-bar is-before">
             <div class="pct-bar-meta">2016 · BBSP's launch</div>
@@ -740,7 +745,7 @@
       <span class="pn">PROGRAM · 03</span>
       <h3>Peer-to-Peer Learning Opportunities</h3>
       <p>Consistent and anticipated peer gatherings and study tours — like the annual Roundtable, an intimate work and play space with 40 people ranging from half-day workshops to multi-day study tours — plus regular peer social functions at national conferences like the National Association of City Transportation Officials' (NACTO) Designing Cities Conference and North American Bikeshare and Scotershare Association's (NABSA) annual conference.</p>
-      <p>Thirteen Roundtable events over 10 years brought SMM practitioners together for peer exchange. The <a href="https://nacto.org/latest/stronger-together-the-challenges-and-joys-of-advancing-shared-micromobility/" target="_blank" rel="noopener">final 2026 Roundtable</a> drew 40 practitioners from 20 cities to Tucson, AZ, for two days of collaboration, riding bikes and scooters, and sharing meals. Attendees discussed successes, tackled common hurdles, and brainstormed ways to ensure micromobility truly serves every member of a community. Success stories from <a href="https://betterbikeshare.org/grants-and-grantees/" target="_blank" rel="noopener">BBSP Living Lab grantees</a> and a dialogue between Tucson Vice Mayor Lane Santa Cruz and organizer Vanessa Gallego from <a href="https://www.fugatucson.org/about" target="_blank" rel="noopener">Familias Unidas Ganando Accesibilidad (FUGA)</a> reminded us what this work is all about: bike share that truly serves our communities.</p>
+      <p>Thirteen Roundtable events over 10 years brought shared micromobility practitioners together for peer exchange. The <a href="https://nacto.org/latest/stronger-together-the-challenges-and-joys-of-advancing-shared-micromobility/" target="_blank" rel="noopener">final 2026 Roundtable</a> drew 40 practitioners from 20 cities to Tucson, AZ, for two days of collaboration, riding bikes and scooters, and sharing meals. Attendees discussed successes, tackled common hurdles, and brainstormed ways to ensure micromobility truly serves every member of a community. Success stories from <a href="https://betterbikeshare.org/grants-and-grantees/" target="_blank" rel="noopener">BBSP Living Lab grantees</a> and a dialogue between Tucson Vice Mayor Lane Santa Cruz and organizer Vanessa Gallego from <a href="https://www.fugatucson.org/about" target="_blank" rel="noopener">Familias Unidas Ganando Accesibilidad (FUGA)</a> reminded us what this work is all about: bike share that truly serves our communities.</p>
       <div class="metric"><span class="n">13</span><span class="u">gatherings · 20 cities at Tucson 2026</span></div>
     </div>
     <div class="pgm">
@@ -894,7 +899,7 @@
     <p class="deck" style="margin-top:20px">Mini grants put anywhere from $5,000 to $21,500 of hands-on, in-person community engagement exactly where it was needed — and grew ridership in bike and scooter share everywhere they landed. Eight annual rounds. Nearly $800,000. Thirty-one states.</p>
   </div>
   <div class="ripple-map">
-    <div class="ripple-legend">BBSP MINI GRANTS · 58 COMMUNITIES · TAP A PIN</div>
+    <div class="ripple-legend">BBSP MINI GRANTS · 58 COMMUNITIES · <span class="tap-hint">TAP A PIN<span class="tap-arrow" aria-hidden="true">↓</span></span></div>
     <div class="mg-stage">
     <svg id="rippleMap" viewBox="0 0 1000 545" role="group" aria-label="Map of BBSP mini-grant communities">
       <defs>
@@ -947,7 +952,7 @@
   <div style="max-width:var(--maxw);margin:0 auto">
     <div class="chap"><span class="line"></span><span class="lbl">International legacy</span></div>
     <h2 style="margin-top:8px;font-size:clamp(38px,4.8vw,70px);max-width:16ch">Beyond local wins, an <em>international playbook.</em></h2>
-    <p class="legacy-body" style="margin-top:24px;max-width:62ch">Beyond local wins for individual bike and scooter share systems, BBSP's true legacy lies in its reach. With partners like NABSA, BBSP created lasting change in how shared micromobility serves those who need a variety of mobility options most — and how systems are designed across North America.</p>
+    <p class="legacy-body" style="margin-top:24px;max-width:62ch">Beyond local wins for individual bike and scooter share systems, BBSP's true legacy lies in its reach. With partners like NABSA, BBSP created lasting change in how shared micromobility (SMM) serves those who need a variety of mobility options most — and how systems are designed across North America.</p>
 
     <blockquote style="max-width:820px;margin:48px 0 0;padding:24px 28px;background:rgba(98,155,163,.08);border-left:2px solid var(--green);font-family:'Montserrat',ui-sans-serif,system-ui,sans-serif;font-weight:400;font-size:17px;line-height:1.55;color:var(--ink);font-style:normal">
       &ldquo;BBSP has played a critical role in the fundamental transformation of SMM by helping cities address systemic and institutional barriers to access for low-income and BIPOC communities. Through funding, research, and technical assistance, BBSP has supported cities in testing new ideas, developing strategies, and learning from one another. As a result, the SMM industry has evolved to a place where equity is at the center of system design and operations, not as an afterthought, but as a core principle. That shift is in large part due to BBSP's leadership and sustained investment in this work.&rdquo;
@@ -1316,6 +1321,7 @@
     function closePanel(){ if(!panel) return; panel.classList.remove('open'); panel.setAttribute('aria-hidden','true'); document.querySelectorAll('#rippleMap-pins .cpin.selected').forEach(p=>p.classList.remove('selected')); }
     function openCommunity(key, pinEl){
       const c = COMMUNITIES.find(x=>x.key===key); if(!c||!panel) return;
+      document.querySelector('.tap-hint')?.classList.add('tapped'); // stop the bounce once a pin is tapped
       const total = c.grants.reduce((a,g)=>a+g.amount,0);
       const photo = c.photo ? `<div class="mg-photo"><img src="assets/images/${c.photo}" alt="${c.name}"></div>` : '';
       const rows = c.grants.map(g=>`<div class="mg-grant"><span>${g.year} &middot; ${g.grantee}</span><span class="mg-amt">${fmtUSD(g.amount)}</span></div>`).join('');
