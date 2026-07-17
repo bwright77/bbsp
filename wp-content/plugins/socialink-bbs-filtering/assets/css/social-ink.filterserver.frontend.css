@@ -1,0 +1,167 @@
+.plugin-filterserver {
+    margin: 0;
+    position: relative;
+}
+.plugin-filterserver .filtering_controls {
+    padding: 1em;
+    margin: 0 auto;
+}
+.plugin-filterserver .filtering_controls h1 {
+    font-size: 2em;
+    margin-bottom: .5em;
+    color:#333;
+    font-weight: inherit;
+}
+.plugin-filterserver .filtering_controls .filtersection {
+    margin-bottom: 1em;
+}
+.plugin-filterserver .filtering_controls .form_meta {
+    text-align: center;
+}
+.plugin-filterserver .filtering_controls .filtersection label {
+    display: block;
+    color:#333;
+    font-size: 1.1em;
+}
+.plugin-filterserver .filtering_controls .filtersection1 {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: justify;
+    -webkit-justify-content: space-between;
+            justify-content: space-between;
+    margin-bottom: 2em;
+}
+.plugin-filterserver .filtering_controls .filtersection1>div {
+    width: 50%;
+}
+.plugin-filterserver .filtering_controls .filtersection input[type='text'] {
+    width: 80%;
+}
+.plugin-filterserver .filtering_controls .filtersection select {
+    width: 90%;
+}
+
+.plugin-filterserver .filter-box.hidden {
+    display: none;
+}
+.plugin-filterserver .submission {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-box-pack: center;
+    -webkit-justify-content: center;
+            justify-content: center;
+}
+.plugin-filterserver .filtering_controls .filtersection button {
+    margin-right: 2em;
+    background: #e15450;
+    color: #fff;
+    text-transform: uppercase;
+    border: 0;
+    padding: .75em 1em;
+    cursor: pointer;
+}
+.plugin-filterserver .filtering_controls .filtersection button:hover {
+    background: #ccc;
+    color: #333;
+}
+.plugin-filterserver button#plugin-filter-reset {
+    display: none;
+}
+.plugin-filterserver.searched button#plugin-filter-reset {
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+}
+.plugin-filterserver .filtering_results {
+    border-top: 5px solid #7ebabc;
+    padding-top: 1em;
+}
+.plugin-filterserver .filtering_results.searching:before {
+    background: rgba(98, 155, 163, .9);
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    color: #333;
+}
+.plugin-filterserver .results-header-searched,
+.plugin-filterserver .filtering_results.searched .results-header-basic,
+.plugin-filterserver .resultsfound-on,
+.plugin-filterserver .results_navigation,
+.plugin-filterserver .results-message-insufficient,
+.plugin-filterserver .results-messages {
+    display: none;
+}
+.plugin-filterserver .filtering_results.filters-insufficient .results-message-insufficient,
+.plugin-filterserver .filtering_results.searched .results-header-searched,
+.plugin-filterserver .filtering_results.results-success .resultsfound-on,
+.plugin-filterserver .filtering_results.searching .results-message-searching,
+.plugin-filterserver .filtering_results.results-nonefound .results-message-none,
+.plugin-filterserver .filtering_results.results-init .results-message-init,
+.plugin-filterserver .results-messages.on {
+    display: inline-block;
+}
+.plugin-filterserver .results-messages h3 {
+    font-size: 1.2em;
+    margin-bottom: .25em;
+}
+.plugin-filterserver .filtering_results.searching .results-message-searching .insidemsg {
+    color: #333;
+    z-index: 100;
+    position: absolute;
+    display: inline-block;
+    left: 0;
+    width: 100%;
+    padding: 2em;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    justify-content: flex-end;
+    -webkit-box-align: center;
+    -webkit-align-items: center;
+    align-items: center;
+    font-weight: 800;
+    flex-direction: column;
+    box-sizing: border-box;
+    height: 100%;
+    top: 0;
+}
+.plugin-filterserver .mainSearchingMsg {
+    font-size: 2.5em;
+    margin-bottom: 2em;
+}
+.plugin-filterserver .cancelSearch {
+    cursor: pointer;
+}
+.plugin-filterserver .results_navigation.on {
+    display: block;
+    width: 100%;
+}
+.plugin-filterserver .results_navigation .button_containers {
+    display: flex;
+}
+.plugin-filterserver .results_navigation button {
+    padding: .25em .75em;
+    color:#D6D6D6;
+    background: #000;
+    border: 0;
+    display: inline-block;
+    text-align: center;
+    font-size: 1em;
+}
+.plugin-filterserver .results_navigation button.navigate_previous:before {
+    content: '«';
+}
+.plugin-filterserver .results_navigation button.navigate_next:after {
+    content: '»';
+}
+.plugin-filterserver .results_navigation button.navigate_previous.notuse {
+    display: none;
+}
+.plugin-filterserver .results_navigation button.navigate_next {
+    margin-left: auto;
+}

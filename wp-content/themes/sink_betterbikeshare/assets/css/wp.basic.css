@@ -1,0 +1,28 @@
+/*****************
+Basic WP styles we need to include or override
+***********************************************/	
+
+.entry-content img{margin:0 0 1.5em 0}
+.alignleft,img.alignleft{display:inline;float:left;margin:1.5em 1.5em 1.5em 0;}
+.alignright,img.alignright{display:inline;float:right;margin:1.5em 0 1.5em 1.5em}
+.aligncenter,img.aligncenter{clear:both;display:block;margin-left:auto;margin-right:auto}
+.wp-caption{text-align:center;margin-bottom:1.5em}
+.wp-caption img{border:0 none;margin:0;padding:0}
+.wp-caption p.wp-caption-text{margin:0}
+.wp-smiley{max-height:1em;margin:0 !important}
+.gallery dl{margin:0}
+.gallery-caption{margin:-1.5em 0 0 0}
+.content ul,.content ol{margin-bottom:1em}
+.content ol,.content ol li{list-style-type:decimal;margin-left:1em}
+ol,ol li{list-style-type:decimal}
+.content .commentarea ol,.content .commentarea ol li{margin-left:0}
+.content #comments ol,.content #comments ol li{list-style:none;padding:0}
+.content #comments ol li.comment{background:#f8f8f8;padding:1em}
+.content #comments img.avatar{margin-right:.5em}
+.content #comments .comment-author{font-size:90%;margin-bottom:1em}
+.content #comments p.form-allowed-tags{display:none}
+.content #comments #respond label{display:inline-block;min-width:150px}
+blockquote{font-style:italic}
+blockquote.left{float:left;margin-left:0;margin-right:20px;text-align:right;width:33%}
+blockquote.right{float:right;margin-left:20px;margin-right:0;text-align:left;width:33%}
+.wp-caption{border:0;font-size:.75em;text-align:center;background:transparent;padding:0;margin:1em}
