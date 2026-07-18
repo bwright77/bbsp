@@ -788,5 +788,69 @@ var wpcf7 = {
 <script type="text/javascript" src="../wp-content/plugins/contact-form-7/includes/js/index.js" id="contact-form-7-js"></script>
 <script type="text/javascript" src="../wp-content/plugins/google-language-translator/js/scripts.js" id="scripts-js"></script>
 <script type="text/javascript" src="https://translate.google.com/translate_a/element.js?cb=GoogleLanguageTranslatorInit" id="scripts-google-js"></script>
+<!-- Static archive: replace the dead server-side "Advanced Search" with a Pagefind search over the frozen corpus -->
+<script>
+(function(){
+  var kw=document.getElementById('sinkfilter-s'),
+      ct=document.getElementById('sinkfilter-post_type'),
+      tp=document.getElementById('sinkfilter-topics'),
+      rt=document.getElementById('sinkfilter-resources'),
+      btn=document.getElementById('plugin-filter-main'),
+      reset=document.getElementById('plugin-filter-reset'),
+      box=document.querySelector('.filtering_results'),
+      out=document.querySelector('.results-container'),
+      foundNum=document.querySelector('.resultsFoundNum');
+  if(!btn||!out) return;
+  // content-type -> URL-path test
+  var typeMatch={
+    post:function(u){return /^\/20\d\d\//.test(u);},
+    resource:function(u){return u.indexOf('/resource/')===0;},
+    grantee:function(u){return u.indexOf('/grantee/')===0;},
+    grant:function(u){return u.indexOf('/grant/')===0;},
+    people:function(u){return u.indexOf('/people/')===0;},
+    tribe_events:function(u){return u.indexOf('/event/')===0;}
+  };
+  function selText(sel){ if(!sel||!sel.value) return ''; var o=sel.options[sel.selectedIndex]; return o?o.textContent.trim():''; }
+  function setState(cls){ if(box){ box.className='filtering_results archive_controller '+cls; } }
+  var pf=null,pfInit=null;
+  function ensurePF(){ if(pf!==null) return pfInit; pfInit=(async function(){ try{ var m=await import('/pagefind/pagefind.js'); if(m.init) await m.init(); pf=m; }catch(e){ pf=false; } })(); return pfInit; }
+  var seq=0;
+  async function run(){
+    var my=++seq;
+    var terms=[];
+    if(kw&&kw.value.trim()) terms.push(kw.value.trim());
+    var tText=selText(tp).toLowerCase().replace(/&amp;/g,'&');
+    var rText=selText(rt).toLowerCase().replace(/&amp;/g,'&');
+    if(tText) terms.push(tText);
+    if(rText) terms.push(rText.replace(/\s*&\s*/g,' '));
+    var q=terms.join(' ').trim();
+    var typeFn=(ct&&ct.value&&typeMatch[ct.value])?typeMatch[ct.value]:null;
+    if(!q){ setState('results-insufficient'); return; }
+    setState('results-searching');
+    await ensurePF();
+    if(my!==seq) return;
+    if(!pf){ out.innerHTML='<p style="padding:12px">Search is unavailable.</p>'; setState('results-message-none'); return; }
+    var res; try{ res=await pf.search(q); }catch(e){ res=null; }
+    if(my!==seq) return;
+    var hits=(res&&res.results)?res.results:[];
+    var data=await Promise.all(hits.slice(0,40).map(function(r){return r.data();}));
+    if(my!==seq) return;
+    if(typeFn) data=data.filter(function(d){return typeFn(d.url);});
+    if(!data.length){ out.innerHTML=''; if(foundNum) foundNum.textContent='0'; setState('results-message-none'); return; }
+    var html=data.slice(0,25).map(function(d){
+      var title=(d.meta&&d.meta.title)||d.url;
+      return '<a class="pf-hit" href="'+d.url+'" style="display:block;padding:14px 4px;border-bottom:1px solid #e5e5e5;text-decoration:none;color:#111">'+
+        '<span style="display:block;font-weight:700;font-size:17px;color:#c0392b;margin-bottom:4px">'+title+'</span>'+
+        '<span style="display:block;font-size:14px;line-height:1.5;color:#444">'+d.excerpt+'</span></a>';
+    }).join('');
+    out.innerHTML=html;
+    if(foundNum) foundNum.textContent=String(data.length);
+    setState('results-done');
+  }
+  btn.addEventListener('click',function(e){ e.preventDefault(); run(); });
+  if(reset) reset.addEventListener('click',function(e){ e.preventDefault(); if(kw)kw.value=''; if(ct)ct.value=''; if(tp)tp.value=''; if(rt)rt.value=''; out.innerHTML=''; setState('results-init'); });
+  if(kw) kw.addEventListener('keydown',function(e){ if(e.key==='Enter'){ e.preventDefault(); run(); } });
+})();
+</script>
 </body>
 </html>
