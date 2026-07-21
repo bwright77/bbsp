@@ -222,7 +222,7 @@
   .origin-body p + p{margin-top:28px}
   .origin-photo{margin-top:48px;position:relative;border-radius:6px;overflow:hidden;aspect-ratio:4/3;background:#1a2a25}
   .origin-photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .origin-photo figcaption{position:absolute;left:14px;bottom:14px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;color:var(--ink);text-transform:uppercase;background:rgba(98,155,163,.92);padding:6px 10px;border-radius:3px;font-weight:600}
+  .origin-photo figcaption{position:absolute;left:14px;bottom:14px;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.1em;color:var(--ink);text-transform:uppercase;background:rgba(98,155,163,.92);padding:6px 10px;border-radius:3px;font-weight:600}
   .timeline{margin-top:64px;display:grid;grid-template-columns:repeat(4,1fr);gap:0;border-top:1px solid var(--ink);border-bottom:1px solid var(--ink);padding:24px 0}
   .tl-step{padding:0 18px;border-left:1px solid var(--line)}
   .tl-step:first-child{border-left:0;padding-left:0}
@@ -316,7 +316,7 @@
   .case-narr{font-size:17px;line-height:1.6;color:rgba(250,246,236,.86);max-width:54ch;margin-bottom:32px}
   .case-photo{position:relative;border-radius:4px;overflow:hidden;aspect-ratio:3/2;background:#1a2a25;margin-bottom:32px}
   .case-photo img{width:100%;height:100%;object-fit:cover;display:block}
-  .case-photo figcaption{position:absolute;left:12px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;color:var(--ink);background:rgba(98,155,163,.92);padding:5px 8px;border-radius:3px;font-weight:600;text-transform:uppercase}
+  .case-photo figcaption{position:absolute;left:12px;bottom:12px;font-family:"JetBrains Mono",monospace;font-size:13px;letter-spacing:.1em;color:var(--ink);background:rgba(98,155,163,.92);padding:5px 8px;border-radius:3px;font-weight:600;text-transform:uppercase}
   .case-outcomes{display:flex;flex-direction:column;gap:14px;border-top:1px solid rgba(250,246,236,.16);padding-top:24px}
   .outcome{display:grid;grid-template-columns:auto 1fr;gap:18px;align-items:baseline;padding-bottom:14px;border-bottom:1px dashed rgba(250,246,236,.12)}
   .outcome .num{font-size:34px;font-weight:500;line-height:1;letter-spacing:-.02em;color:var(--signal);min-width:140px;font-variant-numeric:tabular-nums}
@@ -357,13 +357,13 @@
   .mg-photo{margin:-22px -24px 16px;height:150px;overflow:hidden;background:var(--green-deep)}
   .mg-photo img{width:100%;height:100%;object-fit:cover;display:block}
   .mg-name{font-family:"Montserrat",sans-serif;font-weight:800;font-size:22px;letter-spacing:-.01em;line-height:1.05;padding-right:28px}
-  .mg-sub{font-family:"JetBrains Mono",monospace;font-size:10px;letter-spacing:.12em;color:var(--signal);margin:5px 0 16px}
+  .mg-sub{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.12em;color:var(--signal);margin:5px 0 16px}
   .mg-grant{display:flex;justify-content:space-between;gap:12px;font-family:"JetBrains Mono",monospace;font-size:11.5px;line-height:1.35;color:#4a5450;padding:9px 0;border-top:1px solid #eadfc9}
   .mg-grant:last-of-type{border-bottom:1px solid #eadfc9}
   .mg-grant .mg-amt{color:var(--ink);white-space:nowrap}
-  .mg-stories-lbl{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:20px 0 10px}
+  .mg-stories-lbl{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:20px 0 10px}
   .mg-stories{display:flex;flex-direction:column;gap:9px}
-  .mg-story{font-family:"JetBrains Mono",monospace;font-size:11px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);text-decoration:none;font-weight:600}
+  .mg-story{font-family:"JetBrains Mono",monospace;font-size:12.5px;letter-spacing:.1em;text-transform:uppercase;color:var(--green);text-decoration:none;font-weight:600}
   .mg-story:hover{color:var(--signal)}
   @media(max-width:800px){
     .mg-panel{position:fixed;top:auto;left:0;right:0;bottom:0;width:auto;max-height:78vh;border-left:none;border-top:2px solid var(--signal);border-radius:16px 16px 0 0;transform:translateY(106%);box-shadow:0 -12px 34px rgba(20,33,29,.18)}
@@ -763,15 +763,16 @@
 <section class="s dark" id="stories">
   <div class="cases-head">
     <div class="chap"><span class="line"></span><span class="lbl">Stories from the ground</span></div>
-    <h2 style="max-width:14ch"><em>Living Labs.</em><br>Deep community investment.</h2>
+    <h2 style="max-width:14ch"><em>Living Labs.</em></h2>
+    <p style="font-family:'Montserrat',sans-serif;font-weight:500;font-size:clamp(20px,2.2vw,30px);line-height:1.25;letter-spacing:-.01em;color:rgba(250,246,236,.85);margin:10px 0 0">Deep community investment.</p>
     <p class="deck" style="color:rgba(250,246,236,.7);margin-top:18px;max-width:54ch"><b>Nine $200,000 grants</b> across two cohorts and eight cities (Philadelphia twice) gave cities, transit agencies, nonprofit operators, and community organizations the time to pilot, pivot, and accelerate programs otherwise impossible. A true Living Lab, these projects tested ideas and found what really worked for their communities. We've selected four case studies — two from each cohort — that show what that time and trust made possible on the ground.</p>
     <div style="margin-top:28px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:32px;max-width:960px">
-      <div style="border-top:1px solid rgba(250,246,236,.25);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;line-height:1.7;color:rgba(250,246,236,.6)">
+      <div style="border-top:1px solid rgba(250,246,236,.25);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.02em;line-height:1.75;color:rgba(250,246,236,.78)">
         <div style="color:var(--signal);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">2021–23 cohort</div>
         Indego (Philadelphia) · MoGo (Detroit) · PBOT/BIKETOWN (Portland) · Red Bike (Cincinnati) · the Northwest Center (Chicago)
         <div style="margin-top:8px"><a href="/wp-content/uploads/2024/04/BBSP-Living-Labs-Report-3_7_24.pdf" style="color:inherit;text-decoration:underline">A compilation of their work</a></div>
       </div>
-      <div style="border-top:1px solid rgba(250,246,236,.25);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:12px;letter-spacing:.04em;line-height:1.7;color:rgba(250,246,236,.6)">
+      <div style="border-top:1px solid rgba(250,246,236,.25);padding-top:14px;font-family:'JetBrains Mono',monospace;font-size:14px;letter-spacing:.02em;line-height:1.75;color:rgba(250,246,236,.78)">
         <div style="color:var(--signal);font-weight:600;letter-spacing:.14em;text-transform:uppercase;margin-bottom:8px">2024–26 cohort</div>
         Indego (Philadelphia) · POGOH (Pittsburgh) · TUGO (Tucson) · the Los Angeles Living Lab Coalition (BikeLA, Los Angeles Walks, Walk-n-Rollers, CicLAvia, LA Metro Bike Share)
         <div style="margin-top:8px">Impact Reports: <a href="https://storymaps.arcgis.com/stories/b6f6928fddb64cfa8fbcd8dbba563feb" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">POGOH</a> · <a href="https://storymaps.arcgis.com/stories/8ac2d792afd04c43be3ce8013d850234" target="_blank" rel="noopener" style="color:inherit;text-decoration:underline">TUGO</a> · Indego &amp; Los Angeles coming July 2026</div>
