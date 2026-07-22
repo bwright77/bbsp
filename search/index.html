@@ -1,0 +1,183 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Search — Better Bike Share Partnership</title>
+<meta name="description" content="Search the Better Bike Share Partnership archive — stories, guides, grantees and resources, 2014–2026.">
+<meta name="robots" content="noindex,follow">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@300..600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#f4f1e8;--bg-2:#e6e2d2;--ink:#000;--ink-mute:#6a6f72;--line:rgba(0,0,0,.14);
+    --green:#629BA3;--green-deep:#1f3e44;--moss:#8fb9bf;--signal:#e26a3c;--cream:#faf6ec;
+    --pad:clamp(20px,4vw,80px);--maxw:940px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{background:var(--bg);color:var(--ink);font-family:"Montserrat",ui-sans-serif,system-ui,sans-serif;font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased;text-rendering:optimizeLegibility}
+  a{color:inherit}
+  .mono{font-family:"JetBrains Mono",ui-monospace,monospace}
+  .bar{background:var(--green-deep);color:var(--cream);padding:18px var(--pad)}
+  .bar-in{max-width:var(--maxw);margin:0 auto;display:flex;align-items:center;justify-content:space-between;gap:20px}
+  .bar a{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;text-decoration:none;opacity:.85}
+  .bar a:hover{opacity:1;color:var(--moss)}
+  main{max-width:var(--maxw);margin:0 auto;padding:clamp(40px,7vw,80px) var(--pad) 120px}
+  .chap{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.16em;text-transform:uppercase;color:var(--ink-mute);display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .chap .line{height:1px;width:44px;background:var(--line);display:inline-block}
+  h1{font-weight:800;font-size:clamp(38px,6vw,68px);line-height:.98;letter-spacing:-.025em;margin-bottom:28px}
+  .field{position:relative;display:flex;align-items:center;border-bottom:2px solid var(--ink);padding-bottom:12px}
+  .field svg{width:22px;height:22px;flex:none;stroke:var(--ink-mute);margin-right:14px}
+  #q{flex:1;border:0;background:transparent;font-family:"Montserrat",sans-serif;font-weight:600;font-size:clamp(20px,3vw,30px);letter-spacing:-.015em;color:var(--ink);outline:none;min-width:0}
+  #q::placeholder{color:rgba(0,0,0,.28);font-weight:500}
+  #clear{border:0;background:transparent;cursor:pointer;font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.12em;text-transform:uppercase;color:var(--ink-mute);padding:6px 4px}
+  #clear:hover{color:var(--signal)}
+  #clear[hidden]{display:none}
+  .status{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--ink-mute);margin:22px 0 8px;min-height:18px}
+  .hit{display:block;padding:26px 0;border-top:1px solid var(--line);text-decoration:none}
+  .hit:first-of-type{border-top:0}
+  .hit h2{font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.25;letter-spacing:-.015em;margin-bottom:8px}
+  .hit:hover h2{color:var(--signal)}
+  .hit .url{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.08em;color:var(--green);margin-bottom:10px;word-break:break-word}
+  .hit .ex{color:var(--ink-mute);font-size:15.5px;line-height:1.55}
+  .hit mark{background:rgba(226,106,60,.22);color:inherit;padding:0 2px;border-radius:2px}
+  .more{margin-top:36px;text-align:center}
+  .more button{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.14em;text-transform:uppercase;background:transparent;border:1px solid var(--ink);border-radius:3px;padding:14px 26px;cursor:pointer}
+  .more button:hover{background:var(--ink);color:var(--bg)}
+  .empty{padding:44px 0;color:var(--ink-mute)}
+  .empty b{display:block;color:var(--ink);font-size:20px;margin-bottom:10px}
+  .sugg{margin-top:18px;display:flex;flex-wrap:wrap;gap:10px}
+  .sugg button{font-family:"JetBrains Mono",monospace;font-size:12px;letter-spacing:.1em;background:var(--bg-2);border:0;border-radius:3px;padding:9px 14px;cursor:pointer}
+  .sugg button:hover{background:var(--green);color:var(--cream)}
+</style>
+</head>
+<body>
+<div class="bar">
+  <div class="bar-in">
+    <a href="/">&larr; Better Bike Share</a>
+    <a href="/category/stories/">Browse all stories</a>
+  </div>
+</div>
+
+<main>
+  <div class="chap"><span class="line"></span><span>Archive search</span></div>
+  <h1>Search the archive.</h1>
+
+  <form class="field" role="search" onsubmit="return false">
+    <svg viewBox="0 0 256 256" fill="none" stroke="currentColor" stroke-width="18" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="112" cy="112" r="72"/><line x1="163" y1="163" x2="224" y2="224"/></svg>
+    <input id="q" type="search" name="s" autocomplete="off" autocapitalize="off" spellcheck="false"
+           placeholder="Stories, guides, cities, grantees…" aria-label="Search the archive">
+    <button id="clear" type="button" hidden>Clear</button>
+  </form>
+
+  <div class="status mono" id="status" role="status" aria-live="polite"></div>
+  <div id="results"></div>
+  <div class="more" id="more" hidden><button type="button">Load more results</button></div>
+</main>
+
+<script type="module">
+  const qEl=document.getElementById('q'), resEl=document.getElementById('results'),
+        statusEl=document.getElementById('status'), moreWrap=document.getElementById('more'),
+        moreBtn=moreWrap.querySelector('button'), clearBtn=document.getElementById('clear');
+  const PAGE=12;
+  let pf=null, pfLoad=null, all=[], shown=0, seq=0;
+
+  function ensurePF(){
+    if(pf!==null) return pfLoad;
+    pfLoad=(async()=>{
+      try{ const m=await import('/pagefind/pagefind.js'); if(m.init) await m.init(); pf=m; }
+      catch(e){ pf=false; }
+    })();
+    return pfLoad;
+  }
+
+  const esc=s=>String(s).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  // Pagefind excerpts arrive with <mark> already in them; keep those, escape the rest.
+  function safeExcerpt(html){
+    return String(html).split(/(<\/?mark>)/g)
+      .map(p=>/^<\/?mark>$/.test(p)?p:esc(p)).join('');
+  }
+  function prettyUrl(u){ return u.replace(/\/index\.html$/,'/').replace(/^https?:\/\/[^/]+/,''); }
+
+  async function renderPage(){
+    const slice=all.slice(shown, shown+PAGE);
+    const data=await Promise.all(slice.map(r=>r.data()));
+    const html=data.map(d=>`<a class="hit" href="${esc(prettyUrl(d.url))}">
+        <h2>${esc(d.meta&&d.meta.title?d.meta.title:'Untitled')}</h2>
+        <div class="url">${esc(prettyUrl(d.url))}</div>
+        <div class="ex">${safeExcerpt(d.excerpt)}</div>
+      </a>`).join('');
+    resEl.insertAdjacentHTML('beforeend', html);
+    shown+=slice.length;
+    moreWrap.hidden = shown>=all.length;
+  }
+
+  async function run(query){
+    const my=++seq;
+    const q=query.trim();
+    clearBtn.hidden = !q;
+    resEl.innerHTML=''; shown=0; all=[]; moreWrap.hidden=true;
+    if(q.length<2){
+      statusEl.textContent='';
+      if(!q) showIdle();
+      return;
+    }
+    statusEl.textContent='Searching…';
+    await ensurePF();
+    if(my!==seq) return;
+    if(!pf){
+      statusEl.textContent='';
+      resEl.innerHTML='<div class="empty"><b>Search is unavailable.</b>The archive index didn’t load. Try reloading, or browse the <a href="/category/stories/" style="color:var(--signal)">full story archive</a>.</div>';
+      return;
+    }
+    let r=null; try{ r=await pf.search(q); }catch(e){}
+    if(my!==seq) return;
+    all=(r&&r.results)||[];
+    if(!all.length){
+      statusEl.textContent='0 results';
+      resEl.innerHTML='<div class="empty"><b>No matches for “'+esc(q)+'”.</b>Try a city, a program, or a person.</div>';
+      addSuggestions();
+      return;
+    }
+    statusEl.textContent=all.length+(all.length===1?' result':' results');
+    await renderPage();
+  }
+
+  function showIdle(){
+    resEl.innerHTML='<div class="empty"><b>728 stories, plus guides and grantee profiles.</b>Start typing to search the full Better Bike Share archive, 2014–2026.</div>';
+    addSuggestions();
+  }
+  function addSuggestions(){
+    const picks=['Philadelphia','equity','mini grant','fellowship','Detroit','ambassador'];
+    const wrap=document.createElement('div');
+    wrap.className='sugg';
+    picks.forEach(p=>{
+      const b=document.createElement('button');
+      b.type='button'; b.textContent=p;
+      b.addEventListener('click',()=>{ qEl.value=p; qEl.focus(); commit(p); });
+      wrap.appendChild(b);
+    });
+    resEl.appendChild(wrap);
+  }
+
+  let t=null;
+  function commit(v){
+    const url=new URL(location.href);
+    if(v) url.searchParams.set('s',v); else url.searchParams.delete('s');
+    history.replaceState(null,'',url);
+    run(v);
+  }
+  qEl.addEventListener('input',()=>{ clearTimeout(t); const v=qEl.value; t=setTimeout(()=>commit(v),160); });
+  qEl.addEventListener('keydown',e=>{ if(e.key==='Enter'){ e.preventDefault(); clearTimeout(t); commit(qEl.value); } });
+  clearBtn.addEventListener('click',()=>{ qEl.value=''; qEl.focus(); commit(''); });
+  moreBtn.addEventListener('click',renderPage);
+
+  // Accept ?s= (WordPress param used by the archive header forms) or ?q=
+  const params=new URLSearchParams(location.search);
+  const initial=(params.get('s')||params.get('q')||'').trim();
+  if(initial){ qEl.value=initial; run(initial); } else { showIdle(); }
+  qEl.focus();
+</script>
+</body>
+</html>
