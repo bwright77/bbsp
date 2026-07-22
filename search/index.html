@@ -39,7 +39,7 @@
   .hit:first-of-type{border-top:0}
   .hit h2{font-weight:700;font-size:clamp(19px,2.2vw,24px);line-height:1.25;letter-spacing:-.015em;margin-bottom:8px}
   .hit:hover h2{color:var(--signal)}
-  .hit .url{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.08em;color:var(--green);margin-bottom:10px;word-break:break-word}
+  .hit .byline{font-family:"JetBrains Mono",monospace;font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--green);margin-bottom:10px}
   .hit .ex{color:var(--ink-mute);font-size:15.5px;line-height:1.55}
   .hit mark{background:rgba(226,106,60,.22);color:inherit;padding:0 2px;border-radius:2px}
   .more{margin-top:36px;text-align:center}
@@ -52,7 +52,7 @@
   .sugg button:hover{background:var(--green);color:var(--cream)}
 </style>
 </head>
-<body>
+<body data-pagefind-ignore>
 <div class="bar">
   <div class="bar-in">
     <a href="/">&larr; Better Bike Share</a>
@@ -100,14 +100,23 @@
   }
   function prettyUrl(u){ return u.replace(/\/index\.html$/,'/').replace(/^https?:\/\/[^/]+/,''); }
 
+  // Indexing is scoped to the article prose (data-pagefind-body on .text), so the
+  // title/byline/date never reach the excerpt. Just tidy any leading punctuation.
+  const trimLeadIn=ex=>String(ex).replace(/^[\s.,·—–-]+/,'');
+
   async function renderPage(){
     const slice=all.slice(shown, shown+PAGE);
     const data=await Promise.all(slice.map(r=>r.data()));
-    const html=data.map(d=>`<a class="hit" href="${esc(prettyUrl(d.url))}">
-        <h2>${esc(d.meta&&d.meta.title?d.meta.title:'Untitled')}</h2>
-        <div class="url">${esc(prettyUrl(d.url))}</div>
-        <div class="ex">${safeExcerpt(d.excerpt)}</div>
-      </a>`).join('');
+    const html=data.map(d=>{
+      const m=d.meta||{};
+      const byline=[m.author,m.date].filter(Boolean).join(' · ');
+      const ex=trimLeadIn(d.excerpt);
+      return `<a class="hit" href="${esc(prettyUrl(d.url))}">
+        <h2>${esc(m.title||'Untitled')}</h2>
+        ${byline?`<div class="byline">${esc(byline)}</div>`:''}
+        <div class="ex">${safeExcerpt(ex)}</div>
+      </a>`;
+    }).join('');
     resEl.insertAdjacentHTML('beforeend', html);
     shown+=slice.length;
     moreWrap.hidden = shown>=all.length;
